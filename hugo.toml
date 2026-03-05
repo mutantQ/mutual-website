@@ -1,0 +1,38 @@
+baseURL = 'https://mutual.solutions/'
+languageCode = 'en-us'
+title = 'mutual'
+theme = 'ananke'
+
+[params]
+  text_color = ""
+  author = "mutual"
+  favicon = ""
+  site_logo = ""
+  description = "Hardware-rooted content authenticity. We sign camera output at capture."
+  background_color_class = "bg-white"
+  body_classes = "avenir bg-white"
+  post_content_classes = "avenir"
+  show_reading_time = true
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+  [languages.ko]
+    languageName = "한국어"
+    weight = 2
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 1
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 2
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 3
