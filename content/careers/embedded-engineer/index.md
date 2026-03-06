@@ -7,7 +7,7 @@ tags: ["startup", "mutual", "hiring", "embedded", "linux", "trustzone"]
 showTableOfContents: true
 ---
 
-![mutual logo](mutual-logo.jpg)
+<img src="mutual-logo.jpg" alt="mutual logo" style="max-width: 70%;">
 
 **We make digital content provably authentic at the hardware level.**
 

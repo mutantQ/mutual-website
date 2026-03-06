@@ -7,7 +7,7 @@ tags: ["startup", "mutual", "hiring", "embedded", "linux", "trustzone"]
 showTableOfContents: true
 ---
 
-![mutual 로고](mutual-logo.jpg)
+<img src="mutual-logo.jpg" alt="mutual 로고" style="max-width: 70%;">
 
 **"이 영상, 진짜야?" 라는 질문에 답할 수 있는 기술을 만듭니다.**
 
