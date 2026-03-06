@@ -13,7 +13,7 @@ This is my application to [AttentionX](https://attentionx.org/) Cohort VII. Some
 
 ### mutual / SRA (Signing Right Away) - 2024-Present
 
-[https://mutantq.github.io/blog/2025/introducing-mutual/](https://mutantq.github.io/blog/2025/introducing-mutual/)
+[https://mutual.work/blog/introducing-mutual/](/blog/introducing-mutual/)
 
 I'm building a company around a question most people are asking backwards: instead of "how do we detect AI fakes?", I ask "how do we let real content prove itself?"
 

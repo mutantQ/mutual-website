@@ -13,7 +13,7 @@ showTableOfContents: true
 
 AI가 만든 영상과 진짜 영상, 이제 눈으로는 구분이 안 됩니다. mutual은 카메라가 찍는 순간, 하드웨어 안에서 바로 서명합니다.
 
-회사 소개: [mutual을 소개합니다](/blog/2025/introducing-mutual-kr/)
+회사 소개: [mutual을 소개합니다](/ko/blog/introducing-mutual/)
 
 ## 역할
 

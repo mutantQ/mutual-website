@@ -13,7 +13,7 @@ showTableOfContents: true
 
 AI-generated media is indistinguishable from reality. Software detection doesn't work. At mutual, we're building cryptographic signing directly into camera hardware, so content is authenticated the moment it's captured.
 
-Corporate introduction: [Introducing mutual](/blog/2025/introducing-mutual/)
+Corporate introduction: [Introducing mutual](/blog/introducing-mutual/)
 
 ## The Role
 

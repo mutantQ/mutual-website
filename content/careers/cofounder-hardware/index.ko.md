@@ -14,7 +14,7 @@ showTableOfContents: true
 AI가 만든 영상과 진짜 영상, 이제 눈으로는 구분이 안 됩니다. 소프트웨어로 가려내는 건 한계가 있고요.\\
 mutual은 다르게 접근합니다. 카메라가 찍는 순간, 하드웨어 안에서 바로 서명합니다. 소프트웨어가 손댈 틈이 없어요.
 
-회사 간략 소개: [mutual을 소개합니다](/blog/2025/introducing-mutual-kr/) \\
+회사 간략 소개: [mutual을 소개합니다](/ko/blog/introducing-mutual/) \\
 화이트페이퍼(PDF): [Signing Right Away](/assets/pdf/SRA-2025-10-05.pdf)
 
 ## 누가 투자했나요?
