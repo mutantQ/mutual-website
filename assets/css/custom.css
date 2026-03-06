@@ -52,6 +52,18 @@ body.header-dark header a:hover {
   color: white !important;
 }
 
+/* Hamburger overlay: force full-viewport coverage even inside fixed header */
+#menu-wrapper {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  z-index: 999 !important;
+}
 /* Hamburger overlay: always use its own dark-on-light colors */
 #menu-wrapper,
 #menu-wrapper a,
