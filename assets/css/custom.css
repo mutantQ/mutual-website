@@ -68,6 +68,10 @@ body.header-dark header a:hover {
   z-index: 999 !important;
 }
 /* Hamburger overlay: always use its own dark-on-light colors */
+#menu-wrapper {
+  background: rgba(255,255,255,0.92) !important;
+  backdrop-filter: blur(16px) !important;
+}
 #menu-wrapper,
 #menu-wrapper a,
 #menu-wrapper span,
@@ -126,6 +130,12 @@ header a img {
   max-height: 36px !important;
   max-width: 36px !important;
   width: auto;
+}
+
+/* Main content below header stacking context (for mobile menu overlay) */
+main {
+  position: relative;
+  z-index: 0;
 }
 
 /* Career page logo: 70% width */
