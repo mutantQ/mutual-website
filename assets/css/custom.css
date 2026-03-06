@@ -7,15 +7,18 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
 }
 
-/* ── Header always full-width ── */
+/* ── Header always full-width, sticky by default ── */
 header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
+  margin-left: calc(-50vw + 50%);
   padding-left: 32px;
   padding-right: 32px;
   z-index: 100;
+  background: white;
 }
 @media (max-width: 640px) {
   header {
