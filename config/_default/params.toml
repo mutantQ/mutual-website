@@ -13,6 +13,7 @@ fingerprintAlgorithm = "sha256"
 
 [header]
   layout = "basic"
+  logo = "img/logo.png"
   showTitle = true
 
 [footer]
@@ -22,7 +23,7 @@ fingerprintAlgorithm = "sha256"
   showScrollToTop = true
 
 [homepage]
-  layout = "page"
+  layout = "custom"
   showRecent = false
   recentLimit = 5
 

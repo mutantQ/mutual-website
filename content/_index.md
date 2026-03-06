@@ -4,13 +4,9 @@ description: "We sign camera output at the moment of capture. Before software ca
 showHeadingAnchors: false
 ---
 
-<div style="margin: 2rem 0 3rem 0;">
-<p style="font-size: 1.25rem; line-height: 1.8; color: #334155;">
-We sign camera output at the moment of capture. Before software can touch it.
-</p>
-</div>
+<img src="/img/hero-flow.png" alt="Sign at capture, verify anywhere, mutual's hardware signing flow" style="width: 100%; max-width: 100%; border-radius: 12px; margin-bottom: 2rem;">
 
-The internet is becoming a lemon market — real and fake media sit side by side. As generative AI improves, software-based detection is a losing game.
+Real and fake media sit side by side, and the line between them is vanishing. As generative AI improves, software-based detection is a losing game.
 
 We changed the question: instead of detecting fakes, we let real content prove its origin. **SRA (Signing Right Away)** signs media at the moment light hits the sensor, using hardware-bound cryptographic keys that never leave the device.
 
@@ -18,7 +14,9 @@ We changed the question: instead of detecting fakes, we let real content prove i
 
 ## What we build
 
-**On-device signing hardware** that creates a cryptographic chain of custody from sensor to screen. Every frame is signed before software can modify it — making forgery detectable and authenticity verifiable.
+<img src="/img/chain-of-custody.png" alt="Chain of custody: Sensor → SRA Module → Storage → Display" style="width: 100%; max-width: 100%; margin: 1rem 0;">
+
+**On-device signing hardware** that creates a cryptographic chain of custody from sensor to screen. Every frame is signed before software can modify it, making forgery detectable and authenticity verifiable.
 
 Our approach is compatible with [C2PA](https://c2pa.org/) and builds on ARM TrustZone for hardware isolation.
 
@@ -26,7 +24,9 @@ Our approach is compatible with [C2PA](https://c2pa.org/) and builds on ARM Trus
 
 ## Why it matters
 
-Generative AI has made it trivial to create convincing fake media. Detection algorithms are in a losing arms race. The only sustainable solution is **proving authenticity at the source** — not detecting fakes after the fact.
+<img src="/img/detect-vs-prove.png" alt="Current approach (detect fakes) vs mutual's approach (prove authenticity)" style="width: 100%; max-width: 100%; margin: 1rem 0;">
+
+Generative AI has made it trivial to create convincing fake media. Detection algorithms are in a losing arms race. The only sustainable solution is **proving authenticity at the source**, not detecting fakes after the fact.
 
 ---
 

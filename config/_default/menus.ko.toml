@@ -9,6 +9,11 @@
   weight = 20
 
 [[main]]
+  name = "채용"
+  pageRef = "careers"
+  weight = 25
+
+[[main]]
   name = "연락처"
   pageRef = "contact"
   weight = 30

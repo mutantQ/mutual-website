@@ -1,0 +1,277 @@
+{{ define "main" }}
+<style>
+  :root {
+    --m-blue: #4a8b9c;
+    --m-blue-dark: #2a5561;
+    --m-slate-900: #0f172a;
+    --m-slate-700: #334155;
+    --m-slate-500: #64748b;
+    --m-slate-300: #cbd5e1;
+    --m-slate-100: #f1f5f9;
+  }
+  .contact-page * { box-sizing: border-box; }
+  .contact-page {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    overflow-x: hidden;
+  }
+  .contact-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── Hero ── */
+  .contact-hero {
+    background: var(--m-slate-900);
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,139,156,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,139,156,0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+  }
+  .contact-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+  .contact-hero .label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--m-blue);
+    margin-bottom: 20px;
+  }
+  .contact-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 20px;
+  }
+  .contact-hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--m-slate-300);
+  }
+
+  /* ── Contact grid ── */
+  .contact-body {
+    padding: 80px 0 100px;
+    background: white;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  /* Left: contact methods */
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .contact-method {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-method:hover {
+    border-color: var(--m-blue);
+    transform: translateY(-2px);
+  }
+  .cm-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(74,139,156,0.1);
+    color: var(--m-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cm-icon svg { width: 24px; height: 24px; }
+  .cm-text h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 4px;
+  }
+  .cm-text p {
+    font-size: 15px;
+    color: var(--m-slate-500);
+    line-height: 1.5;
+  }
+  .cm-text a {
+    color: var(--m-blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .cm-text a:hover { text-decoration: underline; }
+
+  /* Right: message box */
+  .contact-message {
+    background: var(--m-slate-100);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-message h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .contact-message p {
+    font-size: 16px;
+    color: var(--m-slate-500);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .contact-message .email-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--m-blue);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .contact-message .email-cta:hover {
+    background: var(--m-blue-dark);
+    transform: translateY(-1px);
+  }
+
+  /* Reveal */
+  .reveal-c {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-c.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .contact-hero h1 { font-size: 32px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>
+
+<div class="contact-page">
+
+  <section class="contact-hero">
+    <div class="contact-inner">
+      <div class="contact-hero-content">
+        <div class="label">{{ if eq .Page.Language.Lang "ko" }}연락처{{ else }}Contact{{ end }}</div>
+        <h1>{{ if eq .Page.Language.Lang "ko" }}이야기 나눠보세요.{{ else }}Let's talk.{{ end }}</h1>
+        <p>{{ if eq .Page.Language.Lang "ko" }}콘텐츠 진위 인증이 필요한 무언가를 만들고 계신가요? 파트너십이나 투자에 관심이 있으신가요? 편하게 연락주세요.{{ else }}Building something that needs content authenticity? Interested in partnership or investment? We'd love to hear from you.{{ end }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-body">
+    <div class="contact-inner">
+      <div class="contact-grid">
+        <div class="contact-methods">
+          <div class="contact-method reveal-c">
+            <div class="cm-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="cm-text">
+              <h3>{{ if eq .Page.Language.Lang "ko" }}이메일{{ else }}Email{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}파트너십, 문의, 일반 질문{{ else }}For partnerships, inquiries, and general questions.{{ end }}</p>
+              <a href="mailto:jangyejun@gmail.com">jangyejun@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-method reveal-c">
+            <div class="cm-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </div>
+            <div class="cm-text">
+              <h3>GitHub</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}오픈소스 작업과 기여를 팔로우하세요.{{ else }}Follow our open-source work and contributions.{{ end }}</p>
+              <a href="https://github.com/mutantQ" target="_blank">github.com/mutantQ</a>
+            </div>
+          </div>
+          <div class="contact-method reveal-c">
+            <div class="cm-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="cm-text">
+              <h3>LinkedIn</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}연결하고 소식을 받아보세요.{{ else }}Connect and stay updated on our progress.{{ end }}</p>
+              <a href="https://linkedin.com/company/mutual-solutions" target="_blank">mutual on LinkedIn</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-message reveal-c">
+          <h2>{{ if eq .Page.Language.Lang "ko" }}직접 연락주세요{{ else }}Reach out directly{{ end }}</h2>
+          <p>{{ if eq .Page.Language.Lang "ko" }}콘텐츠 검증이 필요한 기자든, 하드웨어 서명 감독이 필요한 시험 플랫폼이든, 신뢰 인프라에 관심 있는 투자자든, 편하게 메일 보내주세요.{{ else }}Whether you're a journalist looking to verify content, an exam platform needing hardware-signed proctoring, or an investor interested in trust infrastructure, drop us a line.{{ end }}</p>
+          <a href="mailto:jangyejun@gmail.com" class="email-cta">
+            {{ if eq .Page.Language.Lang "ko" }}이메일 보내기{{ else }}Send an email{{ end }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Contact page header
+  (function() {
+    const body = document.body;
+    const hero = document.querySelector('.contact-hero');
+    if (hero) {
+      body.classList.add('header-dark', 'has-hero');
+      function updateHeader() {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom < 80) {
+          body.classList.remove('header-dark');
+          body.classList.add('header-scrolled');
+        } else {
+          body.classList.add('header-dark', 'has-hero');
+          body.classList.remove('header-scrolled');
+        }
+      }
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      updateHeader();
+    }
+  })();
+
+  // Scroll reveals
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal-c').forEach(el => ro.observe(el));
+</script>
+{{ end }}

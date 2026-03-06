@@ -1,0 +1,354 @@
+{{ define "main" }}
+<style>
+  :root {
+    --m-blue: #4a8b9c;
+    --m-blue-dark: #2a5561;
+    --m-slate-900: #0f172a;
+    --m-slate-700: #334155;
+    --m-slate-500: #64748b;
+    --m-slate-300: #cbd5e1;
+    --m-slate-100: #f1f5f9;
+  }
+  .blog-page * { box-sizing: border-box; }
+  .blog-page {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    overflow-x: hidden;
+  }
+
+  /* ── Reveal animations ── */
+  .reveal-b {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-b.visible { opacity: 1; transform: translateY(0); }
+  .reveal-b-delay-1 { transition-delay: 0.1s; }
+  .reveal-b-delay-2 { transition-delay: 0.2s; }
+  .reveal-b-delay-3 { transition-delay: 0.3s; }
+  .reveal-b-delay-4 { transition-delay: 0.4s; }
+
+  /* ── Blog inner container ── */
+  .blog-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── Blog header (clean, light) ── */
+  .blog-header {
+    background: white;
+    padding: 80px 0 48px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .blog-header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--m-slate-900);
+    margin-bottom: 12px;
+  }
+  .blog-header p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--m-slate-500);
+    max-width: 480px;
+  }
+
+  /* ── Posts section ── */
+  .blog-posts {
+    background: var(--m-slate-100);
+    padding: 64px 0 80px;
+  }
+
+  /* ── Card grid ── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  /* ── Post card ── */
+  .blog-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 32px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  }
+
+  /* Card meta: date + reading time */
+  .blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--m-slate-500);
+    margin-bottom: 16px;
+  }
+  .blog-card-meta .separator {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--m-slate-300);
+    flex-shrink: 0;
+  }
+
+  /* Card title */
+  .blog-card h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--m-slate-900);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .blog-card h2 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .blog-card h2 a:hover {
+    color: var(--m-blue);
+  }
+
+  /* Card summary */
+  .blog-card-summary {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--m-slate-500);
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  /* Card tags */
+  .blog-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .blog-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--m-blue);
+    background: rgba(74,139,156,0.08);
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .blog-tag:hover {
+    background: rgba(74,139,156,0.16);
+    color: var(--m-blue-dark);
+  }
+
+  /* ── Pagination ── */
+  .blog-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 56px;
+  }
+  .blog-pagination a,
+  .blog-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .blog-pagination a {
+    color: var(--m-slate-700);
+    background: white;
+    border: 1px solid #e2e8f0;
+  }
+  .blog-pagination a:hover {
+    background: var(--m-blue);
+    color: white;
+    border-color: var(--m-blue);
+  }
+  .blog-pagination .active {
+    background: var(--m-blue);
+    color: white;
+    border: 1px solid var(--m-blue);
+  }
+  .blog-pagination .disabled {
+    color: var(--m-slate-300);
+    background: white;
+    border: 1px solid #e2e8f0;
+    pointer-events: none;
+  }
+
+  /* ── Empty state ── */
+  .blog-empty {
+    text-align: center;
+    padding: 80px 32px;
+    color: var(--m-slate-500);
+    font-size: 17px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .blog-header { padding: 48px 0 32px; }
+    .blog-header h1 { font-size: 32px; }
+    .blog-posts { padding: 40px 0 56px; }
+    .blog-grid { grid-template-columns: 1fr; gap: 24px; }
+    .blog-card { padding: 24px; }
+    .blog-card h2 { font-size: 19px; }
+  }
+</style>
+
+<div class="blog-page">
+
+  <!-- Header -->
+  <section class="blog-header">
+    <div class="blog-inner">
+      <div class="reveal-b">
+        {{ if eq .Page.Language.Lang "ko" }}
+          <h1>블로그</h1>
+          <p>mutual의 소식과 인사이트</p>
+        {{ else }}
+          <h1>Blog</h1>
+          <p>Updates and insights from mutual</p>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts -->
+  <section class="blog-posts">
+    <div class="blog-inner">
+      {{ $paginator := .Paginate .Pages }}
+      {{ if $paginator.Pages }}
+        <div class="blog-grid">
+          {{ range $index, $page := $paginator.Pages }}
+            <article class="blog-card reveal-b reveal-b-delay-{{ mod $index 4 | add 1 }}">
+              <!-- Meta -->
+              <div class="blog-card-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                  {{ if eq $.Page.Language.Lang "ko" }}
+                    {{ .Date.Format "2006년 1월 2일" }}
+                  {{ else }}
+                    {{ .Date.Format "January 2, 2006" }}
+                  {{ end }}
+                </time>
+                {{ with .ReadingTime }}
+                  <span class="separator"></span>
+                  <span>
+                    {{ . }}
+                    {{ if eq $.Page.Language.Lang "ko" }}분 소요{{ else }}min read{{ end }}
+                  </span>
+                {{ end }}
+              </div>
+
+              <!-- Title -->
+              <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+              <!-- Summary -->
+              {{ with .Description }}
+                <p class="blog-card-summary">{{ . }}</p>
+              {{ else }}
+                {{ with .Summary }}
+                  <p class="blog-card-summary">{{ . | plainify | truncate 160 }}</p>
+                {{ end }}
+              {{ end }}
+
+              <!-- Tags -->
+              {{ with .Params.tags }}
+                <div class="blog-card-tags">
+                  {{ range . }}
+                    <a class="blog-tag" href="{{ "tags/" | absLangURL }}{{ . | urlize }}/">{{ . }}</a>
+                  {{ end }}
+                </div>
+              {{ end }}
+            </article>
+          {{ end }}
+        </div>
+
+        <!-- Pagination -->
+        {{ if gt $paginator.TotalPages 1 }}
+          <nav class="blog-pagination" aria-label="Pagination">
+            {{- if $paginator.HasPrev }}
+              <a href="{{ $paginator.Prev.URL }}" aria-label="Previous page">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </a>
+            {{ else }}
+              <span class="disabled" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </span>
+            {{ end -}}
+
+            {{ range $paginator.Pagers }}
+              {{ if eq . $paginator }}
+                <span class="active">{{ .PageNumber }}</span>
+              {{ else }}
+                <a href="{{ .URL }}">{{ .PageNumber }}</a>
+              {{ end }}
+            {{ end }}
+
+            {{- if $paginator.HasNext }}
+              <a href="{{ $paginator.Next.URL }}" aria-label="Next page">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            {{ else }}
+              <span class="disabled" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            {{ end -}}
+          </nav>
+        {{ end }}
+
+      {{ else }}
+        <div class="blog-empty">
+          {{ if eq .Page.Language.Lang "ko" }}
+            아직 게시된 글이 없습니다.
+          {{ else }}
+            No posts yet.
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Blog page: no dark hero, just ensure header is solid
+  (function() {
+    const body = document.body;
+    body.classList.remove('header-dark', 'has-hero');
+    body.classList.add('header-scrolled');
+  })();
+
+  // Scroll reveal animations
+  const blogRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        blogRevealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal-b').forEach(el => blogRevealObserver.observe(el));
+</script>
+{{ end }}
