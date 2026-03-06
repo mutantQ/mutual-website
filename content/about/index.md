@@ -1,6 +1,10 @@
 ---
-title: "About mutual"
+title: "About"
 description: "Building trust infrastructure for the post-AI era"
+showDate: false
+showReadingTime: false
+showAuthor: false
+showPagination: false
 ---
 
 mutual builds hardware that lets authentic content prove itself.

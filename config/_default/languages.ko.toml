@@ -1,0 +1,20 @@
+languageCode = "ko"
+languageName = "한국어"
+languageDirection = "ltr"
+weight = 2
+
+title = "mutual"
+
+[params]
+  dateFormat = "2006년 1월 2일"
+  description = "하드웨어 기반 콘텐츠 진위 인증. 촬영 순간에 디지털 서명."
+
+[params.author]
+  name = "mutual"
+  headline = "하드웨어 기반 콘텐츠 진위 인증"
+  bio = "카메라가 빛을 받는 순간, 소프트웨어가 개입하기 전에 서명합니다."
+  links = [
+    { email = "mailto:jangyejun@gmail.com" },
+    { github = "https://github.com/mutantQ" },
+    { linkedin = "https://linkedin.com/company/mutual-solutions" },
+  ]

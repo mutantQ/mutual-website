@@ -1,0 +1,20 @@
+languageCode = "en"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+title = "mutual"
+
+[params]
+  dateFormat = "2 January 2006"
+  description = "Hardware-rooted content authenticity. We sign camera output at capture."
+
+[params.author]
+  name = "mutual"
+  headline = "Hardware-rooted content authenticity"
+  bio = "We sign camera output at the moment of capture. Before software can touch it."
+  links = [
+    { email = "mailto:jangyejun@gmail.com" },
+    { github = "https://github.com/mutantQ" },
+    { linkedin = "https://linkedin.com/company/mutual-solutions" },
+  ]

@@ -1,0 +1,20 @@
+[[main]]
+  name = "소개"
+  pageRef = "about"
+  weight = 10
+
+[[main]]
+  name = "블로그"
+  pageRef = "blog"
+  weight = 20
+
+[[main]]
+  name = "연락처"
+  pageRef = "contact"
+  weight = 30
+
+[[main]]
+  identifier = "locale"
+  weight = 100
+  [main.params]
+    action = "locale"
