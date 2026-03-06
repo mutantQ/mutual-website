@@ -212,41 +212,98 @@
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--m-slate-900);
-    margin-bottom: 48px;
+    margin-bottom: 16px;
     text-align: center;
   }
-  .tech-grid {
+  .tech-subtitle {
+    font-size: 16px;
+    color: var(--m-slate-500);
+    text-align: center;
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+  .tech-subtitle code {
+    background: rgba(74,139,156,0.1);
+    color: var(--m-blue-dark);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .roadmap {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 0;
+    position: relative;
   }
-  .tech-card {
-    padding: 32px;
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    top: 46px;
+    left: calc(100% / 6);
+    right: calc(100% / 6);
+    height: 2px;
+    background: var(--m-slate-300);
+    z-index: 0;
+    transform: translateY(-50%);
+  }
+  .roadmap-stage {
+    text-align: center;
+    position: relative;
+    padding: 0 16px;
+  }
+  .roadmap-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid var(--m-slate-300);
+    background: white;
+    margin: 8px auto 20px;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .roadmap-stage:first-child .roadmap-dot {
+    border-color: var(--m-blue);
+    background: var(--m-blue);
+  }
+  .roadmap-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0;
+  }
+  .roadmap-stage:first-child .roadmap-tag { color: var(--m-blue); }
+  .roadmap-stage:nth-child(2) .roadmap-tag { color: var(--m-slate-500); }
+  .roadmap-stage:last-child .roadmap-tag { color: var(--m-slate-500); }
+  .roadmap-card {
+    padding: 28px 24px;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
+    text-align: left;
     transition: border-color 0.2s;
   }
-  .tech-card:hover { border-color: var(--m-blue); }
-  .tech-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    background: rgba(74,139,156,0.1);
-    color: var(--m-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+  .roadmap-stage:first-child .roadmap-card {
+    border-color: var(--m-blue);
+    background: rgba(74,139,156,0.03);
   }
-  .tech-card-icon svg { width: 24px; height: 24px; }
-  .tech-card h3 {
-    font-size: 18px;
+  .roadmap-card:hover { border-color: var(--m-blue); }
+  .roadmap-card h3 {
+    font-size: 17px;
     font-weight: 700;
     color: var(--m-slate-900);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .tech-card p {
-    font-size: 15px;
+  .roadmap-card .hw {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--m-blue);
+    margin-bottom: 10px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .roadmap-card p {
+    font-size: 14px;
     color: var(--m-slate-500);
     line-height: 1.6;
   }
@@ -268,7 +325,9 @@
     .team-card .desc { font-size: 12px; }
     .team-avatar { width: 64px; height: 64px; font-size: 20px; }
     .team-avatar img { width: 64px; height: 64px; }
-    .tech-grid { grid-template-columns: 1fr; }
+    .roadmap { grid-template-columns: 1fr; gap: 24px; }
+    .roadmap::before { display: none; }
+    .roadmap-dot { margin: 0 auto 16px; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
     .team-grid { grid-template-columns: repeat(3, 1fr); }
@@ -369,31 +428,38 @@
     </div>
   </section>
 
-  <!-- Technology -->
+  <!-- Technology Roadmap -->
   <section class="about-section tech">
     <div class="about-inner">
-      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}기술 스택{{ else }}Our technology{{ end }}</h2>
-      <div class="tech-grid">
-        <div class="tech-card reveal-a">
-          <div class="tech-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</h2>
+      <p class="tech-subtitle reveal-a">{{ if eq .Page.Language.Lang "ko" }}모든 단계에서 <code>ECDSA</code> 서명 + <code>C2PA</code> 매니페스트를 사용합니다. 하드웨어 플랫폼만 진화합니다.{{ else }}Every stage uses <code>ECDSA</code> signatures + <code>C2PA</code> manifests. Only the hardware platform evolves.{{ end }}</p>
+      <div class="roadmap">
+        <div class="roadmap-stage reveal-a">
+          <div class="roadmap-tag">{{ if eq .Page.Language.Lang "ko" }}현재{{ else }}Now{{ end }}</div>
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-card">
+            <h3>{{ if eq .Page.Language.Lang "ko" }}TrustZone 서명{{ else }}TrustZone Signing{{ end }}</h3>
+            <div class="hw">Luckfox Pico Mini</div>
+            <p>{{ if eq .Page.Language.Lang "ko" }}ARM TrustZone Secure World에서 키 보관과 서명. 소프트웨어 격리 기반 프로토타입.{{ else }}Key storage and signing in ARM TrustZone Secure World. Software-isolated prototype.{{ end }}</p>
           </div>
-          <h3>ARM TrustZone</h3>
-          <p>{{ if eq .Page.Language.Lang "ko" }}키 저장과 서명 연산을 위한 하드웨어 격리 보안 영역. 키는 신뢰 실행 환경 밖으로 절대 나가지 않습니다.{{ else }}Hardware-isolated secure world for key storage and signing operations. Keys never leave the trusted execution environment.{{ end }}</p>
         </div>
-        <div class="tech-card reveal-a">
-          <div class="tech-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div class="roadmap-stage reveal-a">
+          <div class="roadmap-tag">{{ if eq .Page.Language.Lang "ko" }}다음{{ else }}Next{{ end }}</div>
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-card">
+            <h3>{{ if eq .Page.Language.Lang "ko" }}Secure Element 분리{{ else }}Secure Element{{ end }}</h3>
+            <div class="hw">ATECC608A</div>
+            <p>{{ if eq .Page.Language.Lang "ko" }}전용 보안 칩에서 서명 연산. 키가 물리적으로 메인 프로세서와 완전히 분리됩니다.{{ else }}Signing in a dedicated secure element. Keys physically separated from the main processor.{{ end }}</p>
           </div>
-          <h3>{{ if eq .Page.Language.Lang "ko" }}C2PA 표준{{ else }}C2PA Standard{{ end }}</h3>
-          <p>{{ if eq .Page.Language.Lang "ko" }}서명된 모든 자산에 Content Credentials 매니페스트를 삽입합니다. C2PA 호환 도구나 플랫폼이면 어디서든 검증할 수 있습니다.{{ else }}Content Credentials manifest embedded in every signed asset. Verifiable by any C2PA-compatible tool or platform.{{ end }}</p>
         </div>
-        <div class="tech-card reveal-a">
-          <div class="tech-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <div class="roadmap-stage reveal-a">
+          <div class="roadmap-tag">{{ if eq .Page.Language.Lang "ko" }}목표{{ else }}Goal{{ end }}</div>
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-card">
+            <h3>{{ if eq .Page.Language.Lang "ko" }}센서 내장 ASIC{{ else }}Sensor-embedded ASIC{{ end }}</h3>
+            <div class="hw">Custom Silicon</div>
+            <p>{{ if eq .Page.Language.Lang "ko" }}서명 로직이 이미지 센서에 직접 내장. 빛에서 서명까지 하나의 칩 안에서 완결됩니다.{{ else }}Signing logic embedded directly in the image sensor. Light to signature, all in one chip.{{ end }}</p>
           </div>
-          <h3>{{ if eq .Page.Language.Lang "ko" }}ECDSA 서명{{ else }}ECDSA Signatures{{ end }}</h3>
-          <p>{{ if eq .Page.Language.Lang "ko" }}타원곡선 암호가 작고 빠른 서명을 제공합니다. 모든 프레임이 하드웨어에 바인딩된 출처 증명을 지닙니다.{{ else }}Elliptic curve cryptography provides compact, fast signatures. Every frame carries a hardware-bound proof of origin.{{ end }}</p>
         </div>
       </div>
     </div>
