@@ -92,11 +92,19 @@ body.header-dark header a img {
   transition: filter 0.35s ease;
 }
 
-/* Scrolled state */
+/* Scrolled state — backdrop-filter on ::before so header doesn't become
+   a containing block (which would trap #menu-wrapper's position:fixed) */
 body.header-scrolled header {
-  background: rgba(255,255,255,0.95) !important;
-  backdrop-filter: blur(12px);
+  background: transparent !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+body.header-scrolled header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  z-index: -1;
 }
 body.header-scrolled header a,
 body.header-scrolled header span,
