@@ -70,7 +70,7 @@ In spring 2024, I wrote up the first version of SRA as a kind of whitepaper. Aro
 
 We aimed high: without official documentation, we tried to reverse-engineer the MIPI CSI-2 camera interface and bolt a secure transport layer on top. It mostly failed. Our FPGA board didn't have enough memory. Our best-effort understanding of the protocol led to streams that would randomly break. We learned exactly what was wrong and what we needed, but we didn't have the resources to get there.
 
-Around that time, I met **Kay Kyungsik Woo**, founder and CEO of MVL Foundation. MVL runs TADA, a mobility service used by 2 million riders and hundreds of thousands of drivers in Southeast Asia. It's a team that has actually built and scaled a blockchain-based mobility ecosystem.
+Around that time, I met **Kay Kyungsik Woo**, founder and CEO of MVL Labs. MVL Labs runs TADA, a ride-hailing platform used by 2 million riders and hundreds of thousands of drivers in Southeast Asia, powered by MVL Chain. It's a team that has actually built and scaled a blockchain-based mobility ecosystem.
 
 I walked him through SRA: why the sensor matters, why the timing is right, why this has to live in hardware.
 

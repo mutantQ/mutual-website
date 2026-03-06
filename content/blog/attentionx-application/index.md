@@ -19,7 +19,7 @@ I'm building a company around a question most people are asking backwards: inste
 
 SRA is a hardware-rooted architecture that cryptographically signs media at the image sensor - before software can touch it. The signal path from sensor to file is protected by authenticated encryption (AES-GCM), decrypted only inside a TEE, and signed with C2PA credentials. Tampering is mathematically detectable, not heuristically guessed.
 
-I wrote the original whitepaper in Spring 2024, then spent 18 months in military service. When I returned, I gathered collaborators and tried to reverse-engineer MIPI CSI-2 without documentation. It didn't work - glitchy feeds, insufficient FPGA memory, unstable pipelines. But that experience taught us exactly what we needed. Two days after pitching the revised architecture to Kay Woo (MVL Foundation CEO), we had our first angel check.
+I wrote the original whitepaper in Spring 2024, then spent 18 months in military service. When I returned, I gathered collaborators and tried to reverse-engineer MIPI CSI-2 without documentation. It didn't work - glitchy feeds, insufficient FPGA memory, unstable pipelines. But that experience taught us exactly what we needed. Two days after pitching the revised architecture to Kay Woo (MVL Labs CEO), we had our first angel check.
 
 **My contribution:** Conceived architecture, authored whitepaper, led FPGA prototyping, pivoted strategy from custom silicon to reference architecture, raised angel funding.
 
@@ -95,7 +95,7 @@ We changed the question: what if genuine content could prove its origin?
 - **2024:** I write the SRA whitepaper, then enter military service
 - **2024-2025:** I research AI security for the Korean Army - model poisoning, adversarial attacks, penetration testing with RL. I learn how systems break.
 - **2025:** I return, gather a team, and fail at FPGA prototyping. The failure teaches us what we actually need.
-- **Nov 4, 2025:** I pitch to Kay Woo (MVL Foundation CEO)
+- **Nov 4, 2025:** I pitch to Kay Woo (MVL Labs CEO)
 - **Nov 6, 2025:** Angel investment decision. Two days.
 - **Now:** Building mutual, recruiting a hardware co-founder
 

@@ -19,7 +19,7 @@ Whitepaper (PDF): [Signing Right Away](/assets/pdf/SRA-2025-10-05.pdf)
 
 ## Backed By
 
-**Kay Kyungsik Woo** · Founder & CEO of [MVL Foundation](https://mvlchain.io), the company behind TADA, a blockchain-based ride-hailing platform operating across Southeast Asia. Kay brings deep experience in building trust infrastructure for real-world applications.
+**Kay Kyungsik Woo** · Founder & CEO of [MVL Labs](https://mvlchain.io), the company behind TADA, a ride-hailing platform operating across Southeast Asia powered by MVL Chain. Kay brings deep experience in building trust infrastructure for real-world applications.
 
 ## What You'll Build
 
