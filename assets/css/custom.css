@@ -128,6 +128,11 @@ header a img {
   width: auto;
 }
 
+/* Career page logo: 70% width */
+article picture:first-child {
+  max-width: 70%;
+}
+
 /* Clean link styling */
 article a {
   text-decoration: none;

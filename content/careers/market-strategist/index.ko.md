@@ -7,7 +7,7 @@ tags: ["startup", "mutual", "hiring", "strategy", "business"]
 showTableOfContents: true
 ---
 
-<img src="mutual-logo.jpg" alt="mutual 로고" style="max-width: 70%;">
+![mutual 로고](mutual-logo.jpg)
 
 **"이 영상, 진짜야?" 라는 질문에 답할 수 있는 기술을 만듭니다.**
 

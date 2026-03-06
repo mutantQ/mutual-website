@@ -7,7 +7,7 @@ tags: ["startup", "mutual", "hiring", "strategy", "business"]
 showTableOfContents: true
 ---
 
-<img src="mutual-logo.jpg" alt="mutual logo" style="max-width: 70%;">
+![mutual logo](mutual-logo.jpg)
 
 **We make digital content provably authentic at the hardware level.**
 
