@@ -584,16 +584,24 @@
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
-    .hero-content { grid-template-columns: 1fr; gap: 48px; }
-    .hero-text h1 { font-size: 36px; }
-    .hero-visual { height: 300px; }
+    .landing-inner { padding: 0 20px; }
+    .hero { min-height: auto; padding: 100px 0 64px; }
+    .hero-content { grid-template-columns: 1fr; gap: 36px; }
+    .hero-text h1 { font-size: 32px; }
+    .hero-text p { font-size: 16px; }
+    .hero-visual { height: 280px; }
     .problem-grid, .traction-grid { grid-template-columns: 1fr; }
+    .problem-card, .traction-card { padding: 24px; }
     .comp-grid { grid-template-columns: 1fr; }
     .comp-vs { padding: 16px 0; }
     .chain { flex-wrap: wrap; gap: 16px; }
     .chain-arrow { display: none; }
-    .landing-section { padding: 64px 0; }
-    h2 { font-size: 32px !important; }
+    .chain-node { min-width: calc(50% - 12px); }
+    .landing-section { padding: 56px 0; }
+    h2 { font-size: 28px !important; }
+    .cta h2 { font-size: 28px; }
+    .cta p { font-size: 16px; }
+    .hero-cta { padding: 14px 24px; font-size: 15px; }
   }
 </style>
 

@@ -251,9 +251,22 @@
   }
 
   @media (max-width: 768px) {
-    .about-hero h1 { font-size: 32px; }
-    .mission-grid { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-inner { padding: 0 20px; }
+    .about-hero { padding: 100px 0 64px; }
+    .about-hero h1 { font-size: 28px; }
+    .about-hero p { font-size: 16px; }
+    .about-section { padding: 48px 0; }
+    .about-section h2 { font-size: 28px; }
+    .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+    .mission-values { gap: 24px; }
+    .value-item h3 { font-size: 16px; }
+    .value-item p { font-size: 14px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .team-card h3 { font-size: 15px; }
+    .team-card .role { font-size: 12px; }
+    .team-card .desc { font-size: 12px; }
+    .team-avatar { width: 64px; height: 64px; font-size: 20px; }
+    .team-avatar img { width: 64px; height: 64px; }
     .tech-grid { grid-template-columns: 1fr; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
@@ -340,7 +353,7 @@
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}Imperial College London 전자공학 석사{{ else }}MEng EEE, Imperial College London{{ end }}</div>
         </div>
         <div class="team-card reveal-a">
-          <div class="team-avatar">WY</div>
+          <div class="team-avatar"><img src="/img/team-wonbeen.jpeg" alt="Wonbeen Yoon"></div>
           <h3>Wonbeen Yoon</h3>
           <div class="role">{{ if eq .Page.Language.Lang "ko" }}하드웨어 아키텍처{{ else }}Hardware Architecture{{ end }}</div>
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}서울대학교{{ else }}SNU{{ end }}</div>

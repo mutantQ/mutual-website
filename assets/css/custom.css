@@ -17,6 +17,12 @@ header {
   padding-right: 32px;
   z-index: 100;
 }
+@media (max-width: 640px) {
+  header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 /* Fixed header overlaying hero content */
 body.has-hero header {
   position: fixed !important;
@@ -34,18 +40,32 @@ header {
 body.header-dark header {
   background: transparent !important;
 }
+/* Dark header: all nav text white */
 body.header-dark header a,
 body.header-dark header span,
 body.header-dark header button,
-body.header-dark header nav a {
+body.header-dark header label {
   color: rgba(255,255,255,0.9) !important;
   transition: color 0.35s ease;
 }
-body.header-dark header a:hover,
-body.header-dark header nav a:hover {
+body.header-dark header a:hover {
   color: white !important;
 }
-/* Language dropdown: keep dark text on white background even when header is dark */
+
+/* Hamburger overlay: always use its own dark-on-light colors */
+#menu-wrapper,
+#menu-wrapper a,
+#menu-wrapper span,
+#menu-wrapper button,
+#menu-wrapper li {
+  color: #334155 !important;
+}
+#menu-wrapper a:hover,
+#menu-wrapper span:hover {
+  color: #0f172a !important;
+}
+
+/* Language dropdown: dark text on light bg even when header is dark */
 body.header-dark header div[class*="z-50"] a,
 body.header-dark header div[class*="z-50"] span {
   color: #334155 !important;
@@ -59,6 +79,7 @@ body.header-dark header a img {
   filter: brightness(0) invert(1);
   transition: filter 0.35s ease;
 }
+
 /* Scrolled state */
 body.header-scrolled header {
   background: rgba(255,255,255,0.95) !important;
@@ -68,7 +89,7 @@ body.header-scrolled header {
 body.header-scrolled header a,
 body.header-scrolled header span,
 body.header-scrolled header button,
-body.header-scrolled header nav a {
+body.header-scrolled header label {
   color: #334155 !important;
   transition: color 0.35s ease;
 }

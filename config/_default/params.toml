@@ -12,7 +12,7 @@ enableImageWebp = true
 fingerprintAlgorithm = "sha256"
 
 [header]
-  layout = "basic"
+  layout = "hybrid"
   logo = "img/logo.png"
   showTitle = true
 
