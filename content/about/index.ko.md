@@ -1,6 +1,6 @@
 ---
 title: "소개"
-description: "AI 시대 이후를 위한 콘텐츠 신뢰 인프라"
+description: "AI 시대를 위한 콘텐츠 신뢰 인프라"
 showDate: false
 showReadingTime: false
 showAuthor: false
