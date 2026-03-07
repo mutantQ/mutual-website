@@ -7,7 +7,7 @@ tags: ["startup", "mutual", "partnership"]
 showTableOfContents: true
 ---
 
-<img src="mutual-grepp-mou-card.png" alt="mutual x grepp MOU" style="width: 100%; max-width: 100%;">
+![mutual x grepp MOU](mutual-grepp-mou-card.png)
 
 [그렙](https://grepp.co)(대표: 임성수)과 MOU를 체결했다. mutual의 하드웨어 기반 카메라 인증 기술을 온라인 시험 감독에 도입하기 위한 사전 기술 검증(PoC) 및 상호 협력 체계를 구축하는 것이 목적이다.
 

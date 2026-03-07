@@ -7,7 +7,7 @@ tags: ["startup", "mutual", "partnership"]
 showTableOfContents: true
 ---
 
-<img src="mutual-grepp-mou-card.png" alt="mutual x grepp MOU" style="width: 100%; max-width: 100%;">
+![mutual x grepp MOU](mutual-grepp-mou-card.png)
 
 We signed an MOU with [Grepp](https://grepp.co) (CEO Samuel Sung-Soo Lim) to explore integrating mutual's hardware-based camera authentication into online exam proctoring.
 
