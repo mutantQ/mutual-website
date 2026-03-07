@@ -642,7 +642,7 @@
               </div>
               <div>
                 <h4>{{ if eq .Page.Language.Lang "ko" }}하드웨어가 프레임에 서명{{ else }}Hardware signs frame{{ end }}</h4>
-                <p>{{ if eq .Page.Language.Lang "ko" }}TrustZone 기반 ECDSA, 키는 칩 밖으로 나가지 않습니다{{ else }}ECDSA via TrustZone, key never leaves chip{{ end }}</p>
+                <p>{{ if eq .Page.Language.Lang "ko" }}TrustZone 기반 ECDSA, 서명 키는 칩 안에 안전하게{{ else }}ECDSA via TrustZone, key never leaves chip{{ end }}</p>
               </div>
             </div>
             <div class="flow-connector"></div>
