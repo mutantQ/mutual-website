@@ -138,6 +138,11 @@ main {
   z-index: 0;
 }
 
+/* Disable sticky article header (title follows scroll awkwardly) */
+article > header {
+  position: static !important;
+}
+
 /* Career page logo: 70% width */
 article picture:first-child {
   max-width: 70%;
