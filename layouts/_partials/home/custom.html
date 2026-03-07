@@ -632,7 +632,7 @@
               </div>
               <div>
                 <h4>{{ if eq .Page.Language.Lang "ko" }}빛이 센서에 닿는 순간{{ else }}Light hits sensor{{ end }}</h4>
-                <p>{{ if eq .Page.Language.Lang "ko" }}카메라 모듈이 원시 이미지를 캡처{{ else }}Raw image captured by camera module{{ end }}</p>
+                <p>{{ if eq .Page.Language.Lang "ko" }}카메라 모듈이 이미지를 촬영{{ else }}Raw image captured by camera module{{ end }}</p>
               </div>
             </div>
             <div class="flow-connector"></div>
@@ -705,7 +705,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
           </div>
           <div class="chain-label">{{ if eq .Page.Language.Lang "ko" }}센서{{ else }}Sensor{{ end }}</div>
-          <div class="chain-sublabel">{{ if eq .Page.Language.Lang "ko" }}빛 → 원시 픽셀{{ else }}Light → raw pixels{{ end }}</div>
+          <div class="chain-sublabel">{{ if eq .Page.Language.Lang "ko" }}빛 → 픽셀 데이터{{ else }}Light → raw pixels{{ end }}</div>
         </div>
         <div class="chain-arrow" data-chain="1">
           <span class="chain-arrow-label">RAW</span>
