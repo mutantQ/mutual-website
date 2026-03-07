@@ -409,7 +409,7 @@
         <div class="team-card reveal-a">
           <div class="team-avatar"><img src="/img/team-kihyun.png" alt="Kihyun Kim"></div>
           <h3>Kihyun Kim</h3>
-          <div class="role">SW/Firmware</div>
+          <div class="role">{{ if eq .Page.Language.Lang "ko" }}SW/Firmware · 7월 합류{{ else }}SW/Firmware · Joining July{{ end }}</div>
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}Imperial College London 전자공학 석사{{ else }}MEng EEE, Imperial College London{{ end }}</div>
         </div>
         <div class="team-card reveal-a">
