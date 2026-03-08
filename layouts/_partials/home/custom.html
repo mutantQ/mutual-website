@@ -530,6 +530,22 @@
     color: var(--m-blue);
     margin-bottom: 12px;
   }
+  .traction-card .tc-logo {
+    height: 28px;
+    margin-bottom: 16px;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+  a.traction-card {
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+    display: block;
+  }
+  a.traction-card:hover {
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
 
   /* ── CTA section ── */
   .cta-section {
@@ -819,21 +835,24 @@
       <div class="traction-label reveal">{{ if eq .Page.Language.Lang "ko" }}성과{{ else }}Traction{{ end }}</div>
       <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}신뢰가 필요한 파트너와<br>함께 만들어갑니다.{{ else }}Building with partners<br>who need trust.{{ end }}</h2>
       <div class="traction-grid">
-        <div class="traction-card reveal reveal-delay-1">
+        <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/blog/grepp-mou/{{ else }}/blog/grepp-mou/{{ end }}" class="traction-card reveal reveal-delay-1">
+          <img src="/img/grepp-logo.png" alt="Grepp" class="tc-logo">
           <div class="tc-tag">{{ if eq .Page.Language.Lang "ko" }}파트너십{{ else }}Partnership{{ end }}</div>
           <h3>{{ if eq .Page.Language.Lang "ko" }}그렙 MOU{{ else }}Grepp MOU{{ end }}</h3>
           <p>{{ if eq .Page.Language.Lang "ko" }}그렙(프로그래머스)과 MOU 체결. 하드웨어 서명 기반 AI 온라인 시험 감독 솔루션.{{ else }}MOU with Grepp (Programmers) for AI-powered online exam proctoring with hardware-signed evidence.{{ end }}</p>
-        </div>
-        <div class="traction-card reveal reveal-delay-2">
+        </a>
+        <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/blog/attentionx-application/{{ else }}/blog/attentionx-application/{{ end }}" class="traction-card reveal reveal-delay-2">
+          <img src="/img/attentionx-logo.png" alt="AttentionX" class="tc-logo">
           <div class="tc-tag">{{ if eq .Page.Language.Lang "ko" }}액셀러레이터{{ else }}Accelerator{{ end }}</div>
           <h3>{{ if eq .Page.Language.Lang "ko" }}AttentionX 7기{{ else }}AttentionX Cohort VII{{ end }}</h3>
           <p>{{ if eq .Page.Language.Lang "ko" }}한국 최고의 AI 스타트업 액셀러레이터 프로그램에 선정.{{ else }}Accepted to Korea's leading AI startup accelerator program.{{ end }}</p>
-        </div>
-        <div class="traction-card reveal reveal-delay-3">
+        </a>
+        <a href="https://c2pa.org" target="_blank" rel="noopener" class="traction-card reveal reveal-delay-3">
+          <img src="/img/c2pa-logo.svg" alt="C2PA" class="tc-logo">
           <div class="tc-tag">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</div>
           <h3>{{ if eq .Page.Language.Lang "ko" }}C2PA 호환{{ else }}C2PA Compatible{{ end }}</h3>
           <p>{{ if eq .Page.Language.Lang "ko" }}오픈 표준 기반. ARM TrustZone 격리. ECDSA 하드웨어 서명. 설계부터 상호운용 가능하게.{{ else }}Built on open standards. ARM TrustZone isolation. ECDSA hardware signatures. Interoperable by design.{{ end }}</p>
-        </div>
+        </a>
       </div>
     </div>
   </section>
