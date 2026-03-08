@@ -610,7 +610,7 @@
     <div class="about-inner">
       <div class="tech-label reveal-a">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</div>
       <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}촬영 순간에 서명합니다.{{ else }}Signed at the moment of capture.{{ end }}</h2>
-      <p class="tech-deep-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 카메라 모듈을 떠나기 전에, <code>ECDSA</code> 서명과 <code>C2PA</code> 매니페스트가 완성됩니다. 소프트웨어가 개입할 틈이 없습니다.{{ else }}Before content leaves the camera module, <code>ECDSA</code> signatures and <code>C2PA</code> manifests are complete. No window for software to intervene.{{ end }}</p>
+      <p class="tech-deep-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 카메라 모듈을 떠나기 전에, <code>ECDSA</code> 서명과 <code>C2PA</code> 인증정보가 완성됩니다. 소프트웨어가 개입할 틈이 없습니다.{{ else }}Before content leaves the camera module, <code>ECDSA</code> signatures and <code>C2PA</code> manifests are complete. No window for software to intervene.{{ end }}</p>
 
       <!-- Pipeline -->
       <div class="pipeline reveal-a">
@@ -660,7 +660,7 @@
         <div class="hw-track">
           <div class="hw-track-chip">{{ if eq .Page.Language.Lang "ko" }}목표{{ else }}Goal{{ end }}</div>
           <h4>{{ if eq .Page.Language.Lang "ko" }}센서 내장{{ else }}Sensor-embedded{{ end }}</h4>
-          <p>{{ if eq .Page.Language.Lang "ko" }}궁극적으로 서명 로직을 이미지 센서 안에 직접 내장합니다. 빛에서 서명까지, 하나의 칩 안에서 완결.{{ else }}Ultimately, signing logic will be embedded directly inside the image sensor. Light to signature, all in one chip.{{ end }}</p>
+          <p>{{ if eq .Page.Language.Lang "ko" }}궁극적으로 서명 로직을 이미지 센서 안에 직접 내장합니다. 빛이 닿는 그 순간, 즉시 같은 칩 안에서 서명합니다.{{ else }}Ultimately, signing logic will be embedded directly inside the image sensor. Light to signature, all in one chip.{{ end }}</p>
           <div class="hw-track-tags">
             <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}센서 통합{{ else }}Sensor integration{{ end }}</span>
             <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}원칩{{ else }}Single-chip{{ end }}</span>
@@ -675,7 +675,7 @@
     <div class="about-inner">
       <div class="tech-label reveal-a" style="color:var(--m-blue)">{{ if eq .Page.Language.Lang "ko" }}비교{{ else }}Comparison{{ end }}</div>
       <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}Truepic과 무엇이 다른가{{ else }}How we differ from Truepic{{ end }}</h2>
-      <p class="comparison-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}Truepic은 Qualcomm과 협력하여 Snapdragon TEE 안에서 C2PA 서명을 구현했습니다. 좋은 접근이지만, 두 가지 구조적 한계가 있습니다: 비용과 접근성.{{ else }}Truepic partnered with Qualcomm to implement C2PA signing inside Snapdragon's TEE. A solid approach — but with two structural limits: cost and accessibility.{{ end }}</p>
+      <p class="comparison-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}Truepic은 Qualcomm과 협력하여 Snapdragon TEE 안에서 C2PA 서명을 구현했습니다. 좋은 접근이지만, 비용과 접근성이라는 두 가지 구조적 한계가 있습니다.{{ else }}Truepic partnered with Qualcomm to implement C2PA signing inside Snapdragon's TEE. A solid approach, but with two structural limits: cost and accessibility.{{ end }}</p>
       <table class="comp-table reveal-a">
         <thead>
           <tr>
@@ -688,7 +688,7 @@
           <tr>
             <td>{{ if eq .Page.Language.Lang "ko" }}비용{{ else }}Cost{{ end }}</td>
             <td>{{ if eq .Page.Language.Lang "ko" }}$49 모듈 (일회 구매, 무제한 서명){{ else }}$49 module (one-time, unlimited signings){{ end }}</td>
-            <td>{{ if eq .Page.Language.Lang "ko" }}$15–50 / 건 (SaaS 과금){{ else }}$15–50 / inspection (SaaS billing){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}$15-50 / 건 (SaaS 과금){{ else }}$15-50 / inspection (SaaS billing){{ end }}</td>
           </tr>
           <tr>
             <td>{{ if eq .Page.Language.Lang "ko" }}기기 요건{{ else }}Device requirement{{ end }}</td>
@@ -717,7 +717,7 @@
           </tr>
         </tbody>
       </table>
-      <p class="comparison-sub reveal-a" style="margin-top:32px;margin-bottom:0">{{ if eq .Page.Language.Lang "ko" }}Truepic의 기술은 우수합니다. 하지만 건당 $15–50의 SaaS 과금과 최신 Snapdragon 칩셋 요구는 대규모 확산을 어렵게 만듭니다. mutual은 $49짜리 독립 모듈로 어떤 카메라에서든 인증된 촬영을 가능하게 합니다. <strong>접근성도 기술입니다.</strong>{{ else }}Truepic's technology is strong. But $15–50 per inspection and a Snapdragon-only requirement make mass adoption difficult. mutual's $49 standalone module brings authenticated capture to any camera. <strong>Affordability is a technology.</strong>{{ end }}</p>
+      <p class="comparison-sub reveal-a" style="margin-top:32px;margin-bottom:0">{{ if eq .Page.Language.Lang "ko" }}Truepic의 기술은 우수하지만, 건당 $15-50의 SaaS 과금과 최신 Snapdragon 칩셋 요구는 대규모 확산을 어렵게 만듭니다. mutual은 $49짜리 독립 모듈로 어떤 카메라에서든 인증된 촬영을 가능하게 합니다. <strong>접근성도 기술입니다.</strong>{{ else }}Truepic's technology is strong. But $15-50 per inspection and a Snapdragon-only requirement make mass adoption difficult. mutual's $49 standalone module brings authenticated capture to any camera. <strong>Affordability is a technology.</strong>{{ end }}</p>
     </div>
   </section>
 
@@ -748,7 +748,7 @@
           <div class="rm-phase-tag">{{ if eq .Page.Language.Lang "ko" }}장기{{ else }}Long-term{{ end }}</div>
           <h3>{{ if eq .Page.Language.Lang "ko" }}생태계 확장{{ else }}Ecosystem expansion{{ end }}</h3>
           <ul>
-            <li>{{ if eq .Page.Language.Lang "ko" }}PYXALIS, Caeleste 등 센서 팹리스와 협력{{ else }}Partnerships with sensor fabs (PYXALIS, Caeleste){{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}국내외 센서 팹리스와 협력{{ else }}Partnerships with sensor fabs{{ end }}</li>
             <li>{{ if eq .Page.Language.Lang "ko" }}C2PA 하드웨어 레퍼런스 구현체로 포지셔닝{{ else }}Position as C2PA hardware reference implementation{{ end }}</li>
             <li>{{ if eq .Page.Language.Lang "ko" }}시장 확장: 채용 → 보험 → 언론 → 방위산업{{ else }}Market expansion: hiring → insurance → media → defense{{ end }}</li>
           </ul>
@@ -765,7 +765,7 @@
         <div class="backing-card">
           <div class="backing-card-tag">{{ if eq .Page.Language.Lang "ko" }}엔젤 투자{{ else }}Angel{{ end }}</div>
           <h3>{{ if eq .Page.Language.Lang "ko" }}우경식 (Kay Kyungsik Woo){{ else }}Kay Kyungsik Woo{{ end }}</h3>
-          <p>{{ if eq .Page.Language.Lang "ko" }}<a href="https://mvlchain.io" target="_blank" rel="noopener" style="color:var(--m-blue);font-weight:600">MVL Labs</a> 창업자/CEO. MVL Chain 기반 모빌리티 플랫폼 TADA 운영. 200만+ 유저, 20만+ 드라이버. 400억+ 투자 유치, 글로벌 250명 규모.{{ else }}Founder/CEO of <a href="https://mvlchain.io" target="_blank" rel="noopener" style="color:var(--m-blue);font-weight:600">MVL Labs</a>. Operates TADA, a mobility platform on MVL Chain. 2M+ users, 200K+ drivers. $40M+ raised, 250 employees globally.{{ end }}</p>
+          <p>{{ if eq .Page.Language.Lang "ko" }}<a href="https://mvlchain.io" target="_blank" rel="noopener" style="color:var(--m-blue);font-weight:600">MVL Labs</a>의 창업자이자 CEO로, MVL Chain 기반 모빌리티 플랫폼 TADA를 운영하고 있습니다. 200만 명 이상의 유저와 20만 명 이상의 드라이버를 보유하며, 400억 원 이상의 투자를 유치한 글로벌 250명 규모의 회사입니다.{{ else }}Founder/CEO of <a href="https://mvlchain.io" target="_blank" rel="noopener" style="color:var(--m-blue);font-weight:600">MVL Labs</a>. Operates TADA, a mobility platform on MVL Chain. 2M+ users, 200K+ drivers. $40M+ raised, 250 employees globally.{{ end }}</p>
         </div>
         <div class="backing-card">
           <div class="backing-card-tag">{{ if eq .Page.Language.Lang "ko" }}액셀러레이터{{ else }}Accelerator{{ end }}</div>

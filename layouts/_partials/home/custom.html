@@ -1103,7 +1103,7 @@
     <div class="landing-inner">
       <div class="momentum-label reveal">{{ if eq .Page.Language.Lang "ko" }}팀{{ else }}Team{{ end }}</div>
       {{ $angel := time "2025-11-01" }}{{ $now := now }}{{ $months := sub (add (mul (sub $now.Year $angel.Year) 12) (int $now.Month)) (int $angel.Month) }}<h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}엔젤 투자 후 {{ $months }}개월.{{ else }}{{ $months }} months since angel.{{ end }}</h2>
-      <p class="momentum-sub reveal">{{ if eq .Page.Language.Lang "ko" }}팀을 꾸리고, 고객을 찾고, 파일럿을 준비하고 있습니다.{{ else }}We built a team, found a customer, and started preparing a pilot.{{ end }}</p>
+      <p class="momentum-sub reveal">{{ if eq .Page.Language.Lang "ko" }}팀을 꾸리고, 고객을 찾고, 파일럿을 준비하고 있습니다.{{ else }}We built a team, found a customer, and are preparing a pilot.{{ end }}</p>
       <div class="momentum-content">
         <div class="timeline reveal">
           <div class="tl-item">
