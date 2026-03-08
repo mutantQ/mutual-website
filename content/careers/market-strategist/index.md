@@ -48,6 +48,6 @@ This is a mix of research, BD, and strategy. You'll talk to potential customers,
 
 ---
 
-**Interested?** → [jangyejun@snu.ac.kr](mailto:jangyejun@snu.ac.kr)
+**Interested?** → [jangyejun@gmail.com](mailto:jangyejun@gmail.com)
 
 *This post was drafted with the help of Claude. All research, decisions, and editorial judgment are my own.*

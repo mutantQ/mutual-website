@@ -48,6 +48,6 @@ You'll work closely with our hardware engineer on the reference implementation, 
 
 ---
 
-**Interested?** → [jangyejun@snu.ac.kr](mailto:jangyejun@snu.ac.kr)
+**Interested?** → [jangyejun@gmail.com](mailto:jangyejun@gmail.com)
 
 *This post was drafted with the help of Claude. All research, decisions, and editorial judgment are my own.*

@@ -77,6 +77,6 @@ February priorities:
 
 If you work in insurance or content verification and want to pilot authenticated camera hardware, I'd like to hear from you.
 
-[jangyejun@snu.ac.kr](mailto:jangyejun@snu.ac.kr)
+[jangyejun@gmail.com](mailto:jangyejun@gmail.com)
 
 *This post was drafted with the help of Claude. All research, decisions, and editorial judgment are my own.*
