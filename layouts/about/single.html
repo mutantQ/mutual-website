@@ -203,26 +203,25 @@
     line-height: 1.5;
   }
 
-  /* ── Tech ── */
-  .tech {
+  /* ── Tech Deep Dive ── */
+  .tech-deep {
     background: white;
   }
-  .tech h2 {
+  .tech-deep h2 {
     font-size: 36px;
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--m-slate-900);
     margin-bottom: 16px;
-    text-align: center;
   }
-  .tech-subtitle {
-    font-size: 16px;
+  .tech-deep-sub {
+    font-size: 17px;
     color: var(--m-slate-500);
-    text-align: center;
-    margin-bottom: 56px;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 640px;
   }
-  .tech-subtitle code {
+  .tech-deep-sub code {
     background: rgba(74,139,156,0.1);
     color: var(--m-blue-dark);
     padding: 2px 8px;
@@ -230,83 +229,293 @@
     font-size: 13px;
     font-weight: 600;
   }
-  .roadmap {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  /* Pipeline flow */
+  .pipeline {
+    display: flex;
+    align-items: stretch;
     gap: 0;
+    margin-bottom: 56px;
     position: relative;
   }
-  .roadmap::before {
-    content: '';
-    position: absolute;
-    top: 46px;
-    left: calc(100% / 6);
-    right: calc(100% / 6);
-    height: 2px;
-    background: var(--m-slate-300);
-    z-index: 0;
-    transform: translateY(-50%);
-  }
-  .roadmap-stage {
-    text-align: center;
+  .pipe-step {
+    flex: 1;
+    padding: 24px 20px;
+    background: var(--m-slate-100);
     position: relative;
-    padding: 0 16px;
+    border-right: 2px solid white;
   }
-  .roadmap-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid var(--m-slate-300);
-    background: white;
-    margin: 8px auto 20px;
-    position: relative;
-    z-index: 1;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .roadmap-stage:first-child .roadmap-dot {
-    border-color: var(--m-blue);
-    background: var(--m-blue);
-  }
-  .roadmap-tag {
+  .pipe-step:first-child { border-radius: 12px 0 0 12px; }
+  .pipe-step:last-child { border-radius: 0 12px 12px 0; border-right: none; }
+  .pipe-step-num {
     font-size: 11px;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 0;
+    color: var(--m-blue);
+    text-transform: uppercase;
+    margin-bottom: 8px;
   }
-  .roadmap-stage:first-child .roadmap-tag { color: var(--m-blue); }
-  .roadmap-stage:nth-child(2) .roadmap-tag { color: var(--m-slate-500); }
-  .roadmap-stage:last-child .roadmap-tag { color: var(--m-slate-500); }
-  .roadmap-card {
-    padding: 28px 24px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    text-align: left;
-    transition: border-color 0.2s;
-  }
-  .roadmap-stage:first-child .roadmap-card {
-    border-color: var(--m-blue);
-    background: rgba(74,139,156,0.03);
-  }
-  .roadmap-card:hover { border-color: var(--m-blue); }
-  .roadmap-card h3 {
-    font-size: 17px;
+  .pipe-step h4 {
+    font-size: 15px;
     font-weight: 700;
     color: var(--m-slate-900);
     margin-bottom: 6px;
   }
-  .roadmap-card .hw {
+  .pipe-step p {
     font-size: 13px;
-    font-weight: 600;
-    color: var(--m-blue);
-    margin-bottom: 10px;
-    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--m-slate-500);
+    line-height: 1.5;
+    margin: 0;
   }
-  .roadmap-card p {
+  .pipe-step.pipe-secure {
+    background: rgba(74,139,156,0.08);
+    border-top: 2px solid var(--m-blue);
+  }
+  /* Achievement badge */
+  .tech-achievement {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 32px;
+    background: var(--m-slate-100);
+    border-radius: 12px;
+    margin-bottom: 56px;
+  }
+  .tech-ach-num {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--m-blue);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .tech-ach-text h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 4px;
+  }
+  .tech-ach-text p {
+    font-size: 14px;
+    color: var(--m-slate-500);
+    line-height: 1.5;
+    margin: 0;
+  }
+  /* Dual track hardware */
+  .hw-tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+  .hw-track {
+    padding: 28px 24px;
+    border: 1px solid var(--m-slate-300);
+    border-radius: 12px;
+    transition: border-color 0.2s;
+  }
+  .hw-track:hover { border-color: var(--m-blue); }
+  .hw-track-chip {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--m-blue);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-bottom: 8px;
+  }
+  .hw-track h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 8px;
+  }
+  .hw-track p {
     font-size: 14px;
     color: var(--m-slate-500);
     line-height: 1.6;
+    margin: 0;
   }
+  .hw-track-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .hw-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--m-slate-100);
+    color: var(--m-slate-500);
+  }
+  /* Tech section label */
+  .tech-label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--m-blue);
+    margin-bottom: 12px;
+  }
+
+  /* ── Comparison ── */
+  .comparison {
+    background: var(--m-slate-900);
+    color: white;
+  }
+  .comparison h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .comparison-sub {
+    font-size: 17px;
+    color: var(--m-slate-300);
+    margin-bottom: 48px;
+    max-width: 600px;
+  }
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .comp-table th {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--m-slate-500);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .comp-table th:first-child { width: 30%; }
+  .comp-table th.col-mutual { color: var(--m-blue); }
+  .comp-table td {
+    font-size: 15px;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    vertical-align: top;
+  }
+  .comp-table td:first-child {
+    font-weight: 600;
+    color: var(--m-slate-300);
+  }
+  .comp-table td:nth-child(2) {
+    color: white;
+    font-weight: 600;
+  }
+  .comp-table td:nth-child(3) {
+    color: var(--m-slate-500);
+  }
+
+  /* ── Roadmap timeline ── */
+  .roadmap-section { background: white; }
+  .roadmap-section h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--m-slate-900);
+    margin-bottom: 48px;
+  }
+  .rm-phases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .rm-phase {
+    padding: 28px 24px;
+    border-radius: 12px;
+    border: 1px solid var(--m-slate-300);
+  }
+  .rm-phase.rm-active {
+    border-color: var(--m-blue);
+    background: rgba(74,139,156,0.03);
+  }
+  .rm-phase-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--m-slate-500);
+    margin-bottom: 12px;
+  }
+  .rm-phase.rm-active .rm-phase-tag { color: var(--m-blue); }
+  .rm-phase h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 16px;
+  }
+  .rm-phase ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .rm-phase li {
+    font-size: 14px;
+    color: var(--m-slate-500);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .rm-phase li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--m-slate-300);
+  }
+
+  /* ── Backing ── */
+  .backing {
+    background: var(--m-slate-100);
+  }
+  .backing h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--m-slate-900);
+    margin-bottom: 48px;
+  }
+  .backing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .backing-card {
+    padding: 32px;
+    background: white;
+    border-radius: 12px;
+  }
+  .backing-card-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--m-blue);
+    margin-bottom: 12px;
+  }
+  .backing-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 8px;
+  }
+  .backing-card p {
+    font-size: 14px;
+    color: var(--m-slate-500);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .ip-note {
+    font-size: 15px;
+    color: var(--m-slate-500);
+    padding-top: 24px;
+    border-top: 1px solid var(--m-slate-300);
+  }
+  .ip-note strong { color: var(--m-slate-900); }
 
   @media (max-width: 768px) {
     .about-inner { padding: 0 20px; }
@@ -325,9 +534,16 @@
     .team-card .desc { font-size: 12px; }
     .team-avatar { width: 64px; height: 64px; font-size: 20px; }
     .team-avatar img { width: 64px; height: 64px; }
-    .roadmap { grid-template-columns: 1fr; gap: 24px; }
-    .roadmap::before { display: none; }
-    .roadmap-dot { margin: 0 auto 16px; }
+    .pipeline { flex-direction: column; }
+    .pipe-step { border-right: none; border-bottom: 2px solid white; }
+    .pipe-step:first-child { border-radius: 12px 12px 0 0; }
+    .pipe-step:last-child { border-radius: 0 0 12px 12px; }
+    .tech-achievement { flex-direction: column; gap: 16px; text-align: center; }
+    .hw-tracks { grid-template-columns: 1fr; }
+    .comp-table { font-size: 13px; }
+    .comp-table td, .comp-table th { padding: 10px 8px; }
+    .rm-phases { grid-template-columns: 1fr; }
+    .backing-grid { grid-template-columns: 1fr; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
     .team-grid { grid-template-columns: repeat(3, 1fr); }
@@ -389,6 +605,180 @@
     </div>
   </section>
 
+  <!-- Technology Deep Dive -->
+  <section class="about-section tech-deep">
+    <div class="about-inner">
+      <div class="tech-label reveal-a">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</div>
+      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}촬영 순간에 서명합니다.{{ else }}Signed at the moment of capture.{{ end }}</h2>
+      <p class="tech-deep-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 카메라 모듈을 떠나기 전에, <code>ECDSA</code> 서명과 <code>C2PA</code> 매니페스트가 완성됩니다. 소프트웨어가 개입할 틈이 없습니다.{{ else }}Before content leaves the camera module, <code>ECDSA</code> signatures and <code>C2PA</code> manifests are complete. No window for software to intervene.{{ end }}</p>
+
+      <!-- Pipeline -->
+      <div class="pipeline reveal-a">
+        <div class="pipe-step">
+          <div class="pipe-step-num">1</div>
+          <h4>{{ if eq .Page.Language.Lang "ko" }}센서 캡처{{ else }}Sensor Capture{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}이미지 센서가 빛을 전기 신호로 변환. Raw 픽셀 데이터 생성.{{ else }}Image sensor converts light to electrical signal. Raw pixel data generated.{{ end }}</p>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">2</div>
+          <h4>{{ if eq .Page.Language.Lang "ko" }}ISP 처리 + 인코딩{{ else }}ISP Processing + Encoding{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}노이즈 제거, 색보정, 압축. 최종 이미지/영상 프레임 확정.{{ else }}Noise reduction, color correction, compression. Final image/video frame produced.{{ end }}</p>
+        </div>
+        <div class="pipe-step pipe-secure">
+          <div class="pipe-step-num">3</div>
+          <h4>{{ if eq .Page.Language.Lang "ko" }}해싱 + 서명{{ else }}Hash + Sign{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}확정된 프레임을 해싱하고, 하드웨어 격리 영역에서 ECDSA 서명. 키는 칩 안에서만 존재.{{ else }}Completed frame is hashed, then ECDSA-signed in a hardware-isolated zone. Keys never leave the chip.{{ end }}</p>
+        </div>
+        <div class="pipe-step pipe-secure">
+          <div class="pipe-step-num">4</div>
+          <h4>{{ if eq .Page.Language.Lang "ko" }}C2PA 매니페스트{{ else }}C2PA Manifest{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}서명, 타임스탬프, 기기 정보를 C2PA 표준 포맷으로 패키징. 누구나 검증 가능.{{ else }}Signature, timestamp, and device info packaged in C2PA format. Verifiable by anyone.{{ end }}</p>
+        </div>
+      </div>
+
+      <!-- Achievement -->
+      <div class="tech-achievement reveal-a">
+        <div class="tech-ach-num">720p@30fps</div>
+        <div class="tech-ach-text">
+          <h4>{{ if eq .Page.Language.Lang "ko" }}실시간 해싱·서명 달성{{ else }}Real-time hashing & signing achieved{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}FPGA에서 전체 해싱·서명 파이프라인을 실시간으로 검증 완료. 프레임 드롭 없이 동작.{{ else }}Full hash-and-sign pipeline verified in real-time on FPGA. Zero frame drops.{{ end }}</p>
+        </div>
+      </div>
+
+      <!-- Hardware vision -->
+      <div class="hw-tracks reveal-a">
+        <div class="hw-track">
+          <div class="hw-track-chip">{{ if eq .Page.Language.Lang "ko" }}현재{{ else }}Now{{ end }}</div>
+          <h4>{{ if eq .Page.Language.Lang "ko" }}독립 서명 모듈{{ else }}Standalone signing module{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}상용 SoC 기반 커스텀 PCB. 케이싱 내부를 레진으로 충전하여 물리적 탬퍼링을 방지하고, FIPS 140-2 Level 2 달성을 목표로 합니다.{{ else }}Custom PCB on commercial SoCs. Resin-filled enclosure prevents physical tampering, targeting FIPS 140-2 Level 2 certification.{{ end }}</p>
+          <div class="hw-track-tags">
+            <span class="hw-tag">FIPS 140-2</span>
+            <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}탬퍼 방지{{ else }}Tamper-resistant{{ end }}</span>
+            <span class="hw-tag">C2PA</span>
+          </div>
+        </div>
+        <div class="hw-track">
+          <div class="hw-track-chip">{{ if eq .Page.Language.Lang "ko" }}목표{{ else }}Goal{{ end }}</div>
+          <h4>{{ if eq .Page.Language.Lang "ko" }}센서 내장{{ else }}Sensor-embedded{{ end }}</h4>
+          <p>{{ if eq .Page.Language.Lang "ko" }}궁극적으로 서명 로직을 이미지 센서 안에 직접 내장합니다. 빛에서 서명까지, 하나의 칩 안에서 완결.{{ else }}Ultimately, signing logic will be embedded directly inside the image sensor. Light to signature, all in one chip.{{ end }}</p>
+          <div class="hw-track-tags">
+            <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}센서 통합{{ else }}Sensor integration{{ end }}</span>
+            <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}원칩{{ else }}Single-chip{{ end }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="about-section comparison">
+    <div class="about-inner">
+      <div class="tech-label reveal-a" style="color:var(--m-blue)">{{ if eq .Page.Language.Lang "ko" }}비교{{ else }}Comparison{{ end }}</div>
+      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}Truepic과 무엇이 다른가{{ else }}How we differ from Truepic{{ end }}</h2>
+      <p class="comparison-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}Truepic은 Qualcomm과 협력하여 Snapdragon TEE 안에서 C2PA 서명을 구현했습니다. 좋은 접근이지만, 두 가지 구조적 한계가 있습니다: 비용과 접근성.{{ else }}Truepic partnered with Qualcomm to implement C2PA signing inside Snapdragon's TEE. A solid approach — but with two structural limits: cost and accessibility.{{ end }}</p>
+      <table class="comp-table reveal-a">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-mutual">mutual</th>
+            <th>Truepic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ if eq .Page.Language.Lang "ko" }}비용{{ else }}Cost{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}$49 모듈 (일회 구매, 무제한 서명){{ else }}$49 module (one-time, unlimited signings){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}$15–50 / 건 (SaaS 과금){{ else }}$15–50 / inspection (SaaS billing){{ end }}</td>
+          </tr>
+          <tr>
+            <td>{{ if eq .Page.Language.Lang "ko" }}기기 요건{{ else }}Device requirement{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}모든 카메라에 부착 가능한 독립 모듈{{ else }}Standalone module, works with any camera{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}Snapdragon 8 Gen 3+ 탑재 기기 한정{{ else }}Snapdragon 8 Gen 3+ devices only{{ end }}</td>
+          </tr>
+          <tr>
+            <td>{{ if eq .Page.Language.Lang "ko" }}신뢰 근원{{ else }}Trust root{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}전용 서명 모듈 (FIPS 140-2 목표){{ else }}Dedicated signing module (FIPS 140-2 target){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}Qualcomm TEE (Spectra ISP 보안 파이프라인){{ else }}Qualcomm TEE (Spectra ISP secure pipeline){{ end }}</td>
+          </tr>
+          <tr>
+            <td>{{ if eq .Page.Language.Lang "ko" }}센서 보호{{ else }}Sensor protection{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}장기 목표: 센서 내장 서명{{ else }}Long-term goal: sensor-embedded signing{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}없음 (CSI-2 버스 인젝션에 취약){{ else }}None (vulnerable to CSI-2 bus injection){{ end }}</td>
+          </tr>
+          <tr>
+            <td>{{ if eq .Page.Language.Lang "ko" }}물리적 보안{{ else }}Physical security{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}레진 충전 케이싱 (탬퍼 방지){{ else }}Resin-filled enclosure (tamper-resistant){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}스마트폰 TEE 의존{{ else }}Relies on smartphone TEE{{ end }}</td>
+          </tr>
+          <tr>
+            <td>{{ if eq .Page.Language.Lang "ko" }}표준{{ else }}Standard{{ end }}</td>
+            <td>C2PA</td>
+            <td>C2PA</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="comparison-sub reveal-a" style="margin-top:32px;margin-bottom:0">{{ if eq .Page.Language.Lang "ko" }}Truepic의 기술은 우수합니다. 하지만 건당 $15–50의 SaaS 과금과 최신 Snapdragon 칩셋 요구는 대규모 확산을 어렵게 만듭니다. mutual은 $49짜리 독립 모듈로 어떤 카메라에서든 인증된 촬영을 가능하게 합니다. <strong>접근성도 기술입니다.</strong>{{ else }}Truepic's technology is strong. But $15–50 per inspection and a Snapdragon-only requirement make mass adoption difficult. mutual's $49 standalone module brings authenticated capture to any camera. <strong>Affordability is a technology.</strong>{{ end }}</p>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="about-section roadmap-section">
+    <div class="about-inner">
+      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}로드맵{{ else }}Roadmap{{ end }}</h2>
+      <div class="rm-phases">
+        <div class="rm-phase rm-active reveal-a">
+          <div class="rm-phase-tag">{{ if eq .Page.Language.Lang "ko" }}2026 상반기{{ else }}2026 H1{{ end }}</div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}기반 구축{{ else }}Foundation{{ end }}</h3>
+          <ul>
+            <li>{{ if eq .Page.Language.Lang "ko" }}법인 설립 + 특허 출원 (3건){{ else }}Company incorporation + patent filing (3 patents){{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}Grepp(프로그래머스) 제품 데모{{ else }}Grepp (Programmers) product demo{{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}PCB 첫 생산{{ else }}First PCB production run{{ end }}</li>
+          </ul>
+        </div>
+        <div class="rm-phase reveal-a">
+          <div class="rm-phase-tag">{{ if eq .Page.Language.Lang "ko" }}2026 하반기{{ else }}2026 H2{{ end }}</div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}제품 출시{{ else }}Product launch{{ end }}</h3>
+          <ul>
+            <li>{{ if eq .Page.Language.Lang "ko" }}하드웨어 양산 + B2B 공급 시작{{ else }}Hardware mass production + B2B supply{{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}딥페이크 채용 사기 대응 · 영상면접 · 방산{{ else }}Deepfake hiring fraud · video interviews · defense{{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}C2PA 인증 획득 추진{{ else }}C2PA certification{{ end }}</li>
+          </ul>
+        </div>
+        <div class="rm-phase reveal-a">
+          <div class="rm-phase-tag">{{ if eq .Page.Language.Lang "ko" }}장기{{ else }}Long-term{{ end }}</div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}생태계 확장{{ else }}Ecosystem expansion{{ end }}</h3>
+          <ul>
+            <li>{{ if eq .Page.Language.Lang "ko" }}PYXALIS, Caeleste 등 센서 팹리스와 협력{{ else }}Partnerships with sensor fabs (PYXALIS, Caeleste){{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}C2PA 하드웨어 레퍼런스 구현체로 포지셔닝{{ else }}Position as C2PA hardware reference implementation{{ end }}</li>
+            <li>{{ if eq .Page.Language.Lang "ko" }}시장 확장: 채용 → 보험 → 언론 → 방위산업{{ else }}Market expansion: hiring → insurance → media → defense{{ end }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Backing & IP -->
+  <section class="about-section backing">
+    <div class="about-inner">
+      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}투자 & 액셀러레이터{{ else }}Backing{{ end }}</h2>
+      <div class="backing-grid reveal-a">
+        <div class="backing-card">
+          <div class="backing-card-tag">{{ if eq .Page.Language.Lang "ko" }}엔젤 투자{{ else }}Angel{{ end }}</div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}우경식 (Kay Kyungsik Woo){{ else }}Kay Kyungsik Woo{{ end }}</h3>
+          <p>{{ if eq .Page.Language.Lang "ko" }}<a href="https://mvlchain.io" target="_blank" rel="noopener" style="color:var(--m-blue);font-weight:600">MVL Labs</a> 창업자/CEO. MVL Chain 기반 모빌리티 플랫폼 TADA 운영. 200만+ 유저, 20만+ 드라이버. 400억+ 투자 유치, 글로벌 250명 규모.{{ else }}Founder/CEO of <a href="https://mvlchain.io" target="_blank" rel="noopener" style="color:var(--m-blue);font-weight:600">MVL Labs</a>. Operates TADA, a mobility platform on MVL Chain. 2M+ users, 200K+ drivers. $40M+ raised, 250 employees globally.{{ end }}</p>
+        </div>
+        <div class="backing-card">
+          <div class="backing-card-tag">{{ if eq .Page.Language.Lang "ko" }}액셀러레이터{{ else }}Accelerator{{ end }}</div>
+          <h3>AttentionX Cohort VII</h3>
+          <p>{{ if eq .Page.Language.Lang "ko" }}한국 최고의 AI 스타트업 액셀러레이터. 2026년 2월 선정.{{ else }}Korea's leading AI startup accelerator. Selected February 2026.{{ end }}</p>
+        </div>
+      </div>
+      <div class="ip-note reveal-a">
+        <strong>{{ if eq .Page.Language.Lang "ko" }}지적재산권{{ else }}Intellectual Property{{ end }}</strong> · {{ if eq .Page.Language.Lang "ko" }}3건의 특허 출원 준비 중. 법인 설립(2026년 4월) 후 출원 예정.{{ else }}3 patents in preparation. Filing upon company incorporation (April 2026).{{ end }}
+      </div>
+    </div>
+  </section>
+
   <!-- Team -->
   <section class="about-section team">
     <div class="about-inner">
@@ -423,43 +813,6 @@
           <h3>Hyeongtak Ryu</h3>
           <div class="role">{{ if eq .Page.Language.Lang "ko" }}연구 인턴{{ else }}Research Intern{{ end }}</div>
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}서울대학교 전기정보공학부{{ else }}SNU ECE{{ end }}</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technology Roadmap -->
-  <section class="about-section tech">
-    <div class="about-inner">
-      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</h2>
-      <p class="tech-subtitle reveal-a">{{ if eq .Page.Language.Lang "ko" }}모든 단계에서 <code>ECDSA</code> 서명 + <code>C2PA</code> 매니페스트를 사용합니다. 하드웨어 플랫폼만 진화합니다.{{ else }}Every stage uses <code>ECDSA</code> signatures + <code>C2PA</code> manifests. Only the hardware platform evolves.{{ end }}</p>
-      <div class="roadmap">
-        <div class="roadmap-stage reveal-a">
-          <div class="roadmap-tag">{{ if eq .Page.Language.Lang "ko" }}현재{{ else }}Now{{ end }}</div>
-          <div class="roadmap-dot"></div>
-          <div class="roadmap-card">
-            <h3>{{ if eq .Page.Language.Lang "ko" }}TrustZone 서명{{ else }}TrustZone Signing{{ end }}</h3>
-            <div class="hw">Luckfox Pico Mini</div>
-            <p>{{ if eq .Page.Language.Lang "ko" }}ARM TrustZone Secure World에서 키 보관과 서명. 소프트웨어 격리 기반 프로토타입.{{ else }}Key storage and signing in ARM TrustZone Secure World. Software-isolated prototype.{{ end }}</p>
-          </div>
-        </div>
-        <div class="roadmap-stage reveal-a">
-          <div class="roadmap-tag">{{ if eq .Page.Language.Lang "ko" }}다음{{ else }}Next{{ end }}</div>
-          <div class="roadmap-dot"></div>
-          <div class="roadmap-card">
-            <h3>{{ if eq .Page.Language.Lang "ko" }}Secure Element 분리{{ else }}Secure Element{{ end }}</h3>
-            <div class="hw">ATECC608A</div>
-            <p>{{ if eq .Page.Language.Lang "ko" }}전용 보안 칩에서 서명 연산. 키가 물리적으로 메인 프로세서와 완전히 분리됩니다.{{ else }}Signing in a dedicated secure element. Keys physically separated from the main processor.{{ end }}</p>
-          </div>
-        </div>
-        <div class="roadmap-stage reveal-a">
-          <div class="roadmap-tag">{{ if eq .Page.Language.Lang "ko" }}목표{{ else }}Goal{{ end }}</div>
-          <div class="roadmap-dot"></div>
-          <div class="roadmap-card">
-            <h3>{{ if eq .Page.Language.Lang "ko" }}센서 내장 ASIC{{ else }}Sensor-embedded ASIC{{ end }}</h3>
-            <div class="hw">Custom Silicon</div>
-            <p>{{ if eq .Page.Language.Lang "ko" }}서명 로직이 이미지 센서에 직접 내장. 빛에서 서명까지 하나의 칩 안에서 완결됩니다.{{ else }}Signing logic embedded directly in the image sensor. Light to signature, all in one chip.{{ end }}</p>
-          </div>
         </div>
       </div>
     </div>

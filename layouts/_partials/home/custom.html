@@ -235,7 +235,56 @@
     line-height: 1.7;
     color: var(--m-slate-500);
     max-width: 600px;
-    margin-bottom: 56px;
+    margin-bottom: 40px;
+  }
+  .video-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .video-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--m-slate-100);
+    border: 1px solid var(--m-slate-300);
+  }
+  .video-card video {
+    width: 100%;
+    display: block;
+  }
+  .video-card-info {
+    padding: 16px 20px;
+  }
+  .video-card-date {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--m-slate-500);
+    margin-bottom: 4px;
+  }
+  .video-card-model {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 2px;
+  }
+  .video-card-verdict {
+    font-size: 0.85rem;
+  }
+  .video-card-verdict.fail { color: var(--m-slate-500); }
+  .video-card-verdict.pass { color: var(--m-red); font-weight: 600; }
+  .problem-punchline {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--m-slate-500);
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+  .problem-punchline strong {
+    color: var(--m-slate-900);
+    font-weight: 700;
   }
   .problem-grid {
     display: grid;
@@ -587,6 +636,172 @@
     transform: translateY(-1px);
   }
 
+  /* ── MOMENTUM section ── */
+  .momentum {
+    background: white;
+  }
+  .momentum-label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--m-blue);
+    margin-bottom: 20px;
+  }
+  .momentum h2 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: var(--m-slate-900);
+    margin-bottom: 16px;
+  }
+  .momentum-sub {
+    font-size: 18px;
+    color: var(--m-slate-500);
+    line-height: 1.6;
+    margin-bottom: 56px;
+    max-width: 600px;
+  }
+  .momentum-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--m-slate-300);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--m-slate-300);
+    background: white;
+  }
+  .tl-item.tl-active::before {
+    border-color: var(--m-blue);
+    background: var(--m-blue);
+  }
+  .tl-date {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--m-slate-500);
+    margin-bottom: 4px;
+  }
+  .tl-item.tl-active .tl-date { color: var(--m-blue); }
+  .tl-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--m-slate-900);
+    line-height: 1.4;
+  }
+  .team-faces {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .team-face {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .team-face img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 2px solid var(--m-slate-100);
+  }
+  .team-face-info h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--m-slate-900);
+    margin-bottom: 2px;
+  }
+  .team-face-info span {
+    font-size: 13px;
+    color: var(--m-slate-500);
+  }
+  .momentum-stat-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--m-slate-100);
+  }
+  .m-stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--m-blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .m-stat-label {
+    font-size: 13px;
+    color: var(--m-slate-500);
+  }
+
+  /* ── Gallery marquee ── */
+  .gallery-wrap {
+    margin-top: 56px;
+    overflow: hidden;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+  }
+  .gallery-track {
+    display: flex;
+    gap: 16px;
+    animation: gallery-scroll 40s linear infinite;
+    width: max-content;
+  }
+  .gallery-track:hover {
+    animation-play-state: paused;
+  }
+  .gallery-item {
+    flex-shrink: 0;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--m-slate-100);
+  }
+  .gallery-item img,
+  .gallery-item video {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: cover;
+  }
+  @keyframes gallery-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
   /* ── Counter animation ── */
   .stat-number {
     font-size: 48px;
@@ -607,6 +822,7 @@
     .hero-text p { font-size: 16px; }
     .hero-visual { height: auto; }
     .signing-flow { position: relative; inset: auto; }
+    .video-compare { grid-template-columns: 1fr; gap: 16px; }
     .problem-grid, .traction-grid { grid-template-columns: 1fr; }
     .problem-card, .traction-card { padding: 24px; }
     .comp-grid { grid-template-columns: 1fr; }
@@ -614,6 +830,8 @@
     .chain { flex-wrap: wrap; gap: 16px; }
     .chain-arrow { display: none; }
     .chain-node { min-width: calc(50% - 12px); }
+    .momentum-content { grid-template-columns: 1fr; gap: 40px; }
+    .momentum-stat-row { gap: 32px; }
     .landing-section { padding: 56px 0; }
     h2 { font-size: 28px !important; }
     .cta h2 { font-size: 28px; }
@@ -683,6 +901,29 @@
       <div class="problem-label reveal">{{ if eq .Page.Language.Lang "ko" }}문제{{ else }}The problem{{ end }}</div>
       <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}진짜와 가짜를 구분할 수 없는 시대.{{ else }}When real and fake are indistinguishable.{{ end }}</h2>
       <p class="problem-desc reveal">{{ if eq .Page.Language.Lang "ko" }}진짜와 가짜가 나란히 놓여 있습니다. 생성형 AI가 좋아질수록, 소프트웨어로 가짜를 걸러내는 건 점점 더 어려워집니다.{{ else }}Real and fake media sit side by side. As generative AI improves, software-based detection is a losing game, always one step behind.{{ end }}</p>
+      <div class="video-compare reveal">
+        <div class="video-card">
+          <video autoplay loop muted playsinline>
+            <source src="/video/veo3-car-accident.mp4" type="video/mp4">
+          </video>
+          <div class="video-card-info">
+            <div class="video-card-date">{{ if eq .Page.Language.Lang "ko" }}2025년 10월{{ else }}Oct 2025{{ end }}</div>
+            <div class="video-card-model">Google Veo 3.1</div>
+            <div class="video-card-verdict fail">{{ if eq .Page.Language.Lang "ko" }}누가 봐도 가짜{{ else }}Obviously fake{{ end }}</div>
+          </div>
+        </div>
+        <div class="video-card">
+          <video autoplay loop muted playsinline>
+            <source src="/video/kling3-car-accident.mp4" type="video/mp4">
+          </video>
+          <div class="video-card-info">
+            <div class="video-card-date">{{ if eq .Page.Language.Lang "ko" }}2026년 2월{{ else }}Feb 2026{{ end }}</div>
+            <div class="video-card-model">Kling 3.0</div>
+            <div class="video-card-verdict pass">{{ if eq .Page.Language.Lang "ko" }}물리적으로 진짜 같음{{ else }}Physically realistic{{ end }}</div>
+          </div>
+        </div>
+      </div>
+      <p class="problem-punchline reveal">{{ if eq .Page.Language.Lang "ko" }}<strong>4개월.</strong> 그 사이에 AI 교통사고 영상이 장난감 수준에서 보험 사기에 쓸 수 있는 수준이 됐습니다. 소프트웨어 탐지로는 따라잡을 수 없습니다.{{ else }}<strong>4 months.</strong> That's how long it took for AI-generated crash footage to go from toy to insurance-fraud-ready. Software detection can't keep up.{{ end }}</p>
       <div class="problem-grid">
         <div class="problem-card reveal reveal-delay-1">
           <div class="problem-card-icon">
@@ -853,6 +1094,118 @@
           <h3>{{ if eq .Page.Language.Lang "ko" }}C2PA 호환{{ else }}C2PA Compatible{{ end }}</h3>
           <p>{{ if eq .Page.Language.Lang "ko" }}오픈 표준 기반. ARM TrustZone 격리. ECDSA 하드웨어 서명. 설계부터 상호운용 가능하게.{{ else }}Built on open standards. ARM TrustZone isolation. ECDSA hardware signatures. Interoperable by design.{{ end }}</p>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ MOMENTUM ════════ -->
+  <section class="landing-section momentum">
+    <div class="landing-inner">
+      <div class="momentum-label reveal">{{ if eq .Page.Language.Lang "ko" }}팀{{ else }}Team{{ end }}</div>
+      {{ $angel := time "2025-11-01" }}{{ $now := now }}{{ $months := sub (add (mul (sub $now.Year $angel.Year) 12) (int $now.Month)) (int $angel.Month) }}<h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}엔젤 투자 후 {{ $months }}개월.{{ else }}{{ $months }} months since angel.{{ end }}</h2>
+      <p class="momentum-sub reveal">{{ if eq .Page.Language.Lang "ko" }}팀을 꾸리고, 고객을 찾고, 파일럿을 준비하고 있습니다.{{ else }}We built a team, found a customer, and started preparing a pilot.{{ end }}</p>
+      <div class="momentum-content">
+        <div class="timeline reveal">
+          <div class="tl-item">
+            <div class="tl-date">{{ if eq .Page.Language.Lang "ko" }}2024년 봄{{ else }}Spring 2024{{ end }}</div>
+            <div class="tl-text">{{ if eq .Page.Language.Lang "ko" }}SRA 화이트페이퍼 작성{{ else }}SRA whitepaper written{{ end }}</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">{{ if eq .Page.Language.Lang "ko" }}2025년 10월{{ else }}Oct 2025{{ end }}</div>
+            <div class="tl-text">{{ if eq .Page.Language.Lang "ko" }}군 복무 복귀, FPGA 프로토타이핑 시도 → 실패에서 학습{{ else }}Back from military, FPGA prototyping attempt → learned from failure{{ end }}</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">{{ if eq .Page.Language.Lang "ko" }}2025년 11월{{ else }}Nov 2025{{ end }}</div>
+            <div class="tl-text">{{ if eq .Page.Language.Lang "ko" }}피칭 후 48시간 만에 엔젤 투자 확정{{ else }}Angel investment in 48 hours after pitch{{ end }}</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">{{ if eq .Page.Language.Lang "ko" }}2026년 1월{{ else }}Jan 2026{{ end }}</div>
+            <div class="tl-text">{{ if eq .Page.Language.Lang "ko" }}그렙(프로그래머스) MOU 체결{{ else }}MOU signed with Grepp (Programmers){{ end }}</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">{{ if eq .Page.Language.Lang "ko" }}2026년 2월{{ else }}Feb 2026{{ end }}</div>
+            <div class="tl-text">{{ if eq .Page.Language.Lang "ko" }}AttentionX 7기 선정{{ else }}Accepted to AttentionX Cohort VII{{ end }}</div>
+          </div>
+          <div class="tl-item tl-active">
+            <div class="tl-date">{{ if eq .Page.Language.Lang "ko" }}현재{{ else }}Now{{ end }}</div>
+            <div class="tl-text">{{ if eq .Page.Language.Lang "ko" }}5인 팀, 파일럿 준비 중{{ else }}5-person team, preparing pilot{{ end }}</div>
+          </div>
+        </div>
+        <div>
+          <div class="team-faces reveal">
+            <div class="team-face">
+              <img src="/img/team-yejun.jpg" alt="Yejun">
+              <div class="team-face-info">
+                <h4>Yejun Jang</h4>
+                <span>{{ if eq .Page.Language.Lang "ko" }}대표 · AI & Security{{ else }}CEO · AI & Security{{ end }}</span>
+              </div>
+            </div>
+            <div class="team-face">
+              <img src="/img/team-jihoon.png" alt="Alex">
+              <div class="team-face-info">
+                <h4>Alex Jihoon Park</h4>
+                <span>{{ if eq .Page.Language.Lang "ko" }}공동창업자 · PCB/HW{{ else }}Co-founder · PCB/HW{{ end }}</span>
+              </div>
+            </div>
+            <div class="team-face">
+              <img src="/img/team-kihyun.png" alt="Kihyun">
+              <div class="team-face-info">
+                <h4>Kihyun Kim</h4>
+                <span>{{ if eq .Page.Language.Lang "ko" }}SW/Firmware · 7월 합류{{ else }}SW/Firmware · Joining July{{ end }}</span>
+              </div>
+            </div>
+            <div class="team-face">
+              <img src="/img/team-wonbeen.jpeg" alt="Wonbeen">
+              <div class="team-face-info">
+                <h4>Wonbeen Yoon</h4>
+                <span>{{ if eq .Page.Language.Lang "ko" }}하드웨어 아키텍처{{ else }}Hardware Architecture{{ end }}</span>
+              </div>
+            </div>
+            <div class="team-face">
+              <img src="/img/team-hyungtak.jpg" alt="Hyeongtak">
+              <div class="team-face-info">
+                <h4>Hyeongtak Ryu</h4>
+                <span>{{ if eq .Page.Language.Lang "ko" }}연구 인턴{{ else }}Research Intern{{ end }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="momentum-stat-row reveal">
+            <div>
+              <div class="m-stat-num">48h</div>
+              <div class="m-stat-label">{{ if eq .Page.Language.Lang "ko" }}피칭 → 투자 확정{{ else }}Pitch → angel commit{{ end }}</div>
+            </div>
+            <div>
+              <div class="m-stat-num">5</div>
+              <div class="m-stat-label">{{ if eq .Page.Language.Lang "ko" }}팀원{{ else }}Team members{{ end }}</div>
+            </div>
+            <div>
+              <div class="m-stat-num">&lt;4mo</div>
+              <div class="m-stat-label">{{ if eq .Page.Language.Lang "ko" }}투자 → 프로토타입{{ else }}Angel → prototype{{ end }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Gallery -->
+    <div class="gallery-wrap">
+      <div class="gallery-track">
+        <div class="gallery-item"><video autoplay loop muted playsinline><source src="/gallery/uvc-streaming.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><img src="/gallery/pcb-iter-1.jpg" alt="PCB iteration 1"></div>
+        <div class="gallery-item"><img src="/gallery/team-1.jpg" alt="Team dinner"></div>
+        <div class="gallery-item"><video autoplay loop muted playsinline><source src="/gallery/wonbeen-hi.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><img src="/gallery/pcb-iter-2.jpg" alt="PCB layout"></div>
+        <div class="gallery-item"><img src="/gallery/prototype.jpg" alt="Prototype camera"></div>
+        <div class="gallery-item"><video autoplay loop muted playsinline><source src="/gallery/first-capture.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><img src="/gallery/team-2.jpg" alt="Team at restaurant"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="gallery-item"><video autoplay loop muted playsinline><source src="/gallery/uvc-streaming.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><img src="/gallery/pcb-iter-1.jpg" alt="PCB iteration 1"></div>
+        <div class="gallery-item"><img src="/gallery/team-1.jpg" alt="Team dinner"></div>
+        <div class="gallery-item"><video autoplay loop muted playsinline><source src="/gallery/wonbeen-hi.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><img src="/gallery/pcb-iter-2.jpg" alt="PCB layout"></div>
+        <div class="gallery-item"><img src="/gallery/prototype.jpg" alt="Prototype camera"></div>
+        <div class="gallery-item"><video autoplay loop muted playsinline><source src="/gallery/first-capture.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><img src="/gallery/team-2.jpg" alt="Team at restaurant"></div>
       </div>
     </div>
   </section>
