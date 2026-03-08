@@ -773,6 +773,7 @@
     position: relative;
     left: 50%;
     margin-left: -50vw;
+    touch-action: pan-y;
   }
   .gallery-track {
     display: flex;
@@ -780,8 +781,10 @@
     animation: gallery-scroll 40s linear infinite;
     width: max-content;
   }
-  .gallery-track:hover {
-    animation-play-state: paused;
+  @media (hover: hover) {
+    .gallery-track:hover {
+      animation-play-state: paused;
+    }
   }
   .gallery-item {
     flex-shrink: 0;
@@ -830,7 +833,9 @@
     .chain { flex-wrap: wrap; gap: 16px; }
     .chain-arrow { display: none; }
     .chain-node { min-width: calc(50% - 12px); }
-    .momentum-content { grid-template-columns: 1fr; gap: 40px; }
+    .momentum-content { grid-template-columns: 1fr; gap: 40px; display: flex; flex-direction: column; }
+    .momentum-content > .timeline { order: 2; }
+    .momentum-content > div:not(.timeline) { order: 1; }
     .momentum-stat-row { gap: 32px; }
     .landing-section { padding: 56px 0; }
     h2 { font-size: 28px !important; }
