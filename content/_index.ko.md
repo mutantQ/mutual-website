@@ -1,6 +1,6 @@
 ---
-title: "하드웨어 기반 콘텐츠 진위 인증"
-description: "촬영 순간에 디지털 서명. 소프트웨어가 개입하기 전에."
+title: "진짜 콘텐츠가 빛날 수 있도록."
+description: "촬영 순간에 서명합니다. 소프트웨어가 개입하기 전에."
 showHeadingAnchors: false
 ---
 

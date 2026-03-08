@@ -7,11 +7,11 @@ title = "mutual"
 
 [params]
   dateFormat = "2006년 1월 2일"
-  description = "하드웨어 기반 콘텐츠 진위 인증. 촬영 순간에 디지털 서명."
+  description = "진짜 콘텐츠가 빛날 수 있도록."
 
 [params.author]
   name = "mutual"
-  headline = "하드웨어 기반 콘텐츠 진위 인증"
+  headline = "진짜 콘텐츠가 빛날 수 있도록."
   bio = "카메라가 빛을 받는 순간, 소프트웨어가 개입하기 전에 서명합니다."
   links = [
     { email = "mailto:jangyejun@gmail.com" },

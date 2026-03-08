@@ -1,6 +1,6 @@
 ---
-title: "Hardware-rooted content authenticity"
-description: "We sign camera output at the moment of capture. Before software can touch it."
+title: "Real content proves itself."
+description: "Signed at capture. Before software can touch it."
 showHeadingAnchors: false
 ---
 
