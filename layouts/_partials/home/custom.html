@@ -96,11 +96,11 @@
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1.05;
-    color: white;
+    color: var(--m-blue);
     margin-bottom: 24px;
   }
   .hero-text h1 span {
-    color: var(--m-blue);
+    color: white;
     display: inline;
   }
   .hero-text p {
@@ -212,6 +212,7 @@
   /* ── PROBLEM section ── */
   .problem {
     background: white;
+    padding-bottom: 48px;
   }
   .problem-label {
     font-size: 13px;
@@ -317,6 +318,24 @@
     color: var(--m-slate-900);
     margin-bottom: 8px;
     letter-spacing: -0.02em;
+  }
+  /* ── Use cases override ── */
+  .use-cases { padding-top: 40px; padding-bottom: 80px; }
+  .use-cases .problem-label { color: #16a34a; margin-bottom: 12px; }
+  .use-cases h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--m-slate-900);
+    line-height: 1.2;
+    margin-bottom: 36px;
+    max-width: 640px;
+  }
+  .use-cases .problem-card { padding: 28px; }
+  .use-cases .problem-card-icon {
+    background: rgba(22,163,74,0.08);
+    color: #16a34a;
+    margin-bottom: 16px;
   }
   .problem-card p {
     font-size: 15px;
