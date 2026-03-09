@@ -124,6 +124,9 @@
     flex-shrink: 0;
   }
   .value-icon svg { width: 24px; height: 24px; }
+  /* Section color themes for value icons */
+  .theme-red .value-icon { background: #fee2e2; color: #dc2626; }
+  .theme-green .value-icon { background: rgba(22,163,74,0.08); color: #16a34a; }
   .value-item h3 {
     font-size: 16px;
     font-weight: 700;
@@ -564,7 +567,7 @@
   </section>
 
   <!-- Market Problem -->
-  <section class="about-section mission">
+  <section class="about-section mission theme-red">
     <div class="about-inner">
       <div class="mission-grid">
         <div class="reveal-a">
@@ -606,7 +609,7 @@
   </section>
 
   <!-- Why Hardware -->
-  <section class="about-section mission" style="background:white">
+  <section class="about-section mission theme-green" style="background:white; padding-top:40px; padding-bottom:40px;">
     <div class="about-inner">
       <div class="mission-grid">
         <div class="reveal-a">
@@ -734,7 +737,7 @@
           </tr>
           <tr>
             <td>{{ if eq .Page.Language.Lang "ko" }}기기 요건{{ else }}Device requirement{{ end }}</td>
-            <td>{{ if eq .Page.Language.Lang "ko" }}모든 카메라에 부착 가능한 독립 모듈{{ else }}Standalone module, works with any camera{{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}모든 스마트폰에 부착 가능한 독립 모듈{{ else }}Standalone module, works with any smartphone{{ end }}</td>
             <td>{{ if eq .Page.Language.Lang "ko" }}Snapdragon 8 Gen 3+ 탑재 기기 한정{{ else }}Snapdragon 8 Gen 3+ devices only{{ end }}</td>
           </tr>
           <tr>
@@ -822,7 +825,7 @@
   </section>
 
   <!-- Team -->
-  <section class="about-section team">
+  <section class="about-section team" style="padding-top:40px;">
     <div class="about-inner">
       <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}팀{{ else }}The team{{ end }}</h2>
       <div class="team-grid">
