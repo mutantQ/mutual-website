@@ -855,10 +855,10 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1>
-            {{ if eq .Page.Language.Lang "ko" }}진짜 콘텐츠가<br><span>빛날 수 있도록.</span>{{ else }}Real content<br><span>proves itself.</span>{{ end }}
+            {{ if eq .Page.Language.Lang "ko" }}생성형 AI 시대,<br><span>영상은 더 이상 증거가 아닙니다.</span>{{ else }}In the age of generative AI,<br><span>video is no longer evidence.</span>{{ end }}
           </h1>
           <p>
-            {{ if eq .Page.Language.Lang "ko" }}촬영하는 순간 서명합니다. 소프트웨어가 끼어들 틈 없이. 디바이스 밖으로 절대 나가지 않는 하드웨어 암호화 키로.{{ else }}We sign camera output at the moment of capture, before software can touch it. Hardware-bound cryptographic keys that never leave the device.{{ end }}
+            {{ if eq .Page.Language.Lang "ko" }}mutual은 촬영되는 그 순간, 콘텐츠가 진짜임을 증명하는 하드웨어를 만듭니다. 소프트웨어가 개입하기 전에 서명하고, 누구나 검증할 수 있도록.{{ else }}mutual builds hardware that proves content is real at the moment of capture. Signed before software can intervene. Verifiable by anyone.{{ end }}
           </p>
           <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/about/{{ else }}/about/{{ end }}" class="hero-cta">
             {{ if eq .Page.Language.Lang "ko" }}자세히 알아보기{{ else }}Learn how it works{{ end }}
@@ -872,8 +872,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
               </div>
               <div>
-                <h4>{{ if eq .Page.Language.Lang "ko" }}빛이 센서에 닿는 순간{{ else }}Light hits sensor{{ end }}</h4>
-                <p>{{ if eq .Page.Language.Lang "ko" }}카메라 모듈이 이미지를 촬영{{ else }}Raw image captured by camera module{{ end }}</p>
+                <h4>{{ if eq .Page.Language.Lang "ko" }}촬영{{ else }}Capture{{ end }}</h4>
+                <p>{{ if eq .Page.Language.Lang "ko" }}카메라가 영상을 찍는 순간{{ else }}The moment camera records{{ end }}</p>
               </div>
             </div>
             <div class="flow-connector"></div>
@@ -882,8 +882,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
               </div>
               <div>
-                <h4>{{ if eq .Page.Language.Lang "ko" }}하드웨어가 프레임에 서명{{ else }}Hardware signs frame{{ end }}</h4>
-                <p>{{ if eq .Page.Language.Lang "ko" }}TrustZone 기반 ECDSA, 서명 키는 칩 안에 안전하게{{ else }}ECDSA via TrustZone, key never leaves chip{{ end }}</p>
+                <h4>{{ if eq .Page.Language.Lang "ko" }}즉시 서명{{ else }}Instant signing{{ end }}</h4>
+                <p>{{ if eq .Page.Language.Lang "ko" }}하드웨어가 자동으로 진위를 증명{{ else }}Hardware proves authenticity automatically{{ end }}</p>
               </div>
             </div>
             <div class="flow-connector"></div>
@@ -892,8 +892,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </div>
               <div>
-                <h4>{{ if eq .Page.Language.Lang "ko" }}어디서든 검증 가능{{ else }}Verifiable everywhere{{ end }}</h4>
-                <p>{{ if eq .Page.Language.Lang "ko" }}C2PA 호환 증명, 소스에서 화면까지{{ else }}C2PA-compatible proof, from source to screen{{ end }}</p>
+                <h4>{{ if eq .Page.Language.Lang "ko" }}어디서든 검증{{ else }}Verify anywhere{{ end }}</h4>
+                <p>{{ if eq .Page.Language.Lang "ko" }}누구나 진짜인지 확인할 수 있음{{ else }}Anyone can confirm it's real{{ end }}</p>
               </div>
             </div>
           </div>
@@ -907,7 +907,7 @@
     <div class="landing-inner">
       <div class="problem-label reveal">{{ if eq .Page.Language.Lang "ko" }}문제{{ else }}The problem{{ end }}</div>
       <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}진짜와 가짜를 구분할 수 없는 시대.{{ else }}When real and fake are indistinguishable.{{ end }}</h2>
-      <p class="problem-desc reveal">{{ if eq .Page.Language.Lang "ko" }}진짜와 가짜가 나란히 놓여 있습니다. 생성형 AI가 좋아질수록, 소프트웨어로 가짜를 걸러내는 건 점점 더 어려워집니다.{{ else }}Real and fake media sit side by side. As generative AI improves, software-based detection is a losing game, always one step behind.{{ end }}</p>
+      <p class="problem-desc reveal">{{ if eq .Page.Language.Lang "ko" }}진짜와 가짜가 나란히 놓여 있고, 그 차이는 빠르게 사라지고 있습니다. AI가 발전할수록 소프트웨어로 가짜를 걸러내는 것은 구조적으로 불가능해지고 있습니다.{{ else }}Real and fake media sit side by side. As generative AI improves, software-based detection is a losing game, always one step behind.{{ end }}</p>
       <div class="video-compare reveal">
         <div class="video-card">
           <video autoplay loop muted playsinline>
@@ -957,12 +957,43 @@
     </div>
   </section>
 
+  <!-- ════════ USE CASES ════════ -->
+  <section class="landing-section use-cases">
+    <div class="landing-inner">
+      <div class="problem-label reveal">{{ if eq .Page.Language.Lang "ko" }}적용 분야{{ else }}Use cases{{ end }}</div>
+      <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}콘텐츠의 진위가<br>비즈니스를 좌우하는 곳.{{ else }}Where authenticity<br>is business-critical.{{ end }}</h2>
+      <div class="problem-grid">
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}저널리즘 · 증거{{ else }}Journalism & evidence{{ end }}</h3>
+          <p>{{ if eq .Page.Language.Lang "ko" }}보도 영상과 법적 증거가 진짜임을 촬영 시점부터 보장합니다.{{ else }}Guarantee news footage and legal evidence are authentic from the point of capture.{{ end }}</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}보험 · 신원 확인{{ else }}Insurance & identity{{ end }}</h3>
+          <p>{{ if eq .Page.Language.Lang "ko" }}보험 청구 영상이나 신원 확인 사진의 위변조를 원천 차단합니다.{{ else }}Prevent fraud in insurance claims and identity verification at the source.{{ end }}</p>
+        </div>
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+          </div>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}채용 · 시험 감독{{ else }}Hiring & proctoring{{ end }}</h3>
+          <p>{{ if eq .Page.Language.Lang "ko" }}영상 면접과 온라인 시험에서 딥페이크 대리 응시를 방지합니다.{{ else }}Stop deepfake impersonation in video interviews and online exams.{{ end }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════ SOLUTION ════════ -->
   <section class="landing-section solution">
     <div class="landing-inner">
       <div class="solution-label reveal">{{ if eq .Page.Language.Lang "ko" }}접근 방식{{ else }}Our approach{{ end }}</div>
-      <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}가짜를 잡지 않습니다.<br>진짜를 증명합니다.{{ else }}Don't detect fakes.<br>Prove authenticity.{{ end }}</h2>
-      <p class="solution-desc reveal">{{ if eq .Page.Language.Lang "ko" }}SRA(Signing Right Away)가 센서부터 화면까지 암호학적 관리 체계를 만듭니다. 모든 프레임은 소프트웨어가 손대기 전에 서명됩니다.{{ else }}SRA (Signing Right Away) creates a cryptographic chain of custody from sensor to screen. Every frame is signed before software can modify it.{{ end }}</p>
+      <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}가짜를 찾는 대신,<br>진짜임을 증명합니다.{{ else }}Don't detect fakes.<br>Prove authenticity.{{ end }}</h2>
+      <p class="solution-desc reveal">{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 만들어지는 바로 그 시점에 하드웨어가 자동으로 서명합니다. 센서에서 화면까지, 소프트웨어가 개입할 수 없는 신뢰 체계를 만듭니다.{{ else }}SRA (Signing Right Away) creates a cryptographic chain of custody from sensor to screen. Every frame is signed before software can modify it.{{ end }}</p>
       <div class="chain" id="chain-flow">
         <div class="chain-node" data-chain="0">
           <div class="chain-icon ci-sensor">

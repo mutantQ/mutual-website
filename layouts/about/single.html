@@ -563,23 +563,23 @@
     </div>
   </section>
 
-  <!-- Mission -->
+  <!-- Market Problem -->
   <section class="about-section mission">
     <div class="about-inner">
       <div class="mission-grid">
         <div class="reveal-a">
-          <h2>{{ if eq .Page.Language.Lang "ko" }}진짜 콘텐츠가<br>스스로를 증명하게 합니다.{{ else }}We let real content prove itself.{{ end }}</h2>
-          <p>{{ if eq .Page.Language.Lang "ko" }}진짜와 가짜 미디어가 나란히 놓여 있고, 그 차이는 점점 사라지고 있습니다. 탐지 알고리즘은 생성 기술과의 군비 경쟁에서 밀리고 있습니다.{{ else }}Real and fake media sit side by side, and the line between them is vanishing. Detection algorithms are in a losing arms race against generation.{{ end }}</p>
-          <p>{{ if eq .Page.Language.Lang "ko" }}mutual은 문제를 뒤집었습니다. 가짜를 탐지하는 대신, 진짜 콘텐츠가 촬영 순간부터 암호학적 출처 증명을 지니도록, 소프트웨어가 개입하기 전에 서명합니다.{{ else }}mutual builds hardware that flips the problem: instead of detecting fakes, we let authentic content carry cryptographic proof of its origin, signed at the moment of capture, before software can intervene.{{ end }}</p>
+          <h2>{{ if eq .Page.Language.Lang "ko" }}콘텐츠를 믿을 수 없는 시대가<br>이미 시작되었습니다.{{ else }}The era where content<br>can't be trusted is here.{{ end }}</h2>
+          <p>{{ if eq .Page.Language.Lang "ko" }}생성형 AI의 발전으로 누구나 실사와 구분할 수 없는 영상을 만들 수 있게 되었습니다. 보험 청구 영상, 뉴스 보도, 채용 면접 영상까지, 모든 영상 콘텐츠의 신뢰가 흔들리고 있습니다.{{ else }}Generative AI now lets anyone create video indistinguishable from reality. Insurance claims, news footage, job interviews: trust in all video content is eroding.{{ end }}</p>
+          <p>{{ if eq .Page.Language.Lang "ko" }}소프트웨어 기반 탐지는 구조적으로 한계가 있습니다. 새로운 생성 모델이 나올 때마다 기존 탐지기는 무력해지고, 이 군비 경쟁에서 방어 측은 항상 한 발 늦습니다.{{ else }}Software-based detection is structurally limited. Each new generation model defeats existing detectors, and defenders are always one step behind in this arms race.{{ end }}</p>
         </div>
         <div class="mission-values reveal-a">
           <div class="value-item">
             <div class="value-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <div>
-              <h3>{{ if eq .Page.Language.Lang "ko" }}하드웨어 기반{{ else }}Hardware-rooted{{ end }}</h3>
-              <p>{{ if eq .Page.Language.Lang "ko" }}서명 키가 칩셋 안에 있습니다. 소프트웨어로는 추출도, 위조도 불가능합니다.{{ else }}Cryptographic keys live in the silicon. No software can extract or forge them.{{ end }}</p>
+              <h3>{{ if eq .Page.Language.Lang "ko" }}저널리즘{{ else }}Journalism{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}딥페이크 뉴스가 여론을 조작하고, 보도 영상의 진위를 증명할 방법이 없습니다.{{ else }}Deepfake news manipulates public opinion, with no way to prove footage is real.{{ end }}</p>
             </div>
           </div>
           <div class="value-item">
@@ -587,8 +587,41 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <h3>{{ if eq .Page.Language.Lang "ko" }}오픈 표준{{ else }}Open standard{{ end }}</h3>
-              <p>{{ if eq .Page.Language.Lang "ko" }}C2PA 위에서 만들었습니다. 독점 생태계에 갇히지 않고, 설계부터 상호운용이 가능합니다.{{ else }}Built on C2PA. Interoperable by design, not locked into a proprietary ecosystem.{{ end }}</p>
+              <h3>{{ if eq .Page.Language.Lang "ko" }}보험 · 법적 증거{{ else }}Insurance & legal{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}AI로 만든 사고 영상으로 보험금을 청구하거나, 조작된 증거가 법정에 제출됩니다.{{ else }}AI-generated accident footage used for insurance fraud. Fabricated evidence submitted in court.{{ end }}</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+            </div>
+            <div>
+              <h3>{{ if eq .Page.Language.Lang "ko" }}채용 · 신원 확인{{ else }}Hiring & identity{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}영상 면접에서 딥페이크로 다른 사람이 대리 응시하는 사례가 늘고 있습니다.{{ else }}Deepfake impersonation in video interviews is a growing problem.{{ end }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Hardware -->
+  <section class="about-section" style="background:white">
+    <div class="about-inner">
+      <div class="mission-grid">
+        <div class="reveal-a">
+          <h2>{{ if eq .Page.Language.Lang "ko" }}왜 하드웨어여야 하는가{{ else }}Why it has to be hardware{{ end }}</h2>
+          <p>{{ if eq .Page.Language.Lang "ko" }}신뢰는 편집 이후에 덧붙이는 것이 아니라, 촬영 순간에 시작되어야 합니다. 소프트웨어는 항상 조작 가능하기 때문에, 콘텐츠가 소프트웨어에 노출되기 전에 서명이 이루어져야 합니다.{{ else }}Trust can't be added after editing. It must start at the moment of capture. Software is always manipulable, so signing must happen before content is exposed to software.{{ end }}</p>
+          <p>{{ if eq .Page.Language.Lang "ko" }}mutual은 카메라 내부의 하드웨어에서, 콘텐츠가 외부로 나가기 전에 서명합니다. 가짜를 사후에 탐지하는 것이 아니라, 진짜임을 사전에 증명하는 방식입니다.{{ else }}mutual signs inside the camera hardware, before content leaves the device. Instead of detecting fakes after the fact, we prove authenticity before it's even possible to tamper.{{ end }}</p>
+        </div>
+        <div class="mission-values reveal-a">
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div>
+              <h3>{{ if eq .Page.Language.Lang "ko" }}하드웨어 격리{{ else }}Hardware isolation{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}서명 키는 칩 안에만 존재합니다. 소프트웨어로는 추출도, 위조도 불가능합니다.{{ else }}Signing keys exist only inside the chip. No software can extract or forge them.{{ end }}</p>
             </div>
           </div>
           <div class="value-item">
@@ -596,8 +629,17 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             </div>
             <div>
-              <h3>{{ if eq .Page.Language.Lang "ko" }}센서 레벨 서명{{ else }}Sensor-level signing{{ end }}</h3>
-              <p>{{ if eq .Page.Language.Lang "ko" }}빛이 센서에 닿는 바로 그 순간에 서명합니다. 가능한 가장 이른 시점입니다.{{ else }}Signatures happen at the moment light hits the sensor. The earliest possible point.{{ end }}</p>
+              <h3>{{ if eq .Page.Language.Lang "ko" }}촬영 시점 서명{{ else }}Signed at capture{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 만들어지는 가장 이른 시점에 서명합니다. 조작할 수 있는 시간 자체가 없습니다.{{ else }}Signing happens at the earliest possible moment. There's no window for tampering.{{ end }}</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3>{{ if eq .Page.Language.Lang "ko" }}오픈 표준 기반{{ else }}Open standard{{ end }}</h3>
+              <p>{{ if eq .Page.Language.Lang "ko" }}C2PA 표준을 따르기 때문에 독점 생태계에 종속되지 않고, 누구나 검증할 수 있습니다.{{ else }}Built on C2PA, so verification is open to anyone and not locked into a proprietary ecosystem.{{ end }}</p>
             </div>
           </div>
         </div>
