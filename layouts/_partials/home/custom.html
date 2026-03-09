@@ -1168,7 +1168,7 @@
     <div class="landing-inner">
       <div class="momentum-label reveal">{{ if eq .Page.Language.Lang "ko" }}팀{{ else }}Team{{ end }}</div>
       {{ $angel := time "2025-11-01" }}{{ $now := now }}{{ $months := sub (add (mul (sub $now.Year $angel.Year) 12) (int $now.Month)) (int $angel.Month) }}<h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}엔젤 투자 후 {{ $months }}개월.{{ else }}{{ $months }} months since angel.{{ end }}</h2>
-      <p class="momentum-sub reveal">{{ if eq .Page.Language.Lang "ko" }}팀을 꾸리고, 고객을 찾고, 파일럿을 준비하고 있습니다.{{ else }}We built a team, found a customer, and are preparing a pilot.{{ end }}</p>
+      <p class="momentum-sub reveal">{{ if eq .Page.Language.Lang "ko" }}<span class="nowrap">팀을 꾸리고, 고객을 찾고,</span> <span class="nowrap">파일럿을 준비하고 있습니다.</span>{{ else }}We built a team, found a customer, and are preparing a pilot.{{ end }}</p>
       <div class="momentum-content">
         <div class="timeline reveal">
           <div class="tl-item">
@@ -1279,7 +1279,7 @@
   <section class="landing-section cta-section">
     <div class="landing-inner">
       <h2 class="reveal">{{ if eq .Page.Language.Lang "ko" }}진위 증명은,<br>촬영 순간부터.{{ else }}Authenticity<br>starts at the source.{{ end }}</h2>
-      <p class="reveal">{{ if eq .Page.Language.Lang "ko" }}AI 시대에도 콘텐츠를 믿을 수 있도록. 함께 만들어갈 분을 찾고 있습니다.{{ else }}We're building the trust layer for the post-AI internet. Get in touch.{{ end }}</p>
+      <p class="reveal">{{ if eq .Page.Language.Lang "ko" }}<span class="nowrap">AI 시대에도 콘텐츠를 믿을 수 있도록.</span> <span class="nowrap">함께 만들어갈 분을 찾고 있습니다.</span>{{ else }}We're building the trust layer for the post-AI internet. Get in touch.{{ end }}</p>
       <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/contact/{{ else }}/contact/{{ end }}" class="cta-btn reveal">
         {{ if eq .Page.Language.Lang "ko" }}연락하기{{ else }}Contact us{{ end }}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
