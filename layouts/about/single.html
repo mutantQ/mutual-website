@@ -153,7 +153,7 @@
   }
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
   .team-card {
@@ -520,6 +520,85 @@
   }
   .ip-note strong { color: var(--m-slate-900); }
 
+  /* ── Market Opportunity ── */
+  .market-opp {
+    background: var(--m-slate-900);
+  }
+  .market-opp h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 48px;
+  }
+  .market-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .market-stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 32px 24px;
+    backdrop-filter: blur(8px);
+  }
+  .market-stat-num {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--m-blue);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .market-stat-label {
+    font-size: 14px;
+    color: var(--m-slate-300);
+    line-height: 1.6;
+  }
+  .market-survey {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(74,139,156,0.3);
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .market-survey-source {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--m-blue);
+    margin-bottom: 24px;
+  }
+  .survey-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .survey-stat .survey-stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .survey-stat .survey-stat-label {
+    font-size: 14px;
+    color: var(--m-slate-300);
+    line-height: 1.5;
+  }
+  .market-survey-closing {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--m-slate-300);
+    line-height: 1.7;
+    margin: 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
   @media (max-width: 768px) {
     .about-inner { padding: 0 20px; }
     .about-hero { padding: 100px 0 64px; }
@@ -547,6 +626,9 @@
     .comp-table td, .comp-table th { padding: 10px 8px; }
     .rm-phases { grid-template-columns: 1fr; }
     .backing-grid { grid-template-columns: 1fr; }
+    .market-stat-grid { grid-template-columns: 1fr; }
+    .survey-stat-grid { grid-template-columns: 1fr; }
+    .market-stat-num { font-size: 36px; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
     .team-grid { grid-template-columns: repeat(3, 1fr); }
@@ -571,7 +653,7 @@
     <div class="about-inner">
       <div class="mission-grid">
         <div class="reveal-a">
-          <h2>{{ if eq .Page.Language.Lang "ko" }}콘텐츠를 믿을 수 없는 시대가<br>이미 시작되었습니다.{{ else }}The era where content<br>can't be trusted is here.{{ end }}</h2>
+          <h2>{{ if eq .Page.Language.Lang "ko" }}콘텐츠를 <span style="white-space:nowrap">믿을 수 없는 시대가</span><br>이미 시작되었습니다.{{ else }}The era where content<br>can't be trusted is here.{{ end }}</h2>
           <p>{{ if eq .Page.Language.Lang "ko" }}생성형 AI의 발전으로 누구나 실사와 구분할 수 없는 영상을 만들 수 있게 되었습니다. 보험 청구 영상, 뉴스 보도, 채용 면접 영상까지, 모든 영상 콘텐츠의 신뢰가 흔들리고 있습니다.{{ else }}Generative AI now lets anyone create video indistinguishable from reality. Insurance claims, news footage, job interviews: trust in all video content is eroding.{{ end }}</p>
           <p>{{ if eq .Page.Language.Lang "ko" }}소프트웨어 기반 탐지는 구조적으로 한계가 있습니다. 새로운 생성 모델이 나올 때마다 기존 탐지기는 무력해지고, 이 군비 경쟁에서 방어 측은 항상 한 발 늦습니다.{{ else }}Software-based detection is structurally limited. Each new generation model defeats existing detectors, and defenders are always one step behind in this arms race.{{ end }}</p>
         </div>
@@ -608,8 +690,50 @@
     </div>
   </section>
 
+  <!-- Market Opportunity -->
+  <section class="about-section market-opp">
+    <div class="about-inner">
+      <div class="tech-label reveal-a" style="color:var(--m-blue)">{{ if eq .Page.Language.Lang "ko" }}시장{{ else }}Market{{ end }}</div>
+      <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}숫자가 말해줍니다.{{ else }}The numbers are clear.{{ end }}</h2>
+
+      <div class="market-stat-grid reveal-a">
+        <div class="market-stat-card">
+          <div class="market-stat-num">$40B</div>
+          <div class="market-stat-label">{{ if eq .Page.Language.Lang "ko" }}2027년 생성형 AI 사기 피해 전망 (Deloitte){{ else }}Projected generative AI fraud losses by 2027 (Deloitte){{ end }}</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="market-stat-num">$9.0B</div>
+          <div class="market-stat-label">{{ if eq .Page.Language.Lang "ko" }}2032년 탐지 SW 시장 규모, CAGR 35%{{ else }}Detection SW market by 2032, CAGR 35%{{ end }}</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="market-stat-num">~$500K</div>
+          <div class="market-stat-label">{{ if eq .Page.Language.Lang "ko" }}기업 1건당 평균 딥페이크 피해액{{ else }}Average enterprise loss per deepfake incident{{ end }}</div>
+        </div>
+      </div>
+
+      <div class="market-survey reveal-a">
+        <div class="market-survey-source">{{ if eq .Page.Language.Lang "ko" }}Checkr HR 설문, 채용 담당자 3,000명 (2025){{ else }}Checkr HR Survey, 3,000 hiring managers (2025){{ end }}</div>
+        <div class="survey-stat-grid">
+          <div class="survey-stat">
+            <div class="survey-stat-num">31%</div>
+            <div class="survey-stat-label">{{ if eq .Page.Language.Lang "ko" }}가짜 신분 면접 경험{{ else }}Experienced fake identity interviews{{ end }}</div>
+          </div>
+          <div class="survey-stat">
+            <div class="survey-stat-num">51%</div>
+            <div class="survey-stat-label">{{ if eq .Page.Language.Lang "ko" }}화상면접 신뢰 불가{{ else }}Can't trust video interviews{{ end }}</div>
+          </div>
+          <div class="survey-stat">
+            <div class="survey-stat-num">62%</div>
+            <div class="survey-stat-label">{{ if eq .Page.Language.Lang "ko" }}AI 사기가 탐지 능력 초과{{ else }}AI fraud exceeds detection capability{{ end }}</div>
+          </div>
+        </div>
+        <p class="market-survey-closing">{{ if eq .Page.Language.Lang "ko" }}시장의 불신은 이미 임계점에 도달했습니다.{{ else }}The market's distrust has already reached a tipping point.{{ end }}</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Why Hardware -->
-  <section class="about-section mission theme-green" style="background:white; padding-top:40px; padding-bottom:40px;">
+  <section class="about-section mission theme-green" style="background:white; padding-top:80px; padding-bottom:40px;">
     <div class="about-inner">
       <div class="mission-grid">
         <div class="reveal-a">
@@ -695,10 +819,10 @@
         <div class="hw-track">
           <div class="hw-track-chip">{{ if eq .Page.Language.Lang "ko" }}현재{{ else }}Now{{ end }}</div>
           <h4>{{ if eq .Page.Language.Lang "ko" }}독립 서명 모듈{{ else }}Standalone signing module{{ end }}</h4>
-          <p>{{ if eq .Page.Language.Lang "ko" }}상용 SoC 기반 커스텀 PCB. 케이싱 내부를 레진으로 충전하여 물리적 탬퍼링을 방지하고, FIPS 140-2 Level 2 달성을 목표로 합니다.{{ else }}Custom PCB on commercial SoCs. Resin-filled enclosure prevents physical tampering, targeting FIPS 140-2 Level 2 certification.{{ end }}</p>
+          <p>{{ if eq .Page.Language.Lang "ko" }}상용 SoC 기반 커스텀 PCB. 케이싱 내부를 레진으로 충전하여 물리적 탬퍼링을 방지하고, FIPS 140-3 Level 2 달성을 목표로 합니다.{{ else }}Custom PCB on commercial SoCs. Resin-filled enclosure provides tamper evidence, targeting FIPS 140-3 Level 2 certification.{{ end }}</p>
           <div class="hw-track-tags">
-            <span class="hw-tag">FIPS 140-2</span>
-            <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}탬퍼 방지{{ else }}Tamper-resistant{{ end }}</span>
+            <span class="hw-tag">FIPS 140-3</span>
+            <span class="hw-tag">{{ if eq .Page.Language.Lang "ko" }}탬퍼 감지{{ else }}Tamper-evident{{ end }}</span>
             <span class="hw-tag">C2PA</span>
           </div>
         </div>
@@ -742,17 +866,17 @@
           </tr>
           <tr>
             <td>{{ if eq .Page.Language.Lang "ko" }}신뢰 근원{{ else }}Trust root{{ end }}</td>
-            <td>{{ if eq .Page.Language.Lang "ko" }}전용 서명 모듈 (FIPS 140-2 목표){{ else }}Dedicated signing module (FIPS 140-2 target){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}전용 서명 모듈 (FIPS 140-3 목표){{ else }}Dedicated signing module (FIPS 140-3 target){{ end }}</td>
             <td>{{ if eq .Page.Language.Lang "ko" }}Qualcomm TEE (Spectra ISP 보안 파이프라인){{ else }}Qualcomm TEE (Spectra ISP secure pipeline){{ end }}</td>
           </tr>
           <tr>
             <td>{{ if eq .Page.Language.Lang "ko" }}센서 보호{{ else }}Sensor protection{{ end }}</td>
             <td>{{ if eq .Page.Language.Lang "ko" }}장기 목표: 센서 내장 서명{{ else }}Long-term goal: sensor-embedded signing{{ end }}</td>
-            <td>{{ if eq .Page.Language.Lang "ko" }}없음 (CSI-2 버스 인젝션에 취약){{ else }}None (vulnerable to CSI-2 bus injection){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}없음 (CSI-2 버스가 보호되지 않음){{ else }}None (CSI-2 bus remains unprotected){{ end }}</td>
           </tr>
           <tr>
             <td>{{ if eq .Page.Language.Lang "ko" }}물리적 보안{{ else }}Physical security{{ end }}</td>
-            <td>{{ if eq .Page.Language.Lang "ko" }}레진 충전 케이싱 (탬퍼 방지){{ else }}Resin-filled enclosure (tamper-resistant){{ end }}</td>
+            <td>{{ if eq .Page.Language.Lang "ko" }}레진 충전 케이싱 (탬퍼 감지){{ else }}Resin-filled enclosure (tamper-evident){{ end }}</td>
             <td>{{ if eq .Page.Language.Lang "ko" }}스마트폰 TEE 의존{{ else }}Relies on smartphone TEE{{ end }}</td>
           </tr>
           <tr>
@@ -824,6 +948,18 @@
     </div>
   </section>
 
+  <!-- Cross-link to Anchor -->
+  <section class="about-section" style="background:var(--m-slate-900);padding:80px 0;text-align:center;">
+    <div class="about-inner">
+      <h2 class="reveal-a" style="font-size:32px;font-weight:700;color:white;margin-bottom:16px;">{{ if eq .Page.Language.Lang "ko" }}첫 번째 제품을 확인하세요.{{ else }}See our first product.{{ end }}</h2>
+      <p class="reveal-a" style="font-size:17px;font-weight:300;color:var(--m-slate-300);margin-bottom:32px;">{{ if eq .Page.Language.Lang "ko" }}Anchor가 원격 채용을 어떻게 바꾸는지 알아보세요.{{ else }}See how Anchor transforms remote hiring.{{ end }}</p>
+      <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/anchor/{{ else }}/anchor/{{ end }}" class="reveal-a" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:#0e9aa7;color:white;text-decoration:none;font-weight:600;font-size:16px;border-radius:6px;box-shadow:0 0 20px rgba(34,211,238,0.3),0 0 40px rgba(34,211,238,0.15);transition:transform 0.2s,box-shadow 0.2s;">
+        {{ if eq .Page.Language.Lang "ko" }}Anchor 보기{{ else }}See Anchor{{ end }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
   <!-- Team -->
   <section class="about-section team" style="padding-top:40px;">
     <div class="about-inner">
@@ -848,15 +984,9 @@
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}Imperial College London 전자공학 석사{{ else }}MEng EEE, Imperial College London{{ end }}</div>
         </div>
         <div class="team-card reveal-a">
-          <div class="team-avatar"><img src="/img/team-wonbeen.jpeg" alt="Wonbeen Yoon"></div>
-          <h3>Wonbeen Yoon</h3>
-          <div class="role">{{ if eq .Page.Language.Lang "ko" }}하드웨어 아키텍처{{ else }}Hardware Architecture{{ end }}</div>
-          <div class="desc">{{ if eq .Page.Language.Lang "ko" }}서울대학교 기계공학부, 전기정보공학부 복수전공{{ else }}SNU ME, double major in ECE{{ end }}</div>
-        </div>
-        <div class="team-card reveal-a">
           <div class="team-avatar"><img src="/img/team-hyungtak.jpg" alt="Hyeongtak Ryu"></div>
           <h3>Hyeongtak Ryu</h3>
-          <div class="role">{{ if eq .Page.Language.Lang "ko" }}연구 인턴{{ else }}Research Intern{{ end }}</div>
+          <div class="role">{{ if eq .Page.Language.Lang "ko" }}하드웨어 리드{{ else }}Hardware Lead{{ end }}</div>
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}서울대학교 전기정보공학부{{ else }}SNU ECE{{ end }}</div>
         </div>
       </div>

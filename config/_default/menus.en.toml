@@ -3,6 +3,12 @@
   pageRef = "about"
   weight = 10
 
+
+[[main]]
+  name = "Anchor"
+  pageRef = "anchor"
+  weight = 12
+
 [[main]]
   name = "Blog"
   pageRef = "blog"
