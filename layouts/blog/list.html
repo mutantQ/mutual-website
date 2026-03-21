@@ -222,7 +222,7 @@
 
   <!-- Header -->
   <section class="blog-header">
-    <div class="blog-inner" style="max-width:800px;">
+    <div class="blog-inner">
       <div class="reveal-b">
         {{ if eq .Page.Language.Lang "ko" }}
           <h1>블로그</h1>
@@ -333,10 +333,25 @@
 </div>
 
 <script>
-  // Blog page: no dark hero, just ensure header is solid
+  // Blog page: dark header that transitions to white on scroll
   (function() {
     const body = document.body;
-    body.classList.add('header-dark', 'has-hero');
+    const header = document.querySelector('.blog-header');
+    if (header) {
+      body.classList.add('header-dark', 'has-hero');
+      function updateHeader() {
+        const headerBottom = header.getBoundingClientRect().bottom;
+        if (headerBottom < 80) {
+          body.classList.remove('header-dark');
+          body.classList.add('header-scrolled');
+        } else {
+          body.classList.add('header-dark', 'has-hero');
+          body.classList.remove('header-scrolled');
+        }
+      }
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      updateHeader();
+    }
   })();
 
   // Scroll reveal animations

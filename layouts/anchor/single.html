@@ -115,22 +115,23 @@
     pointer-events: none;
   }
 
-  .hero-top {
+  .hero-top-row {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 32px;
+    margin-bottom: 48px;
     position: relative;
     z-index: 1;
   }
+  .hero-top-row .hero-headline {
+    margin-bottom: 0;
+    text-align: left;
+  }
   .hero-device-img {
-    width: 160px;
+    width: 140px;
     height: auto;
     object-fit: contain;
-  }
-  .hero-top .a-label {
-    margin-bottom: 0;
-    font-size: 15px;
+    flex-shrink: 0;
   }
 
   @keyframes anchorTextGlow {
@@ -1094,7 +1095,9 @@
     .anchor-hero { padding: 100px 0 60px; min-height: auto; }
     .hero-headline { font-size: 28px; }
     .anchor-page h2 { font-size: 28px; }
-    .hero-device-img { width: 120px; }
+    .hero-top-row { flex-direction: column; gap: 16px; text-align: center; }
+    .hero-top-row .hero-headline { text-align: center; }
+    .hero-device-img { width: 100px; }
     .hero-punchline { font-size: 16px; margin-top: 24px; }
     .mock-call-titlebar-text { font-size: 10px; }
     .mock-call-toolbar { font-size: 10px; gap: 12px; padding: 8px 12px; }
@@ -1125,10 +1128,10 @@
        ══════════════════════════════════════════ -->
   <section class="anchor-hero">
     <div class="anchor-inner" style="width:100%;">
-      <div class="hero-top reveal-p">
+      <div class="hero-top-row reveal-p">
         <img src="/img/anchor-device.png" alt="AnchorCam" class="hero-device-img">
+        <h1 class="hero-headline">{{ if eq .Page.Language.Lang "ko" }}<span class="anchor-glow">Anchor</span>로 달라지는 면접 화면.{{ else }}What your interview screen looks like with <span class="anchor-glow">Anchor</span>.{{ end }}</h1>
       </div>
-      <h1 class="hero-headline reveal-p">{{ if eq .Page.Language.Lang "ko" }}<span class="anchor-glow">Anchor</span>로 달라지는 면접 화면.{{ else }}What your interview screen looks like with <span class="anchor-glow">Anchor</span>.{{ end }}</h1>
 
       <div class="mock-call reveal-p" id="mockCall">
         <!-- Title bar -->
@@ -1556,21 +1559,26 @@
   (function() {
     var hf = document.getElementById('heroVidFake');
     var hr = document.getElementById('heroVidReal');
-    if (hf && hr) {
-      var hReady = 0;
-      function heroBothReady() {
-        hReady++;
-        if (hReady < 2) return;
-        hf.currentTime = 0; hr.currentTime = 0;
-        hf.play(); hr.play();
-      }
-      hf.pause(); hr.pause();
-      hf.addEventListener('canplaythrough', heroBothReady, { once: true });
-      hr.addEventListener('canplaythrough', heroBothReady, { once: true });
-      hf.addEventListener('seeked', function() {
-        if (Math.abs(hf.currentTime - hr.currentTime) > 0.1) hr.currentTime = hf.currentTime;
-      });
+    if (!hf || !hr) return;
+    var hReady = 0;
+    function heroBothReady() {
+      hReady++;
+      if (hReady < 2) return;
+      hf.currentTime = 0; hr.currentTime = 0;
+      hf.play(); hr.play();
     }
+    hf.pause(); hr.pause();
+    hf.addEventListener('canplaythrough', heroBothReady, { once: true });
+    hr.addEventListener('canplaythrough', heroBothReady, { once: true });
+    /* Re-sync at every loop boundary */
+    hf.addEventListener('ended', function() { hf.currentTime = 0; hr.currentTime = 0; hf.play(); hr.play(); });
+    hr.addEventListener('ended', function() { hf.currentTime = 0; hr.currentTime = 0; hf.play(); hr.play(); });
+    /* Periodic drift correction */
+    setInterval(function() {
+      if (Math.abs(hf.currentTime - hr.currentTime) > 0.05) {
+        hr.currentTime = hf.currentTime;
+      }
+    }, 500);
   })();
 
   /* ── Sync deepfake comparison videos ── */
