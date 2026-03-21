@@ -123,11 +123,10 @@
     position: relative;
     z-index: 1;
   }
-  .hero-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 16px;
-    object-fit: cover;
+  .hero-device-img {
+    width: 160px;
+    height: auto;
+    object-fit: contain;
   }
   .hero-top .a-label {
     margin-bottom: 0;
@@ -344,6 +343,40 @@
     transform: translate(-50%, -50%) scale(1.1);
     border-color: white;
   }
+  .drag-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 18px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    z-index: 12;
+    overflow: hidden;
+  }
+  .drag-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .drag-hint span {
+    display: inline-block;
+    text-align: center;
+  }
+  .drag-hint.morphed {
+    opacity: 0;
+  }
   .hero-slider-handle svg {
     width: 18px;
     height: 18px;
@@ -460,7 +493,7 @@
     font-family: var(--font-display);
     font-size: 48px;
     font-weight: 800;
-    color: #fca5a5;
+    color: #f87171;
     letter-spacing: -0.04em;
     line-height: 1;
     margin-bottom: 12px;
@@ -560,6 +593,10 @@
     text-align: center;
     max-width: 900px;
     margin: 40px auto 16px;
+  }
+  .knowbe4-text strong {
+    color: white;
+    font-weight: 700;
   }
   .knowbe4-source {
     font-family: var(--font-mono);
@@ -709,21 +746,49 @@
     text-align: center;
     margin-bottom: 48px;
   }
-  .product-showcase video {
-    max-width: 400px;
+  .viewer-360 {
+    max-width: 280px;
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 0 40px rgba(74,139,156,0.15), 0 0 80px rgba(74,139,156,0.05);
-    display: block;
     margin: 0 auto;
+    position: relative;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
   }
-  .product-showcase-label {
+  .viewer-360:active { cursor: grabbing; }
+  .viewer-360 img {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+  }
+  .viewer-360 { padding-bottom: 56px; } /* reserve space for hint/label */
+  .viewer-360-hint {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--a-slate-500);
-    margin-top: 16px;
-    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    letter-spacing: 1px;
+  }
+  .viewer-360-hint.fade-out { opacity: 0; }
+  .viewer-360-label {
+    transition: opacity 0.6s ease;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .product-grid {
@@ -961,6 +1026,14 @@
     position: relative;
     overflow: hidden;
   }
+  .cta-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    margin: 0 auto 28px;
+    display: block;
+    object-fit: cover;
+  }
   .section-cta::before {
     content: '';
     position: absolute;
@@ -1021,7 +1094,7 @@
     .anchor-hero { padding: 100px 0 60px; min-height: auto; }
     .hero-headline { font-size: 28px; }
     .anchor-page h2 { font-size: 28px; }
-    .hero-logo { width: 80px; height: 80px; border-radius: 14px; }
+    .hero-device-img { width: 120px; }
     .hero-punchline { font-size: 16px; margin-top: 24px; }
     .mock-call-titlebar-text { font-size: 10px; }
     .mock-call-toolbar { font-size: 10px; gap: 12px; padding: 8px 12px; }
@@ -1036,7 +1109,7 @@
     .detect-grid { grid-template-columns: 1fr; }
     .detect-big { font-size: 28px; }
     .product-grid { grid-template-columns: 1fr; }
-    .product-showcase video { max-width: 280px; }
+    .viewer-360 { max-width: 220px; }
     .roi-compare { grid-template-columns: 1fr; gap: 16px; }
     .roi-num { font-size: 36px; }
     .legal-cards, .legal-cards.legal-three { grid-template-columns: 1fr; }
@@ -1053,7 +1126,7 @@
   <section class="anchor-hero">
     <div class="anchor-inner" style="width:100%;">
       <div class="hero-top reveal-p">
-        <img src="/img/anchor-logo.png" alt="Anchor" class="hero-logo">
+        <img src="/img/anchor-device.png" alt="AnchorCam" class="hero-device-img">
       </div>
       <h1 class="hero-headline reveal-p">{{ if eq .Page.Language.Lang "ko" }}<span class="anchor-glow">Anchor</span>로 달라지는 면접 화면.{{ else }}What your interview screen looks like with <span class="anchor-glow">Anchor</span>.{{ end }}</h1>
 
@@ -1093,6 +1166,7 @@
             <div class="hero-slider-handle" id="heroSliderHandle">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5l-5 7 5 7"/><path d="M16 5l5 7-5 7"/></svg>
             </div>
+            <div class="drag-hint" id="dragHint"><span>{{ if eq .Page.Language.Lang "ko" }}&#8592; 밀어보기 &#8594;{{ else }}&#8592; drag &#8594;{{ end }}</span></div>
           </div>
         </div>
 
@@ -1129,7 +1203,7 @@
 
       <div class="threat-stats reveal-p">
         <div class="threat-stat">
-          <div class="threat-stat-num">$800M</div>
+          <div class="threat-stat-num">{{ if eq .Page.Language.Lang "ko" }}1.1조 원{{ else }}$800M{{ end }}</div>
           <div class="threat-stat-label">{{ if eq .Page.Language.Lang "ko" }}북한 위장 IT 직원의 2024년 수익{{ else }}Generated by NK fake IT workers in 2024{{ end }}</div>
           <div class="threat-stat-source">US Treasury, 2026</div>
         </div>
@@ -1145,7 +1219,7 @@
         </div>
       </div>
 
-      <p class="knowbe4-text reveal-p">{{ if eq .Page.Language.Lang "ko" }}2024년, 세계 최대 보안교육 기업 KnowBe4는 화상면접 4회를 통과한 북한 위장 IT 직원을 채용했습니다.{{ else }}In 2024, KnowBe4, the world's largest security awareness training company, hired a North Korean fake IT worker who passed 4 video interviews.{{ end }}</p>
+      <p class="knowbe4-text reveal-p">{{ if eq .Page.Language.Lang "ko" }}2024년, 세계 최대 보안교육 기업 KnowBe4는 화상면접 <strong>4회를 통과한 북한 위장 IT 직원</strong>을 채용했습니다.{{ else }}In 2024, KnowBe4, the world's largest security awareness training company, hired a North Korean fake IT worker who passed <strong>4 video interviews</strong>.{{ end }}</p>
       <p class="knowbe4-quote reveal-p">{{ if eq .Page.Language.Lang "ko" }}"우리에게 일어났다면, 누구에게든 일어날 수 있습니다."{{ else }}"If it can happen to us, it can happen to almost anyone."{{ end }}</p>
       <p class="knowbe4-source reveal-p">Stu Sjouwerman, KnowBe4 Blog</p>
 
@@ -1204,8 +1278,11 @@
       <h2 class="reveal-p">{{ if eq .Page.Language.Lang "ko" }}세 제품, 완전한 신뢰.{{ else }}Three products. One trust layer.{{ end }}</h2>
 
       <div class="product-showcase reveal-p">
-        <video autoplay loop muted playsinline><source src="/video/anchor-device.webm" type="video/webm"><source src="/video/anchor-device.mp4" type="video/mp4"></video>
-        <div class="product-showcase-label">{{ if eq .Page.Language.Lang "ko" }}AnchorCam · 9월 출시{{ else }}AnchorCam · Coming September{{ end }}</div>
+        <div class="viewer-360" id="viewer360">
+          <img id="viewer360Img" src="/img/anchor-360/000.png" alt="AnchorCam 360" draggable="false">
+          <div class="viewer-360-hint" id="viewer360Hint">{{ if eq .Page.Language.Lang "ko" }}&#8592; 돌려보기 &#8594;{{ else }}&#8592; drag to rotate &#8594;{{ end }}</div>
+          <div class="viewer-360-hint viewer-360-label" id="showcaseLabel" style="opacity:0;">{{ if eq .Page.Language.Lang "ko" }}AnchorCam · 9월 출시{{ else }}AnchorCam · Coming September{{ end }}</div>
+        </div>
       </div>
 
       <div class="product-grid">
@@ -1217,7 +1294,7 @@
           </div>
           <h3>AnchorCam</h3>
           <p class="product-desc">{{ if eq .Page.Language.Lang "ko" }}진짜를 증명하는 카메라. USB로 모든 기기에 연결.{{ else }}The camera that proves reality. Plugs into any device via USB.{{ end }}</p>
-          <div class="product-price">{{ if eq .Page.Language.Lang "ko" }}$49 / 대{{ else }}$49 / unit{{ end }}</div>
+          <div class="product-price">{{ if eq .Page.Language.Lang "ko" }}~7만 원 / 대{{ else }}$49 / unit{{ end }}</div>
         </div>
         <!-- AnchorVerify -->
         <div class="product-card reveal-p">
@@ -1254,12 +1331,12 @@
 
       <div class="roi-compare reveal-p">
         <div class="roi-card">
-          <div class="roi-num">~$500K</div>
+          <div class="roi-num">{{ if eq .Page.Language.Lang "ko" }}~7억 원{{ else }}~$500K{{ end }}</div>
           <div class="roi-desc">{{ if eq .Page.Language.Lang "ko" }}딥페이크 1건 평균 피해액{{ else }}Avg. loss per deepfake incident{{ end }}</div>
         </div>
         <div class="roi-vs">vs</div>
         <div class="roi-card">
-          <div class="roi-num">$4,900</div>
+          <div class="roi-num">{{ if eq .Page.Language.Lang "ko" }}~700만 원{{ else }}$4,900{{ end }}</div>
           <div class="roi-desc">{{ if eq .Page.Language.Lang "ko" }}AnchorCam 100대 도입 비용{{ else }}AnchorCam 100-unit deployment{{ end }}</div>
         </div>
       </div>
@@ -1322,6 +1399,7 @@
        ══════════════════════════════════════════ -->
   <section class="section-cta">
     <div class="anchor-inner">
+      <img src="/img/anchor-logo.png" alt="Anchor" class="cta-logo reveal-p">
       <h2 class="reveal-p">{{ if eq .Page.Language.Lang "ko" }}Anchor를 직접 확인하세요.{{ else }}See Anchor in action.{{ end }}</h2>
       <p class="reveal-p">{{ if eq .Page.Language.Lang "ko" }}기업 파트너와 파일럿을 준비하고 있습니다.{{ else }}Preparing pilots with enterprise partners.{{ end }}</p>
       <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/contact/{{ else }}/contact/{{ end }}" class="cta-btn reveal-p">
@@ -1365,6 +1443,43 @@
     if (!viewport || !overlay || !divider || !handle) return;
 
     var dragging = false;
+    var dragHint = document.getElementById('dragHint');
+    var hintSpan = dragHint ? dragHint.querySelector('span') : null;
+    var hintMorphed = false;
+    function hideDragHint() {
+      if (!dragHint || !hintSpan || hintMorphed) return;
+      hintMorphed = true;
+      var duration = 1400;
+      var start = null;
+      var initWidth = dragHint.offsetWidth;
+      var initHeight = dragHint.offsetHeight;
+      var targetSize = Math.max(28, Math.min(40, window.innerWidth * 0.04));
+      var targetRadius = targetSize / 2;
+      function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+      function animate(ts) {
+        if (!start) start = ts;
+        var t = Math.min((ts - start) / duration, 1);
+        var e = ease(t);
+        /* Text and pill shrink together (0-0.75) */
+        var shrinkT = Math.min(t / 0.75, 1);
+        var se = ease(shrinkT);
+        hintSpan.style.opacity = 1 - se;
+        hintSpan.style.transform = 'scaleX(' + (1 - se) + ')';
+        var w = initWidth + (targetSize - initWidth) * se;
+        var h = initHeight + (targetSize - initHeight) * se;
+        var r = 20 + (targetRadius - 20) * se;
+        dragHint.style.width = w + 'px';
+        dragHint.style.height = h + 'px';
+        dragHint.style.borderRadius = r + 'px';
+        dragHint.style.padding = '0';
+        /* Fade out (0.75-1.0) */
+        if (t > 0.75) {
+          dragHint.style.opacity = 1 - (t - 0.75) / 0.25;
+        }
+        if (t < 1) requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    }
 
     function updateSlider(pct) {
       pct = Math.max(0, Math.min(100, pct));
@@ -1385,9 +1500,11 @@
     handle.addEventListener('mousedown', function(e) {
       e.preventDefault();
       dragging = true;
+      hideDragHint();
     });
     viewport.addEventListener('mousedown', function(e) {
       dragging = true;
+      hideDragHint();
       updateSlider(getPercent(e.clientX));
     });
     window.addEventListener('mousemove', function(e) {
@@ -1416,8 +1533,27 @@
       dragging = false;
     });
 
-    /* Initialize at 50% */
+    /* Initialize at 50%, then auto-demo the slider */
     updateSlider(50);
+
+    setTimeout(function() {
+      var start = null;
+      var duration = 2200;
+      function easeInOutCubic(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
+      function demo(ts) {
+        if (!start) start = ts;
+        var t = (ts - start) / duration;
+        if (t > 1) { updateSlider(50); setTimeout(hideDragHint, 500); return; }
+        /* smooth sweep: 50 → 70 → 30 → 50 using eased sine */
+        var phase = t * 2 * Math.PI;
+        var ease = easeInOutCubic(t < 0.5 ? t * 2 : 2 - t * 2);
+        var amplitude = 20 * (1 - Math.pow(2 * t - 1, 2)); /* fade amplitude at edges */
+        var pct = 50 + amplitude * Math.sin(phase);
+        updateSlider(pct);
+        requestAnimationFrame(demo);
+      }
+      requestAnimationFrame(demo);
+    }, 1200);
   })();
 
   /* ── Toolbar timer: count up every second ── */
@@ -1468,6 +1604,132 @@
       setTimeout(randomize, 200 + Math.random() * 1800);
     }
     setTimeout(randomize, 2000);
+  })();
+
+  /* ── 360 Product Viewer ── */
+  (function() {
+    var viewer = document.getElementById('viewer360');
+    var img = document.getElementById('viewer360Img');
+    var hint = document.getElementById('viewer360Hint');
+    if (!viewer || !img) return;
+    var totalFrames = 60;
+    var currentFrame = 0;
+    var dragging = false;
+    var startX = 0;
+    var startFrame = 0;
+    var lastX = 0;
+    var velocity = 0;
+    var inertiaAnim = null;
+
+    // Preload all frames
+    var frames = [];
+    for (var i = 0; i < totalFrames; i++) {
+      var f = new Image();
+      f.src = '/img/anchor-360/' + String(i).padStart(3, '0') + '.png';
+      frames.push(f);
+    }
+
+    function showFrame(idx) {
+      idx = ((idx % totalFrames) + totalFrames) % totalFrames;
+      currentFrame = idx;
+      img.src = frames[idx].src;
+    }
+
+    var showcaseLabel = document.getElementById('showcaseLabel');
+    function hideHint() {
+      if (hint) hint.classList.add('fade-out');
+      setTimeout(function() { if (showcaseLabel) showcaseLabel.style.opacity = '1'; }, 600);
+    }
+
+    // Auto-rotate with smooth timing
+    var autoRotating = true;
+    var lastRotateTime = 0;
+    var rotateInterval = 100;
+    function autoRotateLoop(ts) {
+      if (autoRotating && ts - lastRotateTime > rotateInterval) {
+        showFrame(currentFrame + 1);
+        lastRotateTime = ts;
+      }
+      requestAnimationFrame(autoRotateLoop);
+    }
+    requestAnimationFrame(autoRotateLoop);
+    /* auto-transition when viewer enters viewport + 4s */
+    var hintObserver = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        setTimeout(hideHint, 4000);
+        hintObserver.disconnect();
+      }
+    }, { threshold: 0.3 });
+    hintObserver.observe(viewer);
+
+    function stopAutoRotate() { autoRotating = false; }
+    function startAutoRotate() { autoRotating = true; }
+
+    var idleTimer;
+    function resetIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(startAutoRotate, 3000);
+    }
+
+    function stopInertia() {
+      if (inertiaAnim) { cancelAnimationFrame(inertiaAnim); inertiaAnim = null; }
+    }
+
+    function startInertia() {
+      var floatFrame = currentFrame;
+      function tick() {
+        if (Math.abs(velocity) < 0.05) { resetIdle(); return; }
+        velocity *= 0.92; /* friction */
+        floatFrame += velocity;
+        showFrame(Math.round(floatFrame));
+        inertiaAnim = requestAnimationFrame(tick);
+      }
+      inertiaAnim = requestAnimationFrame(tick);
+    }
+
+    viewer.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      dragging = true;
+      startX = e.clientX;
+      lastX = e.clientX;
+      startFrame = currentFrame;
+      velocity = 0;
+      stopAutoRotate();
+      stopInertia();
+      hideHint();
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX;
+      velocity = (e.clientX - lastX) / 5;
+      lastX = e.clientX;
+      showFrame(startFrame + Math.round(dx / 5));
+    });
+    window.addEventListener('mouseup', function() {
+      if (dragging) { dragging = false; startInertia(); }
+    });
+
+    viewer.addEventListener('touchstart', function(e) {
+      dragging = true;
+      startX = e.touches[0].clientX;
+      lastX = e.touches[0].clientX;
+      startFrame = currentFrame;
+      velocity = 0;
+      stopAutoRotate();
+      stopInertia();
+      hideHint();
+    }, { passive: true });
+    window.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      var cx = e.touches[0].clientX;
+      var dx = cx - startX;
+      velocity = (cx - lastX) / 5;
+      lastX = cx;
+      showFrame(startFrame + Math.round(dx / 5));
+    });
+    window.addEventListener('touchend', function() {
+      if (dragging) { dragging = false; startInertia(); }
+    });
   })();
 </script>
 {{ end }}
