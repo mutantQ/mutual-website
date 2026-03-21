@@ -40,22 +40,23 @@
 
   /* ── Blog header (clean, light) ── */
   .blog-header {
-    background: white;
-    padding: 80px 0 48px;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--m-slate-900);
+    padding: 100px 0 64px;
+    border-bottom: none;
   }
   .blog-header h1 {
     font-size: 48px;
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1.1;
-    color: var(--m-slate-900);
+    color: white;
     margin-bottom: 12px;
   }
   .blog-header p {
     font-size: 18px;
+    font-weight: 300;
     line-height: 1.6;
-    color: var(--m-slate-500);
+    color: var(--m-slate-300);
     max-width: 480px;
   }
 
@@ -221,7 +222,7 @@
 
   <!-- Header -->
   <section class="blog-header">
-    <div class="blog-inner">
+    <div class="blog-inner" style="max-width:800px;">
       <div class="reveal-b">
         {{ if eq .Page.Language.Lang "ko" }}
           <h1>블로그</h1>
@@ -335,8 +336,7 @@
   // Blog page: no dark hero, just ensure header is solid
   (function() {
     const body = document.body;
-    body.classList.remove('header-dark', 'has-hero');
-    body.classList.add('header-scrolled');
+    body.classList.add('header-dark', 'has-hero');
   })();
 
   // Scroll reveal animations

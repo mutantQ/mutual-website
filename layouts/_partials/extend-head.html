@@ -17,6 +17,18 @@
   strong, b {
     font-weight: 700;
   }
+  /* Anchor nav link glow */
+  @keyframes navAnchorGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(34,211,238,0.3); }
+    50% { text-shadow: 0 0 14px rgba(34,211,238,0.5); }
+  }
+  nav a[href="/anchor/"],
+  nav a[href="/ko/anchor/"],
+  nav a[href="/anchor/"] span,
+  nav a[href="/ko/anchor/"] span {
+    color: #22d3ee !important;
+    animation: navAnchorGlow 3s ease-in-out infinite;
+  }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
