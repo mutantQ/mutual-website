@@ -948,18 +948,6 @@
     </div>
   </section>
 
-  <!-- Cross-link to Anchor -->
-  <section class="about-section" style="background:var(--m-slate-900);padding:80px 0;text-align:center;">
-    <div class="about-inner">
-      <h2 class="reveal-a" style="font-size:32px;font-weight:700;color:white;margin-bottom:16px;">{{ if eq .Page.Language.Lang "ko" }}첫 번째 제품을 확인하세요.{{ else }}See our first product.{{ end }}</h2>
-      <p class="reveal-a" style="font-size:17px;font-weight:300;color:var(--m-slate-300);margin-bottom:32px;">{{ if eq .Page.Language.Lang "ko" }}Anchor가 원격 채용을 어떻게 바꾸는지 알아보세요.{{ else }}See how Anchor transforms remote hiring.{{ end }}</p>
-      <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/anchor/{{ else }}/anchor/{{ end }}" class="reveal-a" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:#0e9aa7;color:white;text-decoration:none;font-weight:600;font-size:16px;border-radius:6px;box-shadow:0 0 20px rgba(34,211,238,0.3),0 0 40px rgba(34,211,238,0.15);transition:transform 0.2s,box-shadow 0.2s;">
-        {{ if eq .Page.Language.Lang "ko" }}Anchor 보기{{ else }}See Anchor{{ end }}
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </section>
-
   <!-- Team -->
   <section class="about-section team" style="padding-top:40px;">
     <div class="about-inner">
@@ -990,6 +978,18 @@
           <div class="desc">{{ if eq .Page.Language.Lang "ko" }}서울대학교 전기정보공학부{{ else }}SNU ECE{{ end }}</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Cross-link to Anchor -->
+  <section class="about-section" style="background:var(--m-slate-900);padding:80px 0;text-align:center;">
+    <div class="about-inner">
+      <h2 class="reveal-a" style="font-size:32px;font-weight:700;color:white;margin-bottom:16px;">{{ if eq .Page.Language.Lang "ko" }}첫 번째 제품을 확인하세요.{{ else }}See our first product.{{ end }}</h2>
+      <p class="reveal-a" style="font-size:17px;font-weight:300;color:var(--m-slate-300);margin-bottom:32px;">{{ if eq .Page.Language.Lang "ko" }}Anchor가 원격 채용을 어떻게 바꾸는지 알아보세요.{{ else }}See how Anchor transforms remote hiring.{{ end }}</p>
+      <a href="{{ if eq .Page.Language.Lang "ko" }}/ko/anchor/{{ else }}/anchor/{{ end }}" class="reveal-a" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:#0e9aa7;color:white;text-decoration:none;font-weight:600;font-size:16px;border-radius:6px;box-shadow:0 0 20px rgba(34,211,238,0.3),0 0 40px rgba(34,211,238,0.15);transition:transform 0.2s,box-shadow 0.2s;">
+        {{ if eq .Page.Language.Lang "ko" }}Anchor 보기{{ else }}See Anchor{{ end }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 
