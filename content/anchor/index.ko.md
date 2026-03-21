@@ -5,4 +5,6 @@ showDate: false
 showReadingTime: false
 showAuthor: false
 showPagination: false
+images:
+  - /img/anchor-og.png
 ---
