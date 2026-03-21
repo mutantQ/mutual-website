@@ -805,7 +805,8 @@
     -webkit-user-select: none;
   }
   .viewer-360:active { cursor: grabbing; }
-  .viewer-360 img {
+  .viewer-360 img,
+  .viewer-360 video {
     width: 100%;
     display: block;
     pointer-events: none;
@@ -1360,7 +1361,7 @@
 
       <div class="product-showcase reveal-p">
         <div class="viewer-360" id="viewer360">
-          <img id="viewer360Img" src="/img/anchor-360/000.png" alt="AnchorCam 360" draggable="false">
+          <video id="viewer360Vid" src="/video/anchor-360.webm" muted playsinline preload="none" style="width:100%;display:block;pointer-events:none;user-select:none;"></video>
           <div class="viewer-360-hint" id="viewer360Hint">{{ if eq .Page.Language.Lang "ko" }}&#8592; 돌려보기 &#8594;{{ else }}&#8592; drag to rotate &#8594;{{ end }}</div>
           <div class="viewer-360-hint viewer-360-label" id="showcaseLabel" style="opacity:0;">{{ if eq .Page.Language.Lang "ko" }}AnchorCam · 9월 출시{{ else }}AnchorCam · Coming September{{ end }}</div>
         </div>
@@ -1697,42 +1698,40 @@
     setTimeout(randomize, 2000);
   })();
 
-  /* ── 360 Product Viewer ── */
+  /* ── 360 Product Viewer (video scrubbing) ── */
   (function() {
     var viewer = document.getElementById('viewer360');
-    var img = document.getElementById('viewer360Img');
+    var vid = document.getElementById('viewer360Vid');
     var hint = document.getElementById('viewer360Hint');
-    if (!viewer || !img) return;
-    var totalFrames = 150;
-    var currentFrame = 0;
+    if (!viewer || !vid) return;
+
     var dragging = false;
     var startX = 0;
-    var startFrame = 0;
+    var startTime = 0;
     var lastX = 0;
     var velocity = 0;
     var inertiaAnim = null;
-    var framesLoaded = false;
+    var duration = 0;
+    var ready = false;
 
-    // Lazy-load frames when viewer enters viewport
-    var frames = [];
-    function preloadFrames() {
-      if (framesLoaded) return;
-      framesLoaded = true;
-      for (var i = 0; i < totalFrames; i++) {
-        var f = new Image();
-        f.src = '/img/anchor-360/' + String(i).padStart(3, '0') + '.png';
-        frames.push(f);
-      }
-    }
+    /* Lazy load video when near viewport */
     var loadObserver = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) { preloadFrames(); loadObserver.disconnect(); }
+      if (entries[0].isIntersecting) {
+        vid.preload = 'auto';
+        vid.load();
+        loadObserver.disconnect();
+      }
     }, { rootMargin: '200px' });
     loadObserver.observe(viewer);
 
-    function showFrame(idx) {
-      idx = ((idx % totalFrames) + totalFrames) % totalFrames;
-      currentFrame = idx;
-      if (frames[idx] && frames[idx].complete) img.src = frames[idx].src;
+    vid.addEventListener('loadedmetadata', function() {
+      duration = vid.duration;
+      ready = true;
+    });
+
+    function seekTo(t) {
+      t = ((t % duration) + duration) % duration;
+      vid.currentTime = t;
     }
 
     var showcaseLabel = document.getElementById('showcaseLabel');
@@ -1741,29 +1740,28 @@
       setTimeout(function() { if (showcaseLabel) showcaseLabel.style.opacity = '1'; }, 600);
     }
 
-    // Auto-rotate: visibility-aware
+    /* Auto-rotate: visibility-aware */
     var autoRotating = true;
-    var lastRotateTime = 0;
-    var rotateInterval = 40;
     var viewerVisible = false;
     var rotateObserver = new IntersectionObserver(function(entries) {
       viewerVisible = entries[0].isIntersecting;
     }, { threshold: 0.1 });
     rotateObserver.observe(viewer);
+
+    var lastAutoTime = 0;
     function autoRotateLoop(ts) {
-      if (autoRotating && viewerVisible && framesLoaded && ts - lastRotateTime > rotateInterval) {
-        showFrame(currentFrame + 1);
-        lastRotateTime = ts;
+      if (autoRotating && viewerVisible && ready && ts - lastAutoTime > 16) {
+        vid.currentTime = (vid.currentTime + duration / 300) % duration;
+        lastAutoTime = ts;
       }
       requestAnimationFrame(autoRotateLoop);
     }
     requestAnimationFrame(autoRotateLoop);
-    /* Add pulsing glow to hint pill, removed on first interaction */
+
     if (hint) hint.classList.add('pulsing-hint');
 
     function stopAutoRotate() { autoRotating = false; }
     function startAutoRotate() { autoRotating = true; }
-
     var idleTimer;
     function resetIdle() {
       clearTimeout(idleTimer);
@@ -1773,25 +1771,24 @@
     function stopInertia() {
       if (inertiaAnim) { cancelAnimationFrame(inertiaAnim); inertiaAnim = null; }
     }
-
     function startInertia() {
-      var floatFrame = currentFrame;
       function tick() {
-        if (Math.abs(velocity) < 0.05) { resetIdle(); return; }
-        velocity *= 0.92; /* friction */
-        floatFrame += velocity;
-        showFrame(Math.round(floatFrame));
+        if (!ready || Math.abs(velocity) < 0.0005) { resetIdle(); return; }
+        velocity *= 0.92;
+        seekTo(vid.currentTime + velocity);
         inertiaAnim = requestAnimationFrame(tick);
       }
       inertiaAnim = requestAnimationFrame(tick);
     }
 
+    var sensitivity = 0.4;
     viewer.addEventListener('mousedown', function(e) {
       e.preventDefault();
+      if (!ready) return;
       dragging = true;
       startX = e.clientX;
       lastX = e.clientX;
-      startFrame = currentFrame;
+      startTime = vid.currentTime;
       velocity = 0;
       stopAutoRotate();
       stopInertia();
@@ -1800,19 +1797,20 @@
     window.addEventListener('mousemove', function(e) {
       if (!dragging) return;
       var dx = e.clientX - startX;
-      velocity = (e.clientX - lastX) * 0.4;
+      velocity = (e.clientX - lastX) * sensitivity * duration / 300;
       lastX = e.clientX;
-      showFrame(startFrame + Math.round(dx * 0.4));
+      seekTo(startTime + dx * sensitivity * duration / 300);
     });
     window.addEventListener('mouseup', function() {
       if (dragging) { dragging = false; startInertia(); }
     });
 
     viewer.addEventListener('touchstart', function(e) {
+      if (!ready) return;
       dragging = true;
       startX = e.touches[0].clientX;
       lastX = e.touches[0].clientX;
-      startFrame = currentFrame;
+      startTime = vid.currentTime;
       velocity = 0;
       stopAutoRotate();
       stopInertia();
@@ -1822,9 +1820,9 @@
       if (!dragging) return;
       var cx = e.touches[0].clientX;
       var dx = cx - startX;
-      velocity = (cx - lastX) * 0.4;
+      velocity = (cx - lastX) * sensitivity * duration / 300;
       lastX = cx;
-      showFrame(startFrame + Math.round(dx * 0.4));
+      seekTo(startTime + dx * sensitivity * duration / 300);
     });
     window.addEventListener('touchend', function() {
       if (dragging) { dragging = false; startInertia(); }
