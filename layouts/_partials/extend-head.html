@@ -28,21 +28,27 @@
     0%, 100% { text-shadow: 0 0 8px rgba(74,139,156,0.3); }
     50% { text-shadow: 0 0 14px rgba(74,139,156,0.5); }
   }
-  /* Dark header: bright cyan */
-  .header-dark nav a[href="/anchor/"],
-  .header-dark nav a[href="/ko/anchor/"],
-  .header-dark nav a[href="/anchor/"] span,
-  .header-dark nav a[href="/ko/anchor/"] span {
-    color: #22d3ee !important;
-    animation: navAnchorGlow 3s ease-in-out infinite;
-  }
-  /* Light header: darker teal */
+  /* Light header + mobile menu: darker teal (base) */
   nav a[href="/anchor/"],
   nav a[href="/ko/anchor/"],
   nav a[href="/anchor/"] span,
-  nav a[href="/ko/anchor/"] span {
+  nav a[href="/ko/anchor/"] span,
+  #menu-wrapper a[href="/anchor/"],
+  #menu-wrapper a[href="/ko/anchor/"],
+  #menu-wrapper a[href="/anchor/"] span,
+  #menu-wrapper a[href="/ko/anchor/"] span {
     color: #0e9aa7 !important;
     animation: navAnchorGlowDark 3s ease-in-out infinite;
+  }
+  /* Dark header: bright cyan (override) */
+  .header-dark nav a[href="/anchor/"],
+  .header-dark nav a[href="/ko/anchor/"],
+  .header-dark nav a[href="/anchor/"] span,
+  .header-dark nav a[href="/ko/anchor/"] span,
+  .header-dark li a[href="/anchor/"] span.decoration-primary-500,
+  .header-dark li a[href="/ko/anchor/"] span.decoration-primary-500 {
+    color: #22d3ee !important;
+    animation: navAnchorGlow 3s ease-in-out infinite;
   }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
