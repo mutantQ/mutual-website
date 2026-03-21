@@ -344,6 +344,28 @@
     transform: translate(-50%, -50%) scale(1.1);
     border-color: white;
   }
+  @keyframes handlePulse {
+    0%, 60%, 100% {
+      transform: translate(-50%, -50%) scale(1.0);
+      border-color: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    20%, 40% {
+      transform: translate(-50%, -50%) scale(1.15);
+      border-color: #22d3ee;
+      box-shadow: 0 0 20px rgba(34,211,238,0.5), 0 0 40px rgba(34,211,238,0.2);
+    }
+  }
+  .hero-slider-handle.pulsing {
+    animation: handlePulse 3s ease-in-out infinite;
+  }
+  @keyframes dividerPulse {
+    0%, 60%, 100% { background: rgba(255,255,255,0.5); box-shadow: none; }
+    20%, 40% { background: #22d3ee; box-shadow: 0 0 8px rgba(34,211,238,0.5); }
+  }
+  .hero-slider-divider.pulsing {
+    animation: dividerPulse 3s ease-in-out infinite;
+  }
   .drag-hint {
     position: absolute;
     top: 50%;
@@ -352,12 +374,13 @@
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
-    color: rgba(255,255,255,0.95);
-    background: rgba(255,255,255,0.12);
-    border: 2px solid rgba(255,255,255,0.9);
+    color: white;
+    background: rgba(0,0,0,0.4);
+    border: 2px solid #22d3ee;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 6px 18px;
+    box-shadow: 0 0 12px rgba(34,211,238,0.3);
     border-radius: 20px;
     white-space: nowrap;
     pointer-events: none;
@@ -377,6 +400,31 @@
   }
   .drag-hint.morphed {
     opacity: 0;
+  }
+  @keyframes dragHintNudge {
+    0%, 100% {
+      transform: translate(-50%, -50%);
+      border-color: rgba(34,211,238,0.4);
+      box-shadow: 0 0 8px rgba(34,211,238,0.2);
+    }
+    20% {
+      transform: translate(calc(-50% + 10px), -50%);
+      border-color: #22d3ee;
+      box-shadow: 0 0 20px rgba(34,211,238,0.5);
+    }
+    40% {
+      transform: translate(calc(-50% - 10px), -50%);
+      border-color: #22d3ee;
+      box-shadow: 0 0 20px rgba(34,211,238,0.5);
+    }
+    60% {
+      transform: translate(-50%, -50%);
+      border-color: rgba(34,211,238,0.4);
+      box-shadow: 0 0 8px rgba(34,211,238,0.2);
+    }
+  }
+  .drag-hint.nudging {
+    animation: dragHintNudge 3s ease-in-out infinite;
   }
   .hero-slider-handle svg {
     width: 18px;
@@ -761,13 +809,42 @@
     width: 100%;
     display: block;
     pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
-  .viewer-360 { padding-bottom: 56px; } /* reserve space for hint/label */
+  .viewer-360 { padding-bottom: 56px; position: relative; } /* reserve space for hint/label */
+  @keyframes hintPillNudge {
+    0%, 100% {
+      transform: translateX(-50%);
+      border-color: rgba(255,255,255,0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    20% {
+      transform: translateX(calc(-50% + 8px));
+      border-color: #22d3ee;
+      box-shadow: 0 0 16px rgba(34,211,238,0.4), 0 0 32px rgba(34,211,238,0.15);
+    }
+    40% {
+      transform: translateX(calc(-50% - 8px));
+      border-color: #22d3ee;
+      box-shadow: 0 0 16px rgba(34,211,238,0.4), 0 0 32px rgba(34,211,238,0.15);
+    }
+    60% {
+      transform: translateX(-50%);
+      border-color: rgba(255,255,255,0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+  }
+  .viewer-360-hint.pulsing-hint {
+    animation: hintPillNudge 3s ease-in-out infinite;
+  }
   .viewer-360-hint {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    pointer-events: auto;
+    cursor: grab;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
@@ -1410,6 +1487,8 @@
     function hideDragHint() {
       if (!dragHint || !hintSpan || hintMorphed) return;
       hintMorphed = true;
+      dragHint.classList.remove('nudging');
+      dragHint.style.transform = 'translate(-50%, -50%)';
       var duration = 1400;
       var start = null;
       var initWidth = dragHint.offsetWidth;
@@ -1437,9 +1516,21 @@
         if (t > 0.75) {
           dragHint.style.opacity = 1 - (t - 0.75) / 0.25;
         }
-        if (t < 1) requestAnimationFrame(animate);
+        if (t < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          /* Morph done → stop all pulse */
+          stopPulse();
+        }
       }
       requestAnimationFrame(animate);
+    }
+
+    var pulseStopped = false;
+    function stopPulse() {
+      pulseStopped = true;
+      handle.classList.remove('pulsing');
+      divider.classList.remove('pulsing');
     }
 
     function updateSlider(pct) {
@@ -1462,10 +1553,12 @@
       e.preventDefault();
       dragging = true;
       hideDragHint();
+      stopPulse();
     });
     viewport.addEventListener('mousedown', function(e) {
       dragging = true;
       hideDragHint();
+      stopPulse();
       updateSlider(getPercent(e.clientX));
     });
     window.addEventListener('mousemove', function(e) {
@@ -1481,9 +1574,13 @@
     handle.addEventListener('touchstart', function(e) {
       e.preventDefault();
       dragging = true;
+      hideDragHint();
+      stopPulse();
     }, { passive: false });
     viewport.addEventListener('touchstart', function(e) {
       dragging = true;
+      hideDragHint();
+      stopPulse();
       updateSlider(getPercent(e.touches[0].clientX));
     }, { passive: true });
     window.addEventListener('touchmove', function(e) {
@@ -1494,27 +1591,43 @@
       dragging = false;
     });
 
-    /* Initialize at 50%, then auto-demo the slider */
-    updateSlider(50);
+    /* Initialize at 100% (right), then swipe demo */
+    updateSlider(100);
+    if (dragHint) dragHint.style.opacity = '0';
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function easeInOutCubic(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
 
     setTimeout(function() {
       var start = null;
-      var duration = 2200;
-      function easeInOutCubic(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
-      function demo(ts) {
+      /* Phase 1: 100% → 0% fast swipe (800ms) */
+      function swipeLeft(ts) {
         if (!start) start = ts;
-        var t = (ts - start) / duration;
-        if (t > 1) { updateSlider(50); setTimeout(hideDragHint, 500); return; }
-        /* smooth sweep: 50 → 70 → 30 → 50 using eased sine */
-        var phase = t * 2 * Math.PI;
-        var ease = easeInOutCubic(t < 0.5 ? t * 2 : 2 - t * 2);
-        var amplitude = 20 * (1 - Math.pow(2 * t - 1, 2)); /* fade amplitude at edges */
-        var pct = 50 + amplitude * Math.sin(phase);
-        updateSlider(pct);
-        requestAnimationFrame(demo);
+        var t = Math.min((ts - start) / 800, 1);
+        updateSlider(100 - 100 * easeOutCubic(t));
+        if (t < 1) { requestAnimationFrame(swipeLeft); return; }
+        /* Phase 2: 0% → 50% ease back (600ms) */
+        start = null;
+        requestAnimationFrame(function comeback(ts2) {
+          if (!start) start = ts2;
+          var t2 = Math.min((ts2 - start) / 600, 1);
+          updateSlider(50 * easeInOutCubic(t2));
+          if (t2 < 1) { requestAnimationFrame(comeback); return; }
+          updateSlider(50);
+          /* Phase 3: show pill + start pulse */
+          if (!pulseStopped) {
+            if (dragHint) {
+              dragHint.style.transition = 'opacity 0.4s ease';
+              dragHint.style.opacity = '1';
+              dragHint.classList.add('nudging');
+            }
+            handle.classList.add('pulsing');
+            divider.classList.add('pulsing');
+          }
+        });
       }
-      requestAnimationFrame(demo);
-    }, 1200);
+      requestAnimationFrame(swipeLeft);
+    }, 800);
   })();
 
   /* ── Toolbar timer: count up every second ── */
@@ -1649,7 +1762,7 @@
 
     var showcaseLabel = document.getElementById('showcaseLabel');
     function hideHint() {
-      if (hint) hint.classList.add('fade-out');
+      if (hint) { hint.classList.remove('pulsing-hint'); hint.classList.add('fade-out'); }
       setTimeout(function() { if (showcaseLabel) showcaseLabel.style.opacity = '1'; }, 600);
     }
 
@@ -1665,14 +1778,8 @@
       requestAnimationFrame(autoRotateLoop);
     }
     requestAnimationFrame(autoRotateLoop);
-    /* auto-transition when viewer enters viewport + 4s */
-    var hintObserver = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
-        setTimeout(hideHint, 4000);
-        hintObserver.disconnect();
-      }
-    }, { threshold: 0.3 });
-    hintObserver.observe(viewer);
+    /* Add pulsing glow to hint pill, removed on first interaction */
+    if (hint) hint.classList.add('pulsing-hint');
 
     function stopAutoRotate() { autoRotating = false; }
     function startAutoRotate() { autoRotating = true; }
