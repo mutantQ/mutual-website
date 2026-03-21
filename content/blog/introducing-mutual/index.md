@@ -58,7 +58,7 @@ Conceptually, the flow is straightforward:
 1. A signal comes off the image sensor and enters the camera pipeline.
 2. The data is cryptographically hashed at the hardware level as it passes through the pipeline.
 3. The hash is combined with metadata and digitally signed inside a secure enclave (TEE).
-4. The final file is produced with C2PA-compliant content credentials attached.
+4. The final file is produced with content credentials targeting the C2PA standard.
 
 This way, when someone opens an image later, they can ask: "Did this really originate from a physical sensor? Was it tampered with along the way?" and get a cryptographically grounded answer. The root of trust sits in **hardware**, not just in software that can be bypassed.
 

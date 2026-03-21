@@ -1059,7 +1059,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
           </div>
           <div class="chain-label">{{ if eq .Page.Language.Lang "ko" }}저장소{{ else }}Storage{{ end }}</div>
-          <div class="chain-sublabel">{{ if eq .Page.Language.Lang "ko" }}C2PA 매니페스트{{ else }}C2PA manifest{{ end }}</div>
+          <div class="chain-sublabel">{{ if eq .Page.Language.Lang "ko" }}C2PA 호환 매니페스트{{ else }}C2PA-targeted manifest{{ end }}</div>
         </div>
         <div class="chain-arrow signed" data-chain="5">
           <span class="chain-arrow-label">{{ if eq .Page.Language.Lang "ko" }}검증됨{{ else }}VERIFIED{{ end }}</span>
@@ -1174,7 +1174,7 @@
         <a href="https://c2pa.org" target="_blank" rel="noopener" class="traction-card reveal reveal-delay-3">
           <img src="/img/c2pa-logo.svg" alt="C2PA" class="tc-logo">
           <div class="tc-tag">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</div>
-          <h3>{{ if eq .Page.Language.Lang "ko" }}C2PA 호환{{ else }}C2PA Compatible{{ end }}</h3>
+          <h3>{{ if eq .Page.Language.Lang "ko" }}C2PA 호환 목표{{ else }}Targeting C2PA{{ end }}</h3>
           <p>{{ if eq .Page.Language.Lang "ko" }}오픈 표준 기반. ARM TrustZone 격리. ECDSA 하드웨어 서명. 설계부터 상호운용 가능하게.{{ else }}Built on open standards. ARM TrustZone isolation. ECDSA hardware signatures. Interoperable by design.{{ end }}</p>
         </a>
       </div>

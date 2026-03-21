@@ -766,7 +766,7 @@
             </div>
             <div>
               <h3>{{ if eq .Page.Language.Lang "ko" }}오픈 표준 기반{{ else }}Open standard{{ end }}</h3>
-              <p>{{ if eq .Page.Language.Lang "ko" }}C2PA 표준을 따르기 때문에 독점 생태계에 종속되지 않고, 누구나 검증할 수 있습니다.{{ else }}Built on C2PA, so verification is open to anyone and not locked into a proprietary ecosystem.{{ end }}</p>
+              <p>{{ if eq .Page.Language.Lang "ko" }}C2PA 호환을 목표로 설계되어, 독점 생태계에 종속되지 않고 누구나 검증할 수 있는 구조입니다.{{ else }}Designed for C2PA compatibility, so verification is open to anyone and not locked into a proprietary ecosystem.{{ end }}</p>
             </div>
           </div>
         </div>
@@ -779,7 +779,7 @@
     <div class="about-inner">
       <div class="tech-label reveal-a">{{ if eq .Page.Language.Lang "ko" }}기술{{ else }}Technology{{ end }}</div>
       <h2 class="reveal-a">{{ if eq .Page.Language.Lang "ko" }}촬영 순간에 서명합니다.{{ else }}Signed at the moment of capture.{{ end }}</h2>
-      <p class="tech-deep-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 카메라 모듈을 떠나기 전에, <code>ECDSA</code> 서명과 <code>C2PA</code> 인증정보가 완성됩니다. 소프트웨어가 개입할 틈이 없습니다.{{ else }}Before content leaves the camera module, <code>ECDSA</code> signatures and <code>C2PA</code> manifests are complete. No window for software to intervene.{{ end }}</p>
+      <p class="tech-deep-sub reveal-a">{{ if eq .Page.Language.Lang "ko" }}콘텐츠가 카메라 모듈을 떠나기 전에, <code>ECDSA</code> 서명과 <code>C2PA</code> 호환 인증정보가 생성됩니다. 소프트웨어가 개입할 틈이 없습니다.{{ else }}Before content leaves the camera module, <code>ECDSA</code> signatures and <code>C2PA</code>-targeted manifests are generated. No window for software to intervene.{{ end }}</p>
 
       <!-- Pipeline -->
       <div class="pipeline reveal-a">
@@ -801,7 +801,7 @@
         <div class="pipe-step pipe-secure">
           <div class="pipe-step-num">4</div>
           <h4>{{ if eq .Page.Language.Lang "ko" }}C2PA 매니페스트{{ else }}C2PA Manifest{{ end }}</h4>
-          <p>{{ if eq .Page.Language.Lang "ko" }}서명, 타임스탬프, 기기 정보를 C2PA 표준 포맷으로 패키징. 누구나 검증 가능.{{ else }}Signature, timestamp, and device info packaged in C2PA format. Verifiable by anyone.{{ end }}</p>
+          <p>{{ if eq .Page.Language.Lang "ko" }}서명, 타임스탬프, 기기 정보를 C2PA 호환 포맷으로 패키징 예정. 누구나 검증 가능.{{ else }}Signature, timestamp, and device info targeting C2PA format. Verifiable by anyone.{{ end }}</p>
         </div>
       </div>
 

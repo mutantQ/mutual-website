@@ -24,7 +24,7 @@ Hardware development needs equipment we can't afford to buy outright. Oscillosco
 
 The goal: sign image data at the hardware level, before any software can touch it.
 
-We're using ARM TrustZone to create a secure world that hashes video frames as they come off the sensor. The output is [C2PA](https://c2pa.org/)-compliant - meaning it verifies in standard tools like Adobe's Content Credentials.
+We're using ARM TrustZone to create a secure world that hashes video frames as they come off the sensor. The output is designed to be [C2PA](https://c2pa.org/)-compatible - targeting verification in standard tools like Adobe's Content Credentials.
 
 ![PCB render](pcb-render-full.png)
 *Alex's first PCB design.*

@@ -24,7 +24,7 @@ mutual 시작한 지 두 달 됐다. 1월에 뭘 했는지 정리해본다.
 
 목표는 카메라가 찍는 순간, 하드웨어 안에서 서명하는 것이다. 소프트웨어가 손대기 전에 서명해야 의미가 있다.
 
-ARM TrustZone으로 보안 영역을 만들고, 거기서 영상 프레임을 해싱한다. 출력은 [C2PA](https://c2pa.org/) 표준을 따르기 때문에 Adobe Content Credentials 같은 도구에서 바로 검증할 수 있다.
+ARM TrustZone으로 보안 영역을 만들고, 거기서 영상 프레임을 해싱한다. 출력은 [C2PA](https://c2pa.org/) 표준 호환을 목표로 설계되어, Adobe Content Credentials 같은 도구에서 검증할 수 있도록 할 계획이다.
 
 ![PCB 렌더](pcb-render-full.png)
 *공동창업자 Alex의 첫 PCB.*

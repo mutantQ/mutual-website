@@ -18,7 +18,7 @@ showHeadingAnchors: false
 
 센서에서 화면까지 암호학적 관리 체계를 만드는 **온디바이스 서명 하드웨어**. 모든 프레임은 소프트웨어가 수정하기 전에 서명되어, 위변조 탐지와 진위 검증이 가능하다.
 
-[C2PA](https://c2pa.org/) 표준과 호환되며, ARM TrustZone 기반 하드웨어 격리를 활용한다.
+[C2PA](https://c2pa.org/) 표준 호환을 목표로 설계되었으며, ARM TrustZone 기반 하드웨어 격리를 활용한다.
 
 ---
 

@@ -18,7 +18,7 @@ We changed the question: instead of detecting fakes, we let real content prove i
 
 **On-device signing hardware** that creates a cryptographic chain of custody from sensor to screen. Every frame is signed before software can modify it, making forgery detectable and authenticity verifiable.
 
-Our approach is compatible with [C2PA](https://c2pa.org/) and builds on ARM TrustZone for hardware isolation.
+Our approach is designed for [C2PA](https://c2pa.org/) compatibility and builds on ARM TrustZone for hardware isolation.
 
 ---
 
