@@ -1227,14 +1227,14 @@
 
       <div class="deepfake-grid">
         <div class="deepfake-card deepfake-card-border-cyan reveal-p">
-          <video src="/video/anchor-original.mp4" autoplay loop muted playsinline></video>
+          <video id="vidOriginal" src="/video/anchor-original.mp4" autoplay loop muted playsinline></video>
           <div class="deepfake-card-info">
             <span class="deepfake-card-label">{{ if eq .Page.Language.Lang "ko" }}원본{{ else }}Original{{ end }}</span>
             <span class="deepfake-card-tag">{{ if eq .Page.Language.Lang "ko" }}진짜{{ else }}Real{{ end }}</span>
           </div>
         </div>
         <div class="deepfake-card deepfake-card-border-red reveal-p">
-          <video src="/video/anchor-unverified.mp4" autoplay loop muted playsinline></video>
+          <video id="vidDeepfake" src="/video/anchor-unverified.mp4" autoplay loop muted playsinline></video>
           <div class="deepfake-card-info">
             <span class="deepfake-card-label">{{ if eq .Page.Language.Lang "ko" }}딥페이크{{ else }}Deepfake{{ end }}</span>
             <span class="deepfake-card-tag">{{ if eq .Page.Language.Lang "ko" }}가짜{{ else }}Fake{{ end }}</span>
@@ -1326,7 +1326,7 @@
   <section class="anchor-section section-roi">
     <div class="anchor-inner">
       <div class="a-label reveal-p">ROI</div>
-      <h2 class="reveal-p">{{ if eq .Page.Language.Lang "ko" }}500만 원으로 5억을 지킵니다.{{ else }}$5K prevents a $500K loss.{{ end }}</h2>
+      <h2 class="reveal-p">{{ if eq .Page.Language.Lang "ko" }}700만 원으로 7억을 지킵니다.{{ else }}$5K prevents a $500K loss.{{ end }}</h2>
       <p class="roi-context reveal-p" style="font-size:18px;font-weight:500;color:var(--a-slate-300);margin-bottom:48px;">{{ if eq .Page.Language.Lang "ko" }}채용 매니저의 31%가 가짜 신분으로 면접에 응한 지원자를 경험했습니다. <span style="color:var(--a-slate-500)">(Checkr, 2025)</span>{{ else }}31% of hiring managers have interviewed a candidate using a fake identity. <span style="color:var(--a-slate-500)">(Checkr, 2025)</span>{{ end }}</p>
 
       <div class="roi-compare reveal-p">
@@ -1345,54 +1345,10 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════
+  {{/* ══════════════════════════════════════════
        SECTION 6 - LEGAL FOUNDATION
-       ══════════════════════════════════════════ -->
-  <section class="anchor-section section-legal">
-    <div class="anchor-inner">
-      <div class="a-label reveal-p">{{ if eq .Page.Language.Lang "ko" }}법적 근거{{ else }}Legal Foundation{{ end }}</div>
-
-      {{ if eq .Page.Language.Lang "ko" }}
-      <h2 class="reveal-p">해시값 기반 원본 증명은 법적으로 인정됩니다.</h2>
-
-      <div class="legal-cards reveal-p">
-        <div class="legal-card">
-          <h3>대법원 2013도2511</h3>
-          <p>해시값을 디지털 증거 동일성 입증의 원칙적 수단으로 확립한 판례.</p>
-        </div>
-        <div class="legal-card">
-          <h3>대법원 2022도1864</h3>
-          <p>원본과 사본의 동일성은 해시값 비교로 증명하는 것이 원칙이라고 판시.</p>
-        </div>
-      </div>
-
-      <p class="legal-summary reveal-p">SRA 기술은 촬영 시점에 해시값과 디지털 서명을 자동 생성합니다.<br><strong>대법원이 인정한 원본 증명을 촬영 순간부터 확보합니다.</strong></p>
-
-      <div class="legal-disclaimer reveal-p">본 정보는 교육 목적으로 제공되며 법률 자문을 구성하지 않습니다.</div>
-      {{ else }}
-      <h2 class="reveal-p">Hash-based proof is legally recognized.</h2>
-
-      <div class="legal-cards legal-three reveal-p">
-        <div class="legal-card">
-          <h3>Lorraine v. Markel</h3>
-          <p>Hash values recognized as valid authentication under FRE 901(b)(4).</p>
-        </div>
-        <div class="legal-card">
-          <h3>FRE 902(13) &amp; (14)</h3>
-          <p>Hash values established as the standard method for electronic evidence authentication.</p>
-        </div>
-        <div class="legal-card">
-          <h3>Lizarraga-Tirado</h3>
-          <p>Machine-generated algorithmic outputs held to be non-hearsay, applicable to cryptographic proofs.</p>
-        </div>
-      </div>
-
-      <p class="legal-summary reveal-p">SRA technology generates hash values and digital signatures at capture.<br><strong>Legally recognized proof from the very first frame.</strong></p>
-
-      <div class="legal-disclaimer reveal-p">This information is provided for educational purposes and does not constitute legal advice.</div>
-      {{ end }}
-    </div>
-  </section>
+       Commented out pending legal review.
+       ══════════════════════════════════════════ */}}
 
   <!-- ══════════════════════════════════════════
        SECTION 7 - CTA
@@ -1592,6 +1548,31 @@
     setInterval(updateTime, 1000);
     updateTime();
     setInterval(function() { hashEl.textContent = randHex(4)+'...'+randHex(4); }, 500);
+  })();
+
+  /* ── Sync deepfake comparison videos ── */
+  (function() {
+    var v1 = document.getElementById('vidOriginal');
+    var v2 = document.getElementById('vidDeepfake');
+    if (!v1 || !v2) return;
+    var ready = 0;
+    function bothReady() {
+      ready++;
+      if (ready < 2) return;
+      v1.currentTime = 0;
+      v2.currentTime = 0;
+      v1.play();
+      v2.play();
+    }
+    v1.pause(); v2.pause();
+    v1.addEventListener('canplaythrough', bothReady, { once: true });
+    v2.addEventListener('canplaythrough', bothReady, { once: true });
+    /* Re-sync on loop */
+    v1.addEventListener('seeked', function() {
+      if (Math.abs(v1.currentTime - v2.currentTime) > 0.1) {
+        v2.currentTime = v1.currentTime;
+      }
+    });
   })();
 
   /* ── Random flickering detection percentage ── */
