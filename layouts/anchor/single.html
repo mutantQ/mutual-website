@@ -1222,8 +1222,8 @@
 
         <!-- Viewport with slider -->
         <div class="mock-call-viewport" id="heroSlider">
-          <video id="heroVidFake" src="/video/anchor-unverified-hero.mp4" autoplay loop muted playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;"></video>
-          <video id="heroVidReal" src="/video/anchor-verified.mp4" autoplay loop muted playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2;clip-path:inset(0 0 0 50%);"></video>
+          <video id="heroVidFake" src="/video/anchor-unverified-hero.mp4" autoplay loop muted playsinline preload="none" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;"></video>
+          <video id="heroVidReal" src="/video/anchor-verified.mp4" autoplay loop muted playsinline preload="none" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2;clip-path:inset(0 0 0 50%);"></video>
 
           <!-- "Is this person real?" label on the left side -->
           <div class="no-anchor-label" id="noAnchorLabel">{{ if eq .Page.Language.Lang "ko" }}이 사람이 진짜인가요?{{ else }}Is this person real?{{ end }}</div>
@@ -1308,14 +1308,14 @@
 
       <div class="deepfake-grid">
         <div class="deepfake-card deepfake-card-border-cyan reveal-p">
-          <video id="vidOriginal" src="/video/anchor-original.mp4" autoplay loop muted playsinline></video>
+          <video id="vidOriginal" src="/video/anchor-original.mp4" autoplay loop muted playsinline preload="none"></video>
           <div class="deepfake-card-info">
             <span class="deepfake-card-label">{{ if eq .Page.Language.Lang "ko" }}원본{{ else }}Original{{ end }}</span>
             <span class="deepfake-card-tag">{{ if eq .Page.Language.Lang "ko" }}진짜{{ else }}Real{{ end }}</span>
           </div>
         </div>
         <div class="deepfake-card deepfake-card-border-red reveal-p">
-          <video id="vidDeepfake" src="/video/anchor-unverified.mp4" autoplay loop muted playsinline></video>
+          <video id="vidDeepfake" src="/video/anchor-unverified.mp4" autoplay loop muted playsinline preload="none"></video>
           <div class="deepfake-card-info">
             <span class="deepfake-card-label">{{ if eq .Page.Language.Lang "ko" }}딥페이크{{ else }}Deepfake{{ end }}</span>
             <span class="deepfake-card-tag">{{ if eq .Page.Language.Lang "ko" }}가짜{{ else }}Fake{{ end }}</span>
@@ -1630,101 +1630,67 @@
     }, 800);
   })();
 
-  /* ── Toolbar timer: count up every second ── */
+  /* ── Consolidated timer: toolbar + clock + hash (1 interval) ── */
   (function() {
-    var el = document.getElementById('toolbarTimer');
-    if (!el) return;
-    var secs = 14 * 60 + 32; // start at 00:14:32
-    setInterval(function() {
-      secs++;
-      var h = Math.floor(secs / 3600);
-      var m = Math.floor((secs % 3600) / 60);
-      var s = secs % 60;
-      el.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-    }, 1000);
-  })();
-
-  /* ── Panel: live system clock + random hash ── */
-  (function() {
+    var timerEl = document.getElementById('toolbarTimer');
     var timeEl = document.getElementById('panelTime');
     var hashEl = document.getElementById('hashVal');
-    if (!timeEl || !hashEl) return;
+    var secs = 14 * 60 + 32;
     var hex = '0123456789abcdef';
+    var tick = 0;
     function randHex(n) { var s = ''; for (var i = 0; i < n; i++) s += hex[Math.floor(Math.random()*16)]; return s; }
-    function updateTime() {
-      var d = new Date();
-      var y = d.getFullYear();
-      var mo = String(d.getMonth()+1).padStart(2,'0');
-      var da = String(d.getDate()).padStart(2,'0');
-      var h = String(d.getHours()).padStart(2,'0');
-      var mi = String(d.getMinutes()).padStart(2,'0');
-      var se = String(d.getSeconds()).padStart(2,'0');
-      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      var short = tz.split('/').pop().replace(/_/g,' ');
-      timeEl.textContent = y+'-'+mo+'-'+da+' '+h+':'+mi+':'+se+' '+short;
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
-    setInterval(function() { hashEl.textContent = randHex(4)+'...'+randHex(4); }, 500);
-  })();
-
-  /* ── Sync hero slider videos ── */
-  (function() {
-    var hf = document.getElementById('heroVidFake');
-    var hr = document.getElementById('heroVidReal');
-    if (!hf || !hr) return;
-    var hReady = 0;
-    function heroBothReady() {
-      hReady++;
-      if (hReady < 2) return;
-      hf.currentTime = 0; hr.currentTime = 0;
-      hf.play(); hr.play();
-    }
-    hf.pause(); hr.pause();
-    hf.addEventListener('canplaythrough', heroBothReady, { once: true });
-    hr.addEventListener('canplaythrough', heroBothReady, { once: true });
-    /* Re-sync at every loop boundary */
-    hf.addEventListener('ended', function() { hf.currentTime = 0; hr.currentTime = 0; hf.play(); hr.play(); });
-    hr.addEventListener('ended', function() { hf.currentTime = 0; hr.currentTime = 0; hf.play(); hr.play(); });
-    /* Periodic drift correction */
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var tzShort = tz.split('/').pop().replace(/_/g,' ');
     setInterval(function() {
-      if (Math.abs(hf.currentTime - hr.currentTime) > 0.05) {
-        hr.currentTime = hf.currentTime;
+      tick++;
+      /* Hash: every 500ms */
+      if (hashEl) hashEl.textContent = randHex(4)+'...'+randHex(4);
+      /* Timer + clock: every 1000ms */
+      if (tick % 2 === 0) {
+        secs++;
+        if (timerEl) {
+          var h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60), s = secs % 60;
+          timerEl.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        }
+        if (timeEl) {
+          var d = new Date();
+          timeEl.textContent = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')+' '+tzShort;
+        }
       }
     }, 500);
   })();
 
-  /* ── Sync deepfake comparison videos ── */
-  (function() {
-    var v1 = document.getElementById('vidOriginal');
-    var v2 = document.getElementById('vidDeepfake');
+  /* ── Video sync helper ── */
+  function syncVideoPair(id1, id2) {
+    var v1 = document.getElementById(id1);
+    var v2 = document.getElementById(id2);
     if (!v1 || !v2) return;
     var ready = 0;
     function bothReady() {
       ready++;
       if (ready < 2) return;
-      v1.currentTime = 0;
-      v2.currentTime = 0;
-      v1.play();
-      v2.play();
+      v1.currentTime = 0; v2.currentTime = 0;
+      v1.play(); v2.play();
     }
     v1.pause(); v2.pause();
     v1.addEventListener('canplaythrough', bothReady, { once: true });
     v2.addEventListener('canplaythrough', bothReady, { once: true });
-    /* Re-sync on loop */
-    v1.addEventListener('seeked', function() {
-      if (Math.abs(v1.currentTime - v2.currentTime) > 0.1) {
-        v2.currentTime = v1.currentTime;
-      }
+    v1.addEventListener('ended', function() { v1.currentTime = 0; v2.currentTime = 0; v1.play(); v2.play(); });
+    v2.addEventListener('ended', function() { v1.currentTime = 0; v2.currentTime = 0; v1.play(); v2.play(); });
+    /* Drift correction: event-based instead of polling */
+    v1.addEventListener('timeupdate', function() {
+      if (Math.abs(v1.currentTime - v2.currentTime) > 0.15) v2.currentTime = v1.currentTime;
     });
-  })();
+  }
+  syncVideoPair('heroVidFake', 'heroVidReal');
+  syncVideoPair('vidOriginal', 'vidDeepfake');
 
   /* ── Random flickering detection percentage ── */
   (function() {
     var el = document.getElementById('flickerNum');
     if (!el) return;
     function randomize() {
-      var n = Math.floor(Math.random() * 40) + 55; // 55-94%
+      var n = Math.floor(Math.random() * 40) + 55;
       el.textContent = n + '%';
       setTimeout(randomize, 200 + Math.random() * 1800);
     }
@@ -1737,7 +1703,7 @@
     var img = document.getElementById('viewer360Img');
     var hint = document.getElementById('viewer360Hint');
     if (!viewer || !img) return;
-    var totalFrames = 60;
+    var totalFrames = 150;
     var currentFrame = 0;
     var dragging = false;
     var startX = 0;
@@ -1745,19 +1711,28 @@
     var lastX = 0;
     var velocity = 0;
     var inertiaAnim = null;
+    var framesLoaded = false;
 
-    // Preload all frames
+    // Lazy-load frames when viewer enters viewport
     var frames = [];
-    for (var i = 0; i < totalFrames; i++) {
-      var f = new Image();
-      f.src = '/img/anchor-360/' + String(i).padStart(3, '0') + '.png';
-      frames.push(f);
+    function preloadFrames() {
+      if (framesLoaded) return;
+      framesLoaded = true;
+      for (var i = 0; i < totalFrames; i++) {
+        var f = new Image();
+        f.src = '/img/anchor-360/' + String(i).padStart(3, '0') + '.png';
+        frames.push(f);
+      }
     }
+    var loadObserver = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) { preloadFrames(); loadObserver.disconnect(); }
+    }, { rootMargin: '200px' });
+    loadObserver.observe(viewer);
 
     function showFrame(idx) {
       idx = ((idx % totalFrames) + totalFrames) % totalFrames;
       currentFrame = idx;
-      img.src = frames[idx].src;
+      if (frames[idx] && frames[idx].complete) img.src = frames[idx].src;
     }
 
     var showcaseLabel = document.getElementById('showcaseLabel');
@@ -1766,12 +1741,17 @@
       setTimeout(function() { if (showcaseLabel) showcaseLabel.style.opacity = '1'; }, 600);
     }
 
-    // Auto-rotate with smooth timing
+    // Auto-rotate: visibility-aware
     var autoRotating = true;
     var lastRotateTime = 0;
-    var rotateInterval = 100;
+    var rotateInterval = 40;
+    var viewerVisible = false;
+    var rotateObserver = new IntersectionObserver(function(entries) {
+      viewerVisible = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+    rotateObserver.observe(viewer);
     function autoRotateLoop(ts) {
-      if (autoRotating && ts - lastRotateTime > rotateInterval) {
+      if (autoRotating && viewerVisible && framesLoaded && ts - lastRotateTime > rotateInterval) {
         showFrame(currentFrame + 1);
         lastRotateTime = ts;
       }
@@ -1820,9 +1800,9 @@
     window.addEventListener('mousemove', function(e) {
       if (!dragging) return;
       var dx = e.clientX - startX;
-      velocity = (e.clientX - lastX) / 5;
+      velocity = (e.clientX - lastX) * 0.4;
       lastX = e.clientX;
-      showFrame(startFrame + Math.round(dx / 5));
+      showFrame(startFrame + Math.round(dx * 0.4));
     });
     window.addEventListener('mouseup', function() {
       if (dragging) { dragging = false; startInertia(); }
@@ -1842,9 +1822,9 @@
       if (!dragging) return;
       var cx = e.touches[0].clientX;
       var dx = cx - startX;
-      velocity = (cx - lastX) / 5;
+      velocity = (cx - lastX) * 0.4;
       lastX = cx;
-      showFrame(startFrame + Math.round(dx / 5));
+      showFrame(startFrame + Math.round(dx * 0.4));
     });
     window.addEventListener('touchend', function() {
       if (dragging) { dragging = false; startInertia(); }
